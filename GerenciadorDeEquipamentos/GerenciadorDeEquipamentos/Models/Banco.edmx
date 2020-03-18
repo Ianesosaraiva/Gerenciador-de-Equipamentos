@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="shield01Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="shield01Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Acessos">
           <Key>
             <PropertyRef Name="AcessoId" />
@@ -102,6 +102,7 @@
           </Key>
           <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="RG" Type="varchar" MaxLength="45" />
           <Property Name="Telefone" Type="varchar" MaxLength="45" />
@@ -268,18 +269,58 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <End Role="Equipamentos" EntitySet="Equipamentos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="shield01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="shield01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Acessos" EntityType="shield01Model.Acessos" />
+          <EntitySet Name="Atributos" EntityType="shield01Model.Atributos" />
+          <EntitySet Name="Departamentos" EntityType="shield01Model.Departamentos" />
+          <EntitySet Name="Equipamentos" EntityType="shield01Model.Equipamentos" />
+          <EntitySet Name="EspecificacaoEquipamento" EntityType="shield01Model.EspecificacaoEquipamento" />
+          <EntitySet Name="Especificacoes" EntityType="shield01Model.Especificacoes" />
+          <EntitySet Name="Log" EntityType="shield01Model.Log" />
+          <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
+          <EntitySet Name="Pessoas" EntityType="shield01Model.Pessoas" />
+          <EntitySet Name="Status" EntityType="shield01Model.Status" />
+          <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
+          <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
+            <End Role="Acessos" EntitySet="Acessos" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
+          <AssociationSet Name="fk_atributotipoequipamento" Association="shield01Model.fk_atributotipoequipamento">
+            <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+            <End Role="Atributos" EntitySet="Atributos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_deparequipamento" Association="shield01Model.fk_deparequipamento">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tipoequipamento" Association="shield01Model.fk_tipoequipamento">
+            <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Manutencao" EntitySet="Manutencao" />
+          </AssociationSet>
+          <AssociationSet Name="fk_acessostatus" Association="shield01Model.fk_acessostatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
             <PropertyRef Name="AcessoId" />
           </Key>
           <Property Name="AcessoId" Type="Int32" Nullable="false" />
-          <Property Name="Descricao" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Pessoas" Relationship="Self.fk_acessopessoa" FromRole="Acessos" ToRole="Pessoas" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessopessoa" FromRole="Acessos" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="Atributos">
           <Key>
@@ -287,19 +328,19 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <PropertyRef Name="TipoEquipamentoId" />
           </Key>
           <Property Name="AtributoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="TipoEquipamento" Relationship="Self.fk_atributotipoequipamento" FromRole="Atributos" ToRole="TipoEquipamento" />
+          <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="Atributos" ToRole="TipoEquipamento" />
         </EntityType>
         <EntityType Name="Departamentos">
           <Key>
             <PropertyRef Name="DepartamentoId" />
           </Key>
           <Property Name="DepartamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Equipamentos" Relationship="Self.fk_deparequipamento" FromRole="Departamentos" ToRole="Equipamentos" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Departamentos" ToRole="Equipamentos" />
         </EntityType>
         <EntityType Name="Equipamentos">
           <Key>
@@ -314,14 +355,14 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="DataAquisicao" Type="DateTime" Nullable="false" />
           <Property Name="DataGarantia" Type="DateTime" />
           <Property Name="NumeroPatrimonial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ServiceTagSerial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServiceTagSerial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="PessoaId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
           <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departamentos" Relationship="Self.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
-          <NavigationProperty Name="Status" Relationship="Self.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
-          <NavigationProperty Name="TipoEquipamento" Relationship="Self.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
+          <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
+          <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
+          <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
         </EntityType>
         <EntityType Name="EspecificacaoEquipamento">
           <Key>
@@ -350,7 +391,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </Key>
           <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DataLog" Type="DateTime" Nullable="false" />
-          <Property Name="DadoModificado" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DadoModificado" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="DadoAnterior" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="NomeTabela" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="PessoaId" Type="Int32" />
@@ -367,7 +408,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Status" Relationship="Self.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
+          <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
         </EntityType>
         <EntityType Name="Pessoas">
           <Key>
@@ -376,27 +417,28 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome_Completo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CPF" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="RG" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="DataCadastro" Type="DateTime" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UltimoAcesso" Type="DateTime" />
           <Property Name="AcessoId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Acessos" Relationship="Self.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
-          <NavigationProperty Name="Status" Relationship="Self.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
+          <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
+          <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="Descrição" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Equipamentos" Relationship="Self.fk_statusequipamento" FromRole="Status" ToRole="Equipamentos" />
-          <NavigationProperty Name="Manutencao" Relationship="Self.fk_statusmanutencao" FromRole="Status" ToRole="Manutencao" />
-          <NavigationProperty Name="Pessoas" Relationship="Self.fk_acessostatus" FromRole="Status" ToRole="Pessoas" />
+          <Property Name="Descrição" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_statusequipamento" FromRole="Status" ToRole="Equipamentos" />
+          <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_statusmanutencao" FromRole="Status" ToRole="Manutencao" />
+          <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessostatus" FromRole="Status" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="TipoEquipamento">
           <Key>
@@ -404,12 +446,12 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </Key>
           <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Atributos" Relationship="Self.fk_atributotipoequipamento" FromRole="TipoEquipamento" ToRole="Atributos" />
-          <NavigationProperty Name="Equipamentos" Relationship="Self.fk_tipoequipamento" FromRole="TipoEquipamento" ToRole="Equipamentos" />
+          <NavigationProperty Name="Atributos" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="TipoEquipamento" ToRole="Atributos" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_tipoequipamento" FromRole="TipoEquipamento" ToRole="Equipamentos" />
         </EntityType>
         <Association Name="fk_acessopessoa">
-          <End Role="Acessos" Type="Self.Acessos" Multiplicity="1" />
-          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+          <End Type="shield01Model.Acessos" Role="Acessos" Multiplicity="1" />
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Acessos">
               <PropertyRef Name="AcessoId" />
@@ -420,8 +462,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_atributotipoequipamento">
-          <End Role="TipoEquipamento" Type="Self.TipoEquipamento" Multiplicity="1" />
-          <End Role="Atributos" Type="Self.Atributos" Multiplicity="*" />
+          <End Type="shield01Model.TipoEquipamento" Role="TipoEquipamento" Multiplicity="1" />
+          <End Type="shield01Model.Atributos" Role="Atributos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoEquipamento">
               <PropertyRef Name="TipoEquipamentoId" />
@@ -432,8 +474,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_deparequipamento">
-          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
-          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+          <End Type="shield01Model.Departamentos" Role="Departamentos" Multiplicity="1" />
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departamentos">
               <PropertyRef Name="DepartamentoId" />
@@ -444,8 +486,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_statusequipamento">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+          <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusId" />
@@ -456,8 +498,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_tipoequipamento">
-          <End Role="TipoEquipamento" Type="Self.TipoEquipamento" Multiplicity="1" />
-          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+          <End Type="shield01Model.TipoEquipamento" Role="TipoEquipamento" Multiplicity="1" />
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoEquipamento">
               <PropertyRef Name="TipoEquipamentoId" />
@@ -468,8 +510,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_statusmanutencao">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Manutencao" Type="Self.Manutencao" Multiplicity="*" />
+          <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+          <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusId" />
@@ -480,8 +522,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_acessostatus">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
-          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+          <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
               <PropertyRef Name="StatusId" />
@@ -491,47 +533,6 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="shield01Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Acessos" EntityType="Self.Acessos" />
-          <EntitySet Name="Atributos" EntityType="Self.Atributos" />
-          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" />
-          <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" />
-          <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" />
-          <EntitySet Name="Especificacoes" EntityType="Self.Especificacoes" />
-          <EntitySet Name="Log" EntityType="Self.Log" />
-          <EntitySet Name="Manutencao" EntityType="Self.Manutencao" />
-          <EntitySet Name="Pessoas" EntityType="Self.Pessoas" />
-          <EntitySet Name="Status" EntityType="Self.Status" />
-          <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" />
-          <AssociationSet Name="fk_acessopessoa" Association="Self.fk_acessopessoa">
-            <End Role="Acessos" EntitySet="Acessos" />
-            <End Role="Pessoas" EntitySet="Pessoas" />
-          </AssociationSet>
-          <AssociationSet Name="fk_atributotipoequipamento" Association="Self.fk_atributotipoequipamento">
-            <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
-            <End Role="Atributos" EntitySet="Atributos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_deparequipamento" Association="Self.fk_deparequipamento">
-            <End Role="Departamentos" EntitySet="Departamentos" />
-            <End Role="Equipamentos" EntitySet="Equipamentos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Equipamentos" EntitySet="Equipamentos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_tipoequipamento" Association="Self.fk_tipoequipamento">
-            <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
-            <End Role="Equipamentos" EntitySet="Equipamentos" />
-          </AssociationSet>
-          <AssociationSet Name="fk_statusmanutencao" Association="Self.fk_statusmanutencao">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Manutencao" EntitySet="Manutencao" />
-          </AssociationSet>
-          <AssociationSet Name="fk_acessostatus" Association="Self.fk_acessostatus">
-            <End Role="Status" EntitySet="Status" />
-            <End Role="Pessoas" EntitySet="Pessoas" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -541,118 +542,119 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <EntitySetMapping Name="Acessos">
             <EntityTypeMapping TypeName="shield01Model.Acessos">
               <MappingFragment StoreEntitySet="Acessos">
-                <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Atributos">
             <EntityTypeMapping TypeName="shield01Model.Atributos">
               <MappingFragment StoreEntitySet="Atributos">
-                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departamentos">
             <EntityTypeMapping TypeName="shield01Model.Departamentos">
               <MappingFragment StoreEntitySet="Departamentos">
-                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipamentos">
             <EntityTypeMapping TypeName="shield01Model.Equipamentos">
               <MappingFragment StoreEntitySet="Equipamentos">
-                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
-                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
-                <ScalarProperty Name="DataAquisicao" ColumnName="DataAquisicao" />
-                <ScalarProperty Name="DataGarantia" ColumnName="DataGarantia" />
-                <ScalarProperty Name="NumeroPatrimonial" ColumnName="NumeroPatrimonial" />
-                <ScalarProperty Name="ServiceTagSerial" ColumnName="ServiceTagSerial" />
-                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
                 <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+                <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="ServiceTagSerial" ColumnName="ServiceTagSerial" />
+                <ScalarProperty Name="NumeroPatrimonial" ColumnName="NumeroPatrimonial" />
+                <ScalarProperty Name="DataGarantia" ColumnName="DataGarantia" />
+                <ScalarProperty Name="DataAquisicao" ColumnName="DataAquisicao" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EspecificacaoEquipamento">
             <EntityTypeMapping TypeName="shield01Model.EspecificacaoEquipamento">
               <MappingFragment StoreEntitySet="EspecificacaoEquipamento">
-                <ScalarProperty Name="EspecificacaoEquipamentoId" ColumnName="EspecificacaoEquipamentoId" />
-                <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
                 <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+                <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
+                <ScalarProperty Name="EspecificacaoEquipamentoId" ColumnName="EspecificacaoEquipamentoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Especificacoes">
             <EntityTypeMapping TypeName="shield01Model.Especificacoes">
               <MappingFragment StoreEntitySet="Especificacoes">
-                <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
-                <ScalarProperty Name="Nome" ColumnName="Nome" />
-                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
                 <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Log">
             <EntityTypeMapping TypeName="shield01Model.Log">
               <MappingFragment StoreEntitySet="Log">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="DataLog" ColumnName="DataLog" />
-                <ScalarProperty Name="DadoModificado" ColumnName="DadoModificado" />
-                <ScalarProperty Name="DadoAnterior" ColumnName="DadoAnterior" />
-                <ScalarProperty Name="NomeTabela" ColumnName="NomeTabela" />
                 <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+                <ScalarProperty Name="NomeTabela" ColumnName="NomeTabela" />
+                <ScalarProperty Name="DadoAnterior" ColumnName="DadoAnterior" />
+                <ScalarProperty Name="DadoModificado" ColumnName="DadoModificado" />
+                <ScalarProperty Name="DataLog" ColumnName="DataLog" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manutencao">
             <EntityTypeMapping TypeName="shield01Model.Manutencao">
               <MappingFragment StoreEntitySet="Manutencao">
-                <ScalarProperty Name="ManutencaoId" ColumnName="ManutencaoId" />
-                <ScalarProperty Name="DataEntrada" ColumnName="DataEntrada" />
-                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
-                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
-                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
+                <ScalarProperty Name="DataEntrada" ColumnName="DataEntrada" />
+                <ScalarProperty Name="ManutencaoId" ColumnName="ManutencaoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pessoas">
             <EntityTypeMapping TypeName="shield01Model.Pessoas">
               <MappingFragment StoreEntitySet="Pessoas">
-                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
-                <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
-                <ScalarProperty Name="CPF" ColumnName="CPF" />
-                <ScalarProperty Name="RG" ColumnName="RG" />
-                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
-                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UltimoAcesso" ColumnName="UltimoAcesso" />
-                <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
+                <ScalarProperty Name="UltimoAcesso" ColumnName="UltimoAcesso" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="RG" ColumnName="RG" />
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
+                <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="shield01Model.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoEquipamento">
             <EntityTypeMapping TypeName="shield01Model.TipoEquipamento">
               <MappingFragment StoreEntitySet="TipoEquipamento">
-                <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

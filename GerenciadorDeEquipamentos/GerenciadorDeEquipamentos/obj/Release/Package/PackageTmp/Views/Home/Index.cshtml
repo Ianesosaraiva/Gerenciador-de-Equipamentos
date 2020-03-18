@@ -1,0 +1,30 @@
+﻿@model GerenciadorDeEquipamentos.Models.Pessoas
+
+@{
+    ViewBag.Title = "Index";
+    string message = ViewBag.message as string;
+}
+
+<h2>Index</h2>
+
+<html>
+<body>
+    <div class="container">
+        @if (message != null)
+        {
+            <p>@message</p>
+        }
+        <form method="post">
+            <div class="input-group">
+                <label>Email</label>
+                @Html.EditorFor(model => model.Email);
+                <label>Senha</label>
+                @Html.PasswordFor(model => model.Senha);
+            </div>
+            <div class="input-group">
+                <input type="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</body>
+</html>

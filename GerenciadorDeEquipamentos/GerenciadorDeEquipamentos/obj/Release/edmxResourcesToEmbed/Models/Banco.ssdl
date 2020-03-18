@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shield01Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Acessos">
+    <Key>
+      <PropertyRef Name="AcessoId" />
+    </Key>
+    <Property Name="AcessoId" Type="int" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Atributos">
+    <Key>
+      <PropertyRef Name="AtributoId" />
+      <PropertyRef Name="TipoEquipamentoId" />
+    </Key>
+    <Property Name="AtributoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao" Type="mediumtext" />
+    <Property Name="TipoEquipamentoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departamentos">
+    <Key>
+      <PropertyRef Name="DepartamentoId" />
+    </Key>
+    <Property Name="DepartamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Descricao" Type="mediumtext" />
+  </EntityType>
+  <EntityType Name="Equipamentos">
+    <Key>
+      <PropertyRef Name="EquipamentoId" />
+      <PropertyRef Name="PessoaId" />
+      <PropertyRef Name="StatusId" />
+      <PropertyRef Name="TipoEquipamentoId" />
+      <PropertyRef Name="DepartamentoId" />
+    </Key>
+    <Property Name="EquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Observacao" Type="varchar" MaxLength="200" />
+    <Property Name="DataAquisicao" Type="date" Nullable="false" />
+    <Property Name="DataGarantia" Type="date" />
+    <Property Name="NumeroPatrimonial" Type="varchar" MaxLength="100" />
+    <Property Name="ServiceTagSerial" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PessoaId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="TipoEquipamentoId" Type="int" Nullable="false" />
+    <Property Name="DepartamentoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EspecificacaoEquipamento">
+    <Key>
+      <PropertyRef Name="EspecificacaoEquipamentoId" />
+      <PropertyRef Name="EspecificacaoId" />
+      <PropertyRef Name="EquipamentoId" />
+    </Key>
+    <Property Name="EspecificacaoEquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EspecificacaoId" Type="int" Nullable="false" />
+    <Property Name="EquipamentoId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Especificacoes">
+    <Key>
+      <PropertyRef Name="EspecificacaoId" />
+      <PropertyRef Name="AtributoId" />
+      <PropertyRef Name="PessoaId" />
+    </Key>
+    <Property Name="EspecificacaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+    <Property Name="AtributoId" Type="int" Nullable="false" />
+    <Property Name="PessoaId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataLog" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="DadoModificado" Type="mediumtext" Nullable="false" />
+    <Property Name="DadoAnterior" Type="mediumtext" />
+    <Property Name="NomeTabela" Type="varchar" MaxLength="45" />
+    <Property Name="PessoaId" Type="int" />
+  </EntityType>
+  <EntityType Name="Manutencao">
+    <Key>
+      <PropertyRef Name="ManutencaoId" />
+      <PropertyRef Name="EquipamentoId" />
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="ManutencaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DataEntrada" Type="date" Nullable="false" />
+    <Property Name="DataSaida" Type="date" />
+    <Property Name="Observacao" Type="mediumtext" />
+    <Property Name="EquipamentoId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pessoas">
+    <Key>
+      <PropertyRef Name="PessoaId" />
+      <PropertyRef Name="AcessoId" />
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="RG" Type="varchar" MaxLength="45" />
+    <Property Name="Telefone" Type="varchar" MaxLength="45" />
+    <Property Name="DataCadastro" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="UltimoAcesso" Type="datetime" Precision="0" />
+    <Property Name="AcessoId" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="Descrição" Type="mediumtext" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoEquipamento">
+    <Key>
+      <PropertyRef Name="TipoEquipamentoId" />
+    </Key>
+    <Property Name="TipoEquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="fk_acessopessoa">
+    <End Role="Acessos" Type="Self.Acessos" Multiplicity="1" />
+    <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acessos">
+        <PropertyRef Name="AcessoId" />
+      </Principal>
+      <Dependent Role="Pessoas">
+        <PropertyRef Name="AcessoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_acessostatus">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Pessoas">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_atributotipoequipamento">
+    <End Role="TipoEquipamento" Type="Self.TipoEquipamento" Multiplicity="1" />
+    <End Role="Atributos" Type="Self.Atributos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEquipamento">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Principal>
+      <Dependent Role="Atributos">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_cadastrouequipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_cadastrouequipamento" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_cadastrouespecificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_cadastrouespecificacao" />-->
+  <Association Name="fk_deparequipamento">
+    <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_equipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_equipamento" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_equipamentomanutencao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_equipamentomanutencao" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_especificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_especificacao" />-->
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'fk_especificacaoatributo' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="fk_especificacaoatributo" />-->
+  <Association Name="fk_statusequipamento">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_statusmanutencao">
+    <End Role="Status" Type="Self.Status" Multiplicity="1" />
+    <End Role="Manutencao" Type="Self.Manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Manutencao">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipoequipamento">
+    <End Role="TipoEquipamento" Type="Self.TipoEquipamento" Multiplicity="1" />
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEquipamento">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="shield01ModelStoreContainer">
+    <EntitySet Name="Acessos" EntityType="Self.Acessos" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Atributos" EntityType="Self.Atributos" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Especificacoes" EntityType="Self.Especificacoes" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Manutencao" EntityType="Self.Manutencao" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" Schema="shield01" store:Type="Tables" />
+    <AssociationSet Name="fk_acessopessoa" Association="Self.fk_acessopessoa">
+      <End Role="Acessos" EntitySet="Acessos" />
+      <End Role="Pessoas" EntitySet="Pessoas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_acessostatus" Association="Self.fk_acessostatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Pessoas" EntitySet="Pessoas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_atributotipoequipamento" Association="Self.fk_atributotipoequipamento">
+      <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+      <End Role="Atributos" EntitySet="Atributos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_deparequipamento" Association="Self.fk_deparequipamento">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_statusmanutencao" Association="Self.fk_statusmanutencao">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Manutencao" EntitySet="Manutencao" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipoequipamento" Association="Self.fk_tipoequipamento">
+      <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

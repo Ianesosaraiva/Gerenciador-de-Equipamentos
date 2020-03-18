@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="shield01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="shield01Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Acessos" EntityType="shield01Model.Acessos" />
+    <EntitySet Name="Atributos" EntityType="shield01Model.Atributos" />
+    <EntitySet Name="Departamentos" EntityType="shield01Model.Departamentos" />
+    <EntitySet Name="Equipamentos" EntityType="shield01Model.Equipamentos" />
+    <EntitySet Name="EspecificacaoEquipamento" EntityType="shield01Model.EspecificacaoEquipamento" />
+    <EntitySet Name="Especificacoes" EntityType="shield01Model.Especificacoes" />
+    <EntitySet Name="Log" EntityType="shield01Model.Log" />
+    <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
+    <EntitySet Name="Pessoas" EntityType="shield01Model.Pessoas" />
+    <EntitySet Name="Status" EntityType="shield01Model.Status" />
+    <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
+    <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
+      <End Role="Acessos" EntitySet="Acessos" />
+      <End Role="Pessoas" EntitySet="Pessoas" />
+    </AssociationSet>
+    <AssociationSet Name="fk_atributotipoequipamento" Association="shield01Model.fk_atributotipoequipamento">
+      <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+      <End Role="Atributos" EntitySet="Atributos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_deparequipamento" Association="shield01Model.fk_deparequipamento">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_tipoequipamento" Association="shield01Model.fk_tipoequipamento">
+      <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Manutencao" EntitySet="Manutencao" />
+    </AssociationSet>
+    <AssociationSet Name="fk_acessostatus" Association="shield01Model.fk_acessostatus">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Pessoas" EntitySet="Pessoas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Acessos">
+    <Key>
+      <PropertyRef Name="AcessoId" />
+    </Key>
+    <Property Name="AcessoId" Type="Int32" Nullable="false" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessopessoa" FromRole="Acessos" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="Atributos">
+    <Key>
+      <PropertyRef Name="AtributoId" />
+      <PropertyRef Name="TipoEquipamentoId" />
+    </Key>
+    <Property Name="AtributoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="Atributos" ToRole="TipoEquipamento" />
+  </EntityType>
+  <EntityType Name="Departamentos">
+    <Key>
+      <PropertyRef Name="DepartamentoId" />
+    </Key>
+    <Property Name="DepartamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Departamentos" ToRole="Equipamentos" />
+  </EntityType>
+  <EntityType Name="Equipamentos">
+    <Key>
+      <PropertyRef Name="EquipamentoId" />
+      <PropertyRef Name="PessoaId" />
+      <PropertyRef Name="StatusId" />
+      <PropertyRef Name="TipoEquipamentoId" />
+      <PropertyRef Name="DepartamentoId" />
+    </Key>
+    <Property Name="EquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DataAquisicao" Type="DateTime" Nullable="false" />
+    <Property Name="DataGarantia" Type="DateTime" />
+    <Property Name="NumeroPatrimonial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceTagSerial" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
+    <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
+    <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
+  </EntityType>
+  <EntityType Name="EspecificacaoEquipamento">
+    <Key>
+      <PropertyRef Name="EspecificacaoEquipamentoId" />
+      <PropertyRef Name="EspecificacaoId" />
+      <PropertyRef Name="EquipamentoId" />
+    </Key>
+    <Property Name="EspecificacaoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EspecificacaoId" Type="Int32" Nullable="false" />
+    <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Especificacoes">
+    <Key>
+      <PropertyRef Name="EspecificacaoId" />
+      <PropertyRef Name="AtributoId" />
+      <PropertyRef Name="PessoaId" />
+    </Key>
+    <Property Name="EspecificacaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="AtributoId" Type="Int32" Nullable="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataLog" Type="DateTime" Nullable="false" />
+    <Property Name="DadoModificado" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="DadoAnterior" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="NomeTabela" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="PessoaId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Manutencao">
+    <Key>
+      <PropertyRef Name="ManutencaoId" />
+      <PropertyRef Name="EquipamentoId" />
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
+    <Property Name="DataSaida" Type="DateTime" />
+    <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Pessoas">
+    <Key>
+      <PropertyRef Name="PessoaId" />
+      <PropertyRef Name="AcessoId" />
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="RG" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="DataCadastro" Type="DateTime" Nullable="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UltimoAcesso" Type="DateTime" />
+    <Property Name="AcessoId" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="StatusId" />
+    </Key>
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="Descrição" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_statusequipamento" FromRole="Status" ToRole="Equipamentos" />
+    <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_statusmanutencao" FromRole="Status" ToRole="Manutencao" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessostatus" FromRole="Status" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="TipoEquipamento">
+    <Key>
+      <PropertyRef Name="TipoEquipamentoId" />
+    </Key>
+    <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Atributos" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="TipoEquipamento" ToRole="Atributos" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_tipoequipamento" FromRole="TipoEquipamento" ToRole="Equipamentos" />
+  </EntityType>
+  <Association Name="fk_acessopessoa">
+    <End Type="shield01Model.Acessos" Role="Acessos" Multiplicity="1" />
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acessos">
+        <PropertyRef Name="AcessoId" />
+      </Principal>
+      <Dependent Role="Pessoas">
+        <PropertyRef Name="AcessoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_atributotipoequipamento">
+    <End Type="shield01Model.TipoEquipamento" Role="TipoEquipamento" Multiplicity="1" />
+    <End Type="shield01Model.Atributos" Role="Atributos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEquipamento">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Principal>
+      <Dependent Role="Atributos">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_deparequipamento">
+    <End Type="shield01Model.Departamentos" Role="Departamentos" Multiplicity="1" />
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_statusequipamento">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_tipoequipamento">
+    <End Type="shield01Model.TipoEquipamento" Role="TipoEquipamento" Multiplicity="1" />
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoEquipamento">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="TipoEquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_statusmanutencao">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Manutencao">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_acessostatus">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Pessoas">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="shield01ModelStoreContainer" CdmEntityContainer="shield01Entities">
+    <EntitySetMapping Name="Acessos">
+      <EntityTypeMapping TypeName="shield01Model.Acessos">
+        <MappingFragment StoreEntitySet="Acessos">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Atributos">
+      <EntityTypeMapping TypeName="shield01Model.Atributos">
+        <MappingFragment StoreEntitySet="Atributos">
+          <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departamentos">
+      <EntityTypeMapping TypeName="shield01Model.Departamentos">
+        <MappingFragment StoreEntitySet="Departamentos">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipamentos">
+      <EntityTypeMapping TypeName="shield01Model.Equipamentos">
+        <MappingFragment StoreEntitySet="Equipamentos">
+          <ScalarProperty Name="DepartamentoId" ColumnName="DepartamentoId" />
+          <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="ServiceTagSerial" ColumnName="ServiceTagSerial" />
+          <ScalarProperty Name="NumeroPatrimonial" ColumnName="NumeroPatrimonial" />
+          <ScalarProperty Name="DataGarantia" ColumnName="DataGarantia" />
+          <ScalarProperty Name="DataAquisicao" ColumnName="DataAquisicao" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EspecificacaoEquipamento">
+      <EntityTypeMapping TypeName="shield01Model.EspecificacaoEquipamento">
+        <MappingFragment StoreEntitySet="EspecificacaoEquipamento">
+          <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+          <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
+          <ScalarProperty Name="EspecificacaoEquipamentoId" ColumnName="EspecificacaoEquipamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Especificacoes">
+      <EntityTypeMapping TypeName="shield01Model.Especificacoes">
+        <MappingFragment StoreEntitySet="Especificacoes">
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="shield01Model.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="NomeTabela" ColumnName="NomeTabela" />
+          <ScalarProperty Name="DadoAnterior" ColumnName="DadoAnterior" />
+          <ScalarProperty Name="DadoModificado" ColumnName="DadoModificado" />
+          <ScalarProperty Name="DataLog" ColumnName="DataLog" />
+          <ScalarProperty Name="LogId" ColumnName="LogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Manutencao">
+      <EntityTypeMapping TypeName="shield01Model.Manutencao">
+        <MappingFragment StoreEntitySet="Manutencao">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
+          <ScalarProperty Name="DataEntrada" ColumnName="DataEntrada" />
+          <ScalarProperty Name="ManutencaoId" ColumnName="ManutencaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pessoas">
+      <EntityTypeMapping TypeName="shield01Model.Pessoas">
+        <MappingFragment StoreEntitySet="Pessoas">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
+          <ScalarProperty Name="UltimoAcesso" ColumnName="UltimoAcesso" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="RG" ColumnName="RG" />
+          <ScalarProperty Name="CPF" ColumnName="CPF" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="shield01Model.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoEquipamento">
+      <EntityTypeMapping TypeName="shield01Model.TipoEquipamento">
+        <MappingFragment StoreEntitySet="TipoEquipamento">
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
