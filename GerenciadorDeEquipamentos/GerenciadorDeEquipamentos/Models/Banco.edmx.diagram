@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="45a1b57f135c40c88704318a3fc8b78f" Name="Diagram1">
+        <EntityTypeShape EntityType="shield01Model.Acessos" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Atributos" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Departamentos" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Equipamentos" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.EspecificacaoEquipamento" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Especificacoes" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Log" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Pessoas" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.Status" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="shield01Model.TipoEquipamento" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="shield01Model.fk_acessopessoa" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_atributotipoequipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_deparequipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_statusequipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_tipoequipamento" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_statusmanutencao" ManuallyRouted="false" />
+        <AssociationConnector Association="shield01Model.fk_acessostatus" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
