@@ -551,7 +551,6 @@
     <Content Include="Scripts\scss\material-dashboard\_tooltip.scss" />
     <Content Include="Scripts\scss\material-dashboard\_type.scss" />
     <Content Include="Scripts\scss\material-dashboard\_variables.scss" />
-    <Content Include="Views\Login\Modal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

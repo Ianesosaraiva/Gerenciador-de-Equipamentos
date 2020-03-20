@@ -16,6 +16,10 @@
                 <span class="login100-form-title">
                     LOGIN
                 </span>
+                @if(message != null)
+                {
+                    <p>@message</p>
+                }
 
                 <div class="wrap-input100 validate-input" data-validate="Digite o usuario">
                     @*<input class="input100" type="text" name="email" placeholder="Usuario">*@

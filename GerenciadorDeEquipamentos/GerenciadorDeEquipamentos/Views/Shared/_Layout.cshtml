@@ -30,9 +30,6 @@
 </head>
 <body>
     @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
-
-
-    <div class="wrapper ">
         <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
             <div class="logo">
                 <a href="#" class="simple-text logo-normal">
@@ -42,15 +39,15 @@
             <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index")">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">
                             <i class="material-icons">dashboard</i>
                             <p>Inicio</p>
                         </a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="@Url.Action("Index")">
+                        <a class="nav-link" href="@Url.Action("Modal","Login")">
                             <i class="material-icons">person</i>
-                            <p>Usuarios</p>
+                            <p>Usuários</p>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -89,7 +86,6 @@
             </div>
         </div>
 
-    </div>
 
 
     <div class="container body-content">
@@ -99,6 +95,13 @@
             <p>&copy; @DateTime.Now.Year - DESENVGTI</p>
         </footer>
     </div>
+    <script>
+        $(document).ready(function () {
+            var item = $('a[href*="' + window.location.pathname + '"]');
+            item.parent().addClass("active");
+            item.parent().parent().parent().addClass("active menu-open");
+        });
+    </script>
 
 
     @*<script>

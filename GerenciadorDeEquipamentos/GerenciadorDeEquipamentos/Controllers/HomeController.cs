@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GerenciadorDeEquipamentos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,82 +9,19 @@ namespace GerenciadorDeEquipamentos.Controllers
 {
     public class HomeController : Controller
     {
+        shield01Entities bd = new shield01Entities();
+        [Authorize]
         // GET: Home
         public ActionResult Index()
         {
+            int p = Convert.ToInt32(HttpContext.User.Identity.Name);
+
+            ViewBag.usuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == p).Nome_Completo.Split(' ')[0];
+            ViewBag.qtdUsuarios = bd.Pessoas.Where(x=>x.StatusId == 1).Count();
+            ViewBag.qtdEquipamentos = bd.Equipamentos.Where(x=>x.StatusId == 1).Count();
+
             return View();
         }
 
-        // GET: Home/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: Home/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Home/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Home/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Home/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
