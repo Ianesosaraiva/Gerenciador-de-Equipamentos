@@ -23,6 +23,7 @@
         <AssociationConnector Association="shield01Model.fk_tipoequipamento" />
         <AssociationConnector Association="shield01Model.fk_statusmanutencao" />
         <AssociationConnector Association="shield01Model.fk_acessostatus" />
+        <EntityTypeShape EntityType="shield01Model.Interface" Width="1.5" PointX="8.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

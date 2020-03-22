@@ -61,6 +61,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.9.10\Assemblies\v4.5\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -116,9 +119,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -163,6 +163,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Banco.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DadosIndex.cs" />
     <Compile Include="Models\DataLogin.cs" />
     <Compile Include="Models\DataPessoa.cs" />
     <Compile Include="Models\Departamentos.cs">
@@ -177,6 +178,9 @@
     <Compile Include="Models\Especificacoes.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interface.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Log.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -186,6 +190,7 @@
     <Compile Include="Models\Pessoas.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Sidebar.cs" />
     <Compile Include="Models\Status.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -319,8 +324,12 @@
     <Content Include="fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="fonts\poppins\Poppins-ThinItalic.ttf" />
     <Content Include="Content\dashboard\material-dashboard.css.map" />
+    <Content Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Dados.js" />
     <Content Include="Scripts\demo.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

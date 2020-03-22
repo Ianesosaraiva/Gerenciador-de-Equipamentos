@@ -4,23 +4,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace GerenciadorDeEquipamentos.Controllers
 {
     public class HomeController : Controller
     {
         shield01Entities bd = new shield01Entities();
+
         [Authorize]
         // GET: Home
         public ActionResult Index()
         {
-            int p = Convert.ToInt32(HttpContext.User.Identity.Name);
+            int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            DadosIndex dados = new DadosIndex
+            {
+                NomeUsuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).Nome_Completo.Split(' ')[0],
+                qtdUsuariosAtivos = bd.Pessoas.Where(x => x.StatusId == 1).Count(),
+                qtdEquipamentosAtivos = bd.Equipamentos.Where(x => x.StatusId == 1).Count()
+            };
 
-            ViewBag.usuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == p).Nome_Completo.Split(' ')[0];
-            ViewBag.qtdUsuarios = bd.Pessoas.Where(x=>x.StatusId == 1).Count();
-            ViewBag.qtdEquipamentos = bd.Equipamentos.Where(x=>x.StatusId == 1).Count();
-
-            return View();
+            return View(dados);
         }
 
     }

@@ -36,5 +36,6 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<Pessoas> Pessoas { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<TipoEquipamento> TipoEquipamento { get; set; }
+        public virtual DbSet<Interface> Interface { get; set; }
     }
 }

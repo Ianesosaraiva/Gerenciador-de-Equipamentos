@@ -40,6 +40,7 @@
       <End Role="Status" EntitySet="Status" />
       <End Role="Pessoas" EntitySet="Pessoas" />
     </AssociationSet>
+    <EntitySet Name="Interface" EntityType="shield01Model.Interface" />
   </EntityContainer>
   <EntityType Name="Acessos">
     <Key>
@@ -260,4 +261,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Interface">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="icon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="action" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="cor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

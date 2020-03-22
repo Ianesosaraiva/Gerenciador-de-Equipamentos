@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using GerenciadorDeEquipamentos.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -30,27 +32,31 @@
 </head>
 <body>
     @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
-        <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
-            <div class="logo">
-                <a href="#" class="simple-text logo-normal">
-                    GERENCIADOR DE ATIVOS
-                </a>
-            </div>
-            <div class="sidebar-wrapper">
-                <ul class="nav">
+    @{
+        shield01Entities bd = new shield01Entities();
+
+        var sidbar = bd.Interface.ToList();
+    }
+
+    <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+        <div class="logo">
+            <a href="#" class="simple-text logo-normal">
+                GERENCIADOR DE ATIVOS
+            </a>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="nav">
+                @foreach (var item in sidbar)
+                {
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Home")">
-                            <i class="material-icons">dashboard</i>
-                            <p>Inicio</p>
+                        <a class="nav-link" href="@Url.Action(item.action, item.controller)">
+                            <i class="material-icons">@item.icon</i>
+                            <p>@item.titulo</p>
                         </a>
                     </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="@Url.Action("Modal","Login")">
-                            <i class="material-icons">person</i>
-                            <p>Usuários</p>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
+                }
+
+                @*<li class="nav-item dropdown">
                         <a class="nav-link" href="javascript:;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">desktop_mac</i>
                             <p>Gerenciar Ativos</p>
@@ -81,20 +87,18 @@
                             <i class="material-icons">settings</i>
                             <p>Configurações do Sistema</p>
                         </a>
-                    </li>
-                </ul>
-            </div>
+                    </li>*@
+            </ul>
         </div>
-
-
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - DESENVGTI</p>
-        </footer>
     </div>
+
+
+
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - DESENVGTI</p>
+    </footer>
     <script>
         $(document).ready(function () {
             var item = $('a[href*="' + window.location.pathname + '"]');

@@ -1,10 +1,7 @@
-﻿
+﻿@model GerenciadorDeEquipamentos.Models.DadosIndex
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var qtdUsuarios = ViewBag.qtdUsuarios;
-    var qtdEquipamentos = ViewBag.qtdEquipamentos;
-    string usuarioNome = ViewBag.usuario;
 }
 
 
@@ -69,7 +66,7 @@
 
                     <li class="nome">
                         <p class="teste">
-                            @usuarioNome
+                            @Model.NomeUsuario
                         </p>
                     </li>
                 </ul>
@@ -88,7 +85,7 @@
                             </div>
                             <p class="card-category">Ativos</p>
                             <h3 class="card-title">
-                                @qtdEquipamentos
+                                @Model.qtdEquipamentosAtivos
                             </h3>
                         </div>
                         <div class="card-footer">
@@ -99,6 +96,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
@@ -115,6 +114,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
@@ -122,7 +124,7 @@
                                 <i class="material-icons">person</i>
                             </div>
                             <p class="card-category">Usuários</p>
-                            <h3 class="card-title">@qtdUsuarios</h3>
+                            <h3 class="card-title">@Model.qtdUsuariosAtivos</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
