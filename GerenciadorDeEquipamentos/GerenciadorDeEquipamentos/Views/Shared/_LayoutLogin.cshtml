@@ -19,7 +19,7 @@
 
     <!--===============================================================================================-->
 
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/main.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -27,7 +27,7 @@
 <body style="padding-top: 0%">
     @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
 
-        @RenderBody()
+    @RenderBody()
     @*<hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - DEV-GTI</p>
@@ -35,6 +35,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/tilt")
     @RenderSection("scripts", required: false)
 </body>

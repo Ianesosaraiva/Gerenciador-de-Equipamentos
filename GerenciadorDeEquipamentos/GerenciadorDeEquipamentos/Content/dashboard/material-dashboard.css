@@ -14475,7 +14475,7 @@
      }
      
      .sidebar[data-background-color="black"] {
-         background-color: #910a0a;
+         background-color: #191919;
      }
      
      .sidebar .sidebar-wrapper {
@@ -14625,14 +14625,14 @@
          line-height: 30px;
          width: 30px;
          text-align: center;
-         color: #a9afbb;
+         color: #ffffff;
      }
      
      .sidebar .nav li a,
      .sidebar .nav li .dropdown-menu a {
          margin: 10px 15px 0;
          border-radius: 3px;
-         color: #3C4858;
+         color: #ffffff;
          padding-left: 10px;
          padding-right: 10px;
          text-transform: capitalize;
@@ -14651,6 +14651,7 @@
          background-size: cover;
          background-position: center center;
      }
+     /*Mudar a cor de fundo do sidebar*/
      
      .sidebar .sidebar-background:after {
          position: absolute;
@@ -14659,7 +14660,7 @@
          height: 100%;
          content: "";
          display: block;
-         background: #FFFFFF;
+         background: #0f4c81;
          opacity: .93;
      }
      
@@ -14694,7 +14695,7 @@
          padding: 5px 0px;
          display: inline-block;
          font-size: 18px;
-         color: #3C4858;
+         color: #fff;
          white-space: nowrap;
          font-weight: 400;
          line-height: 30px;
@@ -14753,14 +14754,14 @@
          color: #fff;
      }
      
-     .sidebar[data-color="purple"] li.active>a {
-         background-color: #9c27b0;
-         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
+     .sidebar[data-color="blu"] li.active>a {
+         background-color: #3791d1;
+         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(55, 145, 209, 0.4);
      }
      
      .sidebar[data-color="azure"] li.active>a {
-         background-color: #00bcd4;
-         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4);
+         background-color: #236899;
+         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(35, 104, 153, 0.6);
      }
      
      .sidebar[data-color="green"] li.active>a {
@@ -14776,11 +14777,6 @@
      .sidebar[data-color="danger"] li.active>a {
          background-color: #f44336;
          box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
-     }
-     
-     .sidebar[data-color="rose"] li.active>a {
-         background-color: #e91e63;
-         box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
      }
      
      .sidebar[data-color="white"] li.active>a {

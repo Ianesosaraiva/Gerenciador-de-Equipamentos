@@ -137,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -378,6 +379,8 @@
     <Content Include="Content\select2\select2.min.css" />
     <Content Include="Content\select2\select2.min.js" />
     <Content Include="Scripts\tilt\tilt.jquery.min.js" />
+    <Content Include="Views\Equipamento\CadastroEquipamentos.html" />
+    <Content Include="Views\Equipamento\LitarEquipamentos.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -395,7 +398,6 @@
     <Content Include="Content\bootstrap-reboot.min.css.map" />
     <Content Include="Views\Shared\_LayoutLogin.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\material-dashboard.js.map" />
     <Content Include="Scripts\scss\material-dashboard.scss" />
     <Content Include="Scripts\scss\material-dashboard\bootstrap\scss\bootstrap-grid.scss" />
     <Content Include="Scripts\scss\material-dashboard\bootstrap\scss\bootstrap-reboot.scss" />
@@ -560,6 +562,10 @@
     <Content Include="Scripts\scss\material-dashboard\_tooltip.scss" />
     <Content Include="Scripts\scss\material-dashboard\_type.scss" />
     <Content Include="Scripts\scss\material-dashboard\_variables.scss" />
+    <Content Include="Views\Equipamento\CriarEquipamentos.cshtml" />
+    <Content Include="Views\Equipamento\DeletarEquipamentos.cshtml" />
+    <Content Include="Views\Equipamento\EditarEquipamentos.cshtml" />
+    <Content Include="Views\Equipamento\ListarEquipamentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -574,8 +580,6 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

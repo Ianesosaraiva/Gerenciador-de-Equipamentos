@@ -12,7 +12,9 @@ namespace GerenciadorDeEquipamentos
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/tilt").Include(
-                        "~/Scripts/tilt/tilt.jquery.min.js"));
+                        "~/Scripts/tilt/tilt.jquery.min.js",
+                        "~/Scripts/main.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
