@@ -17,35 +17,33 @@ table {
 
 @media (min-width: 576px) {
 
-  .navbar-expand-sm .navbar-collapse {
+  .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
 }
 
 @media (min-width: 768px) {
-   .navbar-expand-md .navbar-collapse {
+   .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
 }
 @media (min-width: 992px) {
-  
-  .navbar-expand-lg .navbar-collapse {
+ .navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
 }
 
 @media (min-width: 1200px) {
-
-  .navbar-expand-xl .navbar-collapse {
+.navbar-collapse {
     display: flex !important;
     flex-basis: auto;
   }
 }
 
-.navbar-expand .navbar-collapse {
+.navbar-collapse {
   display: flex !important;
   flex-basis: auto;
 }
@@ -56,7 +54,7 @@ table {
   }
 }
 
-.animated--grow-in, .sidebar .nav-item .collapse {
+.animated--grow-in, .nav-item .collapse {
   -webkit-animation-name: growIn;
   animation-name: growIn;
   -webkit-animation-duration: 200ms;
