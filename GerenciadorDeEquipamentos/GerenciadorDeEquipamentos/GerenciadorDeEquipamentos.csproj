@@ -201,6 +201,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\all.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -210,6 +211,8 @@
     <Content Include="Content\dashboard\material-dashboard.min.css" />
     <Content Include="Content\demo.css" />
     <Content Include="Content\main.css" />
+    <Content Include="Content\sb-admin-2.css" />
+    <Content Include="Content\sb-admin-2.min.css" />
     <Content Include="Content\util.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
