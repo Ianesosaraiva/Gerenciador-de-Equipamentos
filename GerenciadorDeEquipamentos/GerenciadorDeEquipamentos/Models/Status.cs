@@ -23,7 +23,7 @@ namespace GerenciadorDeEquipamentos.Models
         }
     
         public int StatusId { get; set; }
-        public string Descrição { get; set; }
+        public string Descricao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipamentos> Equipamentos { get; set; }

@@ -70,17 +70,6 @@
           <Property Name="AtributoId" Type="int" Nullable="false" />
           <Property Name="PessoaId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Interface">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="icon" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="action" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="controller" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="cor" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="LogId" />
@@ -123,12 +112,24 @@
           <Property Name="AcessoId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Sidebar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="icon" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="action" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="controller" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="tipo" Type="bool" Nullable="false" />
+          <Property Name="pai" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="StatusId" Type="int" Nullable="false" />
-          <Property Name="Descrição" Type="mediumtext" Nullable="false" />
+          <Property Name="Descricao" Type="mediumtext" Nullable="false" />
         </EntityType>
         <EntityType Name="TipoEquipamento">
           <Key>
@@ -246,10 +247,10 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Especificacoes" EntityType="Self.Especificacoes" Schema="shield01" store:Type="Tables" />
-          <EntitySet Name="Interface" EntityType="Self.Interface" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Manutencao" EntityType="Self.Manutencao" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="shield01" store:Type="Tables" />
+          <EntitySet Name="Sidebar" EntityType="Self.Sidebar" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" Schema="shield01" store:Type="Tables" />
           <AssociationSet Name="fk_acessopessoa" Association="Self.fk_acessopessoa">
@@ -295,6 +296,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <EntitySet Name="Log" EntityType="shield01Model.Log" />
           <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
           <EntitySet Name="Pessoas" EntityType="shield01Model.Pessoas" />
+          <EntitySet Name="Sidebar" EntityType="shield01Model.Sidebar" />
           <EntitySet Name="Status" EntityType="shield01Model.Status" />
           <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
           <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
@@ -325,7 +327,6 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <End Role="Status" EntitySet="Status" />
             <End Role="Pessoas" EntitySet="Pessoas" />
           </AssociationSet>
-          <EntitySet Name="Interface" EntityType="shield01Model.Interface" />
         </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
@@ -443,12 +444,24 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
         </EntityType>
+        <EntityType Name="Sidebar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="icon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="action" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="tipo" Type="Boolean" Nullable="false" />
+          <Property Name="pai" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="Descrição" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_statusequipamento" FromRole="Status" ToRole="Equipamentos" />
           <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_statusmanutencao" FromRole="Status" ToRole="Manutencao" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessostatus" FromRole="Status" ToRole="Pessoas" />
@@ -546,18 +559,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Interface">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="icon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="action" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="cor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -666,10 +668,23 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sidebar">
+            <EntityTypeMapping TypeName="shield01Model.Sidebar">
+              <MappingFragment StoreEntitySet="Sidebar">
+                <ScalarProperty Name="pai" ColumnName="pai" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="controller" ColumnName="controller" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="icon" ColumnName="icon" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Status">
             <EntityTypeMapping TypeName="shield01Model.Status">
               <MappingFragment StoreEntitySet="Status">
-                <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -679,18 +694,6 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
               <MappingFragment StoreEntitySet="TipoEquipamento">
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Interface">
-            <EntityTypeMapping TypeName="shield01Model.Interface">
-              <MappingFragment StoreEntitySet="Interface">
-                <ScalarProperty Name="cor" ColumnName="cor" />
-                <ScalarProperty Name="controller" ColumnName="controller" />
-                <ScalarProperty Name="action" ColumnName="action" />
-                <ScalarProperty Name="icon" ColumnName="icon" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

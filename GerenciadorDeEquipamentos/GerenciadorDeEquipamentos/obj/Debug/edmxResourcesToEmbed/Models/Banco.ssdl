@@ -65,17 +65,6 @@
     <Property Name="AtributoId" Type="int" Nullable="false" />
     <Property Name="PessoaId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Interface">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="icon" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="action" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="controller" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="cor" Type="varchar" MaxLength="100" Nullable="false" />
-  </EntityType>
   <EntityType Name="Log">
     <Key>
       <PropertyRef Name="LogId" />
@@ -118,12 +107,24 @@
     <Property Name="AcessoId" Type="int" Nullable="false" />
     <Property Name="StatusId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Sidebar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="icon" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="action" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="controller" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="tipo" Type="bool" Nullable="false" />
+    <Property Name="pai" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Status">
     <Key>
       <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="StatusId" Type="int" Nullable="false" />
-    <Property Name="Descrição" Type="mediumtext" Nullable="false" />
+    <Property Name="Descricao" Type="mediumtext" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoEquipamento">
     <Key>
@@ -241,10 +242,10 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
     <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Especificacoes" EntityType="Self.Especificacoes" Schema="shield01" store:Type="Tables" />
-    <EntitySet Name="Interface" EntityType="Self.Interface" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Log" EntityType="Self.Log" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Manutencao" EntityType="Self.Manutencao" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Pessoas" EntityType="Self.Pessoas" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="Sidebar" EntityType="Self.Sidebar" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Status" EntityType="Self.Status" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" Schema="shield01" store:Type="Tables" />
     <AssociationSet Name="fk_acessopessoa" Association="Self.fk_acessopessoa">

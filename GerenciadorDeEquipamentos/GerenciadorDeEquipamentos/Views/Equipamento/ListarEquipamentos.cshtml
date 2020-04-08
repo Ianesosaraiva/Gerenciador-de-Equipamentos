@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Listar Equipamentos</h2>
+<h2>Equipamentos</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Cadastrar Equipamento", "CriarEquipamentos")
 </p>
 <div class="card">
     <div class="card-header card-header-primary card-header-icon">
@@ -21,37 +21,37 @@
         <div class="col-md-12">
             <div class="card card-plain">
                 @*<div class="card-header card-header-primary">
-                    <h4 class="card-title mt-0"> Lista de Equipamentos</h4>
+                        <h4 class="card-title mt-0"> Lista de Equipamentos</h4>
 
-                </div>*@
+                    </div>*@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-hover">
                             <thead class="">
                                 <tr>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Observacao)
+                                        @Html.DisplayName("Observação")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.DataAquisicao)
+                                        @Html.DisplayName("Data de aquisição")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.DataGarantia)
+                                        @Html.DisplayName("Data da garantia")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.NumeroPatrimonial)
+                                        @Html.DisplayName("Número patrimonial")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.ServiceTagSerial)
+                                        @Html.DisplayName("Service Tag Serial")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Departamentos.Nome)
+                                        @Html.DisplayName("Departamentos")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.Status.Descrição)
+                                        @Html.DisplayName("Descrição")
                                     </th>
                                     <th>
-                                        @Html.DisplayNameFor(model => model.TipoEquipamento.Nome)
+                                        @Html.DisplayName("Tipo de equipamento")
                                     </th>
                                     <th></th>
                                 </tr>
@@ -79,7 +79,7 @@
                                             @Html.DisplayFor(modelItem => item.Departamentos.Nome)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Status.Descrição)
+                                            @Html.DisplayFor(modelItem => item.Status.Descricao)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.TipoEquipamento.Nome)

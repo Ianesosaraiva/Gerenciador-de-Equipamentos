@@ -17,14 +17,15 @@
     @Styles.Render("~/Content/dashboard/material-dashboard.css")
     @Scripts.Render("~/bundles/modernizr")
 
-
+    <style>
+    </style>
 </head>
 <body>
     @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
     @{
         shield01Entities bd = new shield01Entities();
 
-        var sidbar = bd.Interface.ToList();
+        var sidbar = bd.Sidebar.ToList();
     }
 
     <div class="wrapper">
@@ -34,16 +35,59 @@
                     GERENCIADOR DE ATIVOS
                 </a>
             </div>
-            <div class="sidebar-wrapper ps-container ps-theme-default" data-ps-id="bac061bb-4770-6c22-fb19-d99af016c8ea">
+            <div class="sidebar-wrapper sidebar-menu ps-container ps-theme-default" data-ps-id="bac061bb-4770-6c22-fb19-d99af016c8ea">
                 <ul class="nav">
+                    @*<li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="far fa-gem"></i>
+                                <span>Components</span>
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">General</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>*@
                     @foreach (var item in sidbar)
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="@Url.Action(item.action, item.controller)">
-                                <i class="material-icons">@item.icon</i>
-                                <p>@item.titulo</p>
-                            </a>
-                        </li>
+                        if (item.tipo)
+                        {
+                            var subItens = sidbar.Where(x => x.pai == item.Id);
+                            <li class="nav-item">
+                                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapse">
+                                    <i class="material-icons">@item.icon</i>
+                                    <span>@item.titulo</span>
+                                </a>
+                                <div id="collapse" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <h6 class="collapse-header">@item.titulo</h6>
+                                        @foreach (var item2 in subItens)
+                                        {
+
+                                            <a class="collapse-item" href="@Url.Action(item2.action, item2.controller)">
+                                                <i class="material-icons">@item2.icon</i>
+                                                @item2.titulo
+                                            </a>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            if (item.pai == 0)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" href="@Url.Action(item.action, item.controller)">
+                                        <i class="material-icons">@item.icon</i>
+                                        <p>@item.titulo</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+
                     }
                 </ul>
                 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
@@ -124,6 +168,10 @@
     </div>
 
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <!--   Core JS Files   -->
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/popper.min.js"></script>
@@ -176,7 +224,40 @@
             item.parent().parent().parent().addClass("active menu-open");
         });
     </script>
+    <script>
+        jQuery(function ($) {
 
+            $(".sidebar-dropdown > a").click(function () {
+                $(".sidebar-submenu").slideUp(200);
+                if (
+                    $(this)
+                        .parent()
+                        .hasClass("active")
+                ) {
+                    $(".sidebar-dropdown").removeClass("active");
+                    $(this)
+                        .parent()
+                        .removeClass("active");
+                } else {
+                    $(".sidebar-dropdown").removeClass("active");
+                    $(this)
+                        .next(".sidebar-submenu")
+                        .slideDown(200);
+                    $(this)
+                        .parent()
+                        .addClass("active");
+                }
+            });
+
+            $("#close-sidebar").click(function () {
+                $(".page-wrapper").removeClass("toggled");
+            });
+            $("#show-sidebar").click(function () {
+                $(".page-wrapper").addClass("toggled");
+            });
+
+
+    </script>
 
     @*<script>
             $(document).ready(function () {

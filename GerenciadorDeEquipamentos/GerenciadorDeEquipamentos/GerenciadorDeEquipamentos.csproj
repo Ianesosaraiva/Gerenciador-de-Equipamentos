@@ -140,6 +140,7 @@
     <Compile Include="Controllers\EquipamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,9 +180,6 @@
     <Compile Include="Models\Especificacoes.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Interface.cs">
-      <DependentUpon>Banco.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Log.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -191,7 +189,9 @@
     <Compile Include="Models\Pessoas.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sidebar.cs" />
+    <Compile Include="Models\Sidebar.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Status.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>

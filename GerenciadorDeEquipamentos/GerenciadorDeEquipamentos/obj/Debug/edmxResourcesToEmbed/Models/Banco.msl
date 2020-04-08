@@ -104,10 +104,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sidebar">
+      <EntityTypeMapping TypeName="shield01Model.Sidebar">
+        <MappingFragment StoreEntitySet="Sidebar">
+          <ScalarProperty Name="pai" ColumnName="pai" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Status">
       <EntityTypeMapping TypeName="shield01Model.Status">
         <MappingFragment StoreEntitySet="Status">
-          <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -117,18 +130,6 @@
         <MappingFragment StoreEntitySet="TipoEquipamento">
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Interface">
-      <EntityTypeMapping TypeName="shield01Model.Interface">
-        <MappingFragment StoreEntitySet="Interface">
-          <ScalarProperty Name="cor" ColumnName="cor" />
-          <ScalarProperty Name="controller" ColumnName="controller" />
-          <ScalarProperty Name="action" ColumnName="action" />
-          <ScalarProperty Name="icon" ColumnName="icon" />
-          <ScalarProperty Name="titulo" ColumnName="titulo" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

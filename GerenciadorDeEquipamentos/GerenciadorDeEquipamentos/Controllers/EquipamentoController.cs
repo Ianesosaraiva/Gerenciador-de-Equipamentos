@@ -25,11 +25,14 @@ namespace ASEC.Controllers
                 return View(equipamentos);
             }
         }
-
+        //===============================================================================================
         [Authorize]
-        public ActionResult CriarEquipamentos(int TipoEquipamentoId)
+        public ActionResult CriarEquipamentos()
         {
-            ViewBag.tipoEquipamentoId = TipoEquipamentoId;
+            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
+            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
+          
             return View();
         }
 
@@ -37,13 +40,12 @@ namespace ASEC.Controllers
         public ActionResult CriarEquipamentos(Equipamentos equipamento, int TipoEquipamentoId)
         {
             equipamento.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
-            equipamento.StatusId = 1;
 
             bd.Equipamentos.Add(equipamento);
             bd.SaveChanges();
-            return RedirectToAction("ListarEquipamentos", "Equipamentos");
+            return RedirectToAction("ListarEquipamentos", "Equipamento");
         }
-
+        //===============================================================================================
         [Authorize]
         public ActionResult ListarEquipamentoEspecificacao(int EquipamentoId)
         {
@@ -51,6 +53,7 @@ namespace ASEC.Controllers
             return View(especificacaoEquipamento);
         }
 
+        //===============================================================================================
         [Authorize]
         public ActionResult AdicionarEquipamentoEspecs(int EquipamentoId, int AtributoId)
         {
@@ -64,5 +67,7 @@ namespace ASEC.Controllers
 
             return View();
         }
+
+        //===============================================================================================
     }
 }
