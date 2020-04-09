@@ -569,6 +569,9 @@
     <Content Include="Views\Equipamento\DeletarEquipamentos.cshtml" />
     <Content Include="Views\Equipamento\EditarEquipamentos.cshtml" />
     <Content Include="Views\Equipamento\ListarEquipamentos.cshtml" />
+    <Content Include="Views\Pessoa\ListarPessoa.cshtml" />
+    <Content Include="Views\Pessoa\CadastrarPessoa.cshtml" />
+    <Content Include="Views\Pessoa\EditarPessoa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

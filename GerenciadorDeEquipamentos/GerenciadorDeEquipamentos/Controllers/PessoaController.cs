@@ -15,7 +15,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         [Authorize]
         // GET: Pessoa
-        public ActionResult ListarPessoa()
+        public ActionResult ListarPessoas()
         {
             var listar = bd.Pessoas.ToList();
             return View(listar);
@@ -23,7 +23,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         // POST: Pessoa/List/5
         [HttpPost]
-        public ActionResult ListarPessoa(int? PessoaId)
+        public ActionResult ListarPessoas(int? PessoaId)
         {
             if (PessoaId != null)
             {
@@ -40,7 +40,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         // GET: Pessoa/Create
-        public ActionResult CadastrarPessoa()
+        public ActionResult CadastrarPessoas()
         {
             ViewBag.Pessoa = new SelectList(bd.Pessoas.ToList(), "PessoaId", "Detalhes");
 
@@ -49,7 +49,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         //===============================================================================================
         // POST: Pessoa/Create
         [HttpPost]
-        public ActionResult CadastrarPessoa(Pessoas pessoas)
+        public ActionResult CadastrarPessoas(Pessoas pessoas)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         // GET: Pessoa/Edit/5
-        public ActionResult EditarPessoa(int PessoaId)
+        public ActionResult Edit(int PessoaId)
         {
             Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
             ViewBag.Pessoas = new SelectList(bd.Pessoas.ToList(), "EditarPessoas", "Detalhes");
@@ -74,7 +74,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         // POST: Pessoa/Edit/5
         [HttpPost]
-        public ActionResult EditarPessoa(Pessoas pessoas )
+        public ActionResult EditarPessoas(Pessoas pessoas )
         {
             try
             {

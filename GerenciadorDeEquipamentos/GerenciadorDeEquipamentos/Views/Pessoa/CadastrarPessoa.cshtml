@@ -1,0 +1,97 @@
+﻿@model GerenciadorDeEquipamentos.Models.Pessoas
+
+@{
+    ViewBag.Title = "Cadastrar Pessoa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Cadastrar Usuários</h4>
+                                <p class="card-category">Preencha os campos corretamente! </p>
+                            </div>
+                            <div class="col-sm">
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Listar Usuário">list</i>
+                                </a>
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;">person</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Nome Completo</label>
+                                    @Html.EditorFor(model => model.Nome_Completo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nome_Completo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Email</label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">CPF</label>
+                                    @Html.EditorFor(model => model.CPF, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CPF, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">RG</label>
+                                    @Html.EditorFor(model => model.RG, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.RG, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Contato</label>
+                                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data de Cadastro</label>
+                                    @Html.EditorFor(model => model.DataCadastro, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DataCadastro, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Acesso</label>
+                                    @Html.DropDownList("AcessoId", ViewBag.acesso as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.AcessoId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Status</label>
+                                    @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary pull-right">Criar</button>
+                                <a href="@Url.Action("ListarPessoa", "Pessoa")" class="btn btn-primary">Voltar</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

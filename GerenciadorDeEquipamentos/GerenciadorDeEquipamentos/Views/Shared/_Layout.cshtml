@@ -47,7 +47,7 @@
                                     <i class="material-icons">@item.icon</i>
                                     <span>@item.titulo</span>
                                 </a>
-                                <div id="@item.titulo" class="collapse" aria-labelledby="heading" data-parent="#accordionSidebar">
+                                <div id="@item.titulo" class="collapse mt-1" aria-labelledby="heading" data-parent="#accordionSidebar">
                                     <div class="bg-white py-2 collapse-inner rounded">
                                         <h6 class="collapse-header">@item.titulo</h6>
                                         @foreach (var item2 in subItens)
@@ -80,6 +80,10 @@
             <div class="sidebar-background" style="background-image: url(~/images/img/sidebar-1.jpg)"></div>
         </div>
         <div class="main-panel ps-container ps-theme-default" data-ps-id="d17659e5-6062-43d4-9906-4f9ef0456696">
+
+            <div class="navbar-wrapper">
+                <a class="navbar-brand" href="javascript:;"></a>
+            </div>
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,9 +150,9 @@
                 @RenderBody()
             </div>
             @*<hr />
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - DEVGTI</p>
-                </footer>*@
+        <footer>
+            <p>&copy; @DateTime.Now.Year - DEVGTI</p>
+        </footer>*@
         </div>
     </div>
 
