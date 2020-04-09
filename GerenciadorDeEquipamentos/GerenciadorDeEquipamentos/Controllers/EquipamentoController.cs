@@ -50,6 +50,7 @@ namespace ASEC.Controllers
         //===============================================================================================
 
         [Authorize]
+        [HttpGet]
         public ActionResult EditarEquipamentos(int EquipamentoId)
         {
             var equipamento = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == EquipamentoId);
