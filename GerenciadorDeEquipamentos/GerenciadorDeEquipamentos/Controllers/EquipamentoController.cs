@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeEquipamentos.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -43,6 +44,42 @@ namespace ASEC.Controllers
 
             bd.Equipamentos.Add(equipamento);
             bd.SaveChanges();
+            return RedirectToAction("ListarEquipamentos", "Equipamento");
+        }
+
+        //===============================================================================================
+
+        [Authorize]
+        public ActionResult EditarEquipamentos(int EquipamentoId)
+        {
+            var equipamento = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == EquipamentoId);
+
+            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
+            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
+
+            return View(equipamento);
+        }
+
+        [HttpPost]
+        public ActionResult EditarEquipamentos(Equipamentos equipamento)
+        {
+            var equipamentoBD = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == equipamento.EquipamentoId);
+
+            equipamentoBD = new Equipamentos
+            {
+                DataAquisicao = equipamento.DataAquisicao,
+                DataGarantia = equipamento.DataGarantia,
+                NumeroPatrimonial = equipamento.NumeroPatrimonial,
+                ServiceTagSerial = equipamento.ServiceTagSerial,
+                Observacao = equipamento.Observacao,
+                DepartamentoId = equipamento.DepartamentoId,
+                StatusId = equipamento.StatusId
+            };
+
+            bd.Entry(equipamentoBD).State = EntityState.Modified;
+            bd.SaveChanges();
+
             return RedirectToAction("ListarEquipamentos", "Equipamento");
         }
         //===============================================================================================
