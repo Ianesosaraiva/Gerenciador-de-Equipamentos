@@ -67,16 +67,13 @@ namespace ASEC.Controllers
         {
             var equipamentoBD = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == equipamento.EquipamentoId);
 
-            equipamentoBD = new Equipamentos
-            {
-                DataAquisicao = equipamento.DataAquisicao,
-                DataGarantia = equipamento.DataGarantia,
-                NumeroPatrimonial = equipamento.NumeroPatrimonial,
-                ServiceTagSerial = equipamento.ServiceTagSerial,
-                Observacao = equipamento.Observacao,
-                DepartamentoId = equipamento.DepartamentoId,
-                StatusId = equipamento.StatusId
-            };
+            equipamentoBD.DataAquisicao = equipamento.DataAquisicao;
+            equipamentoBD.DataGarantia = equipamento.DataGarantia;
+            equipamentoBD.NumeroPatrimonial = equipamento.NumeroPatrimonial;
+            equipamentoBD.ServiceTagSerial = equipamento.ServiceTagSerial;
+            equipamentoBD.Observacao = equipamento.Observacao;
+            equipamentoBD.DepartamentoId = equipamento.DepartamentoId;
+            equipamentoBD.StatusId = equipamento.StatusId;
 
             bd.Entry(equipamentoBD).State = EntityState.Modified;
             bd.SaveChanges();

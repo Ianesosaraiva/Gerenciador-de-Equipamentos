@@ -11,15 +11,24 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Pessoas
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Pessoas()
+        {
+            this.Equipamentos = new HashSet<Equipamentos>();
+            this.Especificacoes = new HashSet<Especificacoes>();
+        }
+    
         public int PessoaId { get; set; }
         public string Nome_Completo { get; set; }
         public string Senha { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }
         public string Telefone { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime DataCadastro { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> UltimoAcesso { get; set; }
@@ -27,6 +36,10 @@ namespace GerenciadorDeEquipamentos.Models
         public int StatusId { get; set; }
     
         public virtual Acessos Acessos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipamentos> Equipamentos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Especificacoes> Especificacoes { get; set; }
         public virtual Status Status { get; set; }
     }
 }

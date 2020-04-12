@@ -11,12 +11,22 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Equipamentos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Equipamentos()
+        {
+            this.EspecificacaoEquipamento = new HashSet<EspecificacaoEquipamento>();
+            this.Manutencao = new HashSet<Manutencao>();
+        }
+    
         public int EquipamentoId { get; set; }
         public string Observacao { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime DataAquisicao { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DataGarantia { get; set; }
         public string NumeroPatrimonial { get; set; }
         public string ServiceTagSerial { get; set; }
@@ -26,6 +36,11 @@ namespace GerenciadorDeEquipamentos.Models
         public int DepartamentoId { get; set; }
     
         public virtual Departamentos Departamentos { get; set; }
+        public virtual Pessoas Pessoas { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EspecificacaoEquipamento> EspecificacaoEquipamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Manutencao> Manutencao { get; set; }
         public virtual Status Status { get; set; }
         public virtual TipoEquipamento TipoEquipamento { get; set; }
     }

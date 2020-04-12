@@ -80,8 +80,8 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                             <a class="dropdown-item" href="#">Visualizar Mais</a>
-                                            <a class="dropdown-item" href="@Url.Action("EditarEquipamentos", "Equipamento")">Editar</a>
-                                            <a class="dropdown-item" href="@Url.Action("ExcluirEquipamentos", "Equipamento")">Excluir</a>
+                                            <a class="dropdown-item" href="@Url.Action("EditarEquipamentos", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Editar</a>
+                                            <a class="dropdown-item" href="@Url.Action("ExcluirEquipamentos", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Excluir</a>
                                         </div>
                                     </li>
                                 </ul>

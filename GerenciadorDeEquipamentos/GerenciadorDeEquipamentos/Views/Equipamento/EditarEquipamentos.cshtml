@@ -13,7 +13,7 @@
                     <div class="card-header card-header-primary">
                         <div class="row">
                             <div class="col-sm-10">
-                                <h4 class="card-title">Cadastrar Equipamentos</h4>
+                                <h4 class="card-title">Editar Equipamento</h4>
                                 <p class="card-category">Preencha os campos corretamente!</p>
                             </div>
                             <div class="col-sm">
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Data da Garantia</label>
-                                    @Html.EditorFor(model => model.DataGarantia, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.EditorFor(model => model.DataGarantia, new { htmlAttributes = new { @class = "form-control", type = "date", value = "@DateTime.Now.ToString('yyyy - MM - dd')" } })
                                     @Html.ValidationMessageFor(model => model.DataGarantia, "", new { @class = "text-danger" })
                                 </div>
                             </div>

@@ -25,6 +25,18 @@
       <End Role="Departamentos" EntitySet="Departamentos" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
     </AssociationSet>
+    <AssociationSet Name="fk_cadastrouequipamento" Association="shield01Model.fk_cadastrouequipamento">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamento" Association="shield01Model.fk_equipamento">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamentomanutencao" Association="shield01Model.fk_equipamentomanutencao">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Manutencao" EntitySet="Manutencao" />
+    </AssociationSet>
     <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
       <End Role="Status" EntitySet="Status" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
@@ -32,6 +44,10 @@
     <AssociationSet Name="fk_tipoequipamento" Association="shield01Model.fk_tipoequipamento">
       <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cadastrouespecificacao" Association="shield01Model.fk_cadastrouespecificacao">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
     </AssociationSet>
     <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
       <End Role="Status" EntitySet="Status" />
@@ -73,10 +89,6 @@
   <EntityType Name="Equipamentos">
     <Key>
       <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="StatusId" />
-      <PropertyRef Name="TipoEquipamentoId" />
-      <PropertyRef Name="DepartamentoId" />
     </Key>
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -89,6 +101,9 @@
     <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
     <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Equipamentos" ToRole="Pessoas" />
+    <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_equipamento" FromRole="Equipamentos" ToRole="EspecificacaoEquipamento" />
+    <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Equipamentos" ToRole="Manutencao" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
     <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
   </EntityType>
@@ -101,6 +116,7 @@
     <Property Name="EspecificacaoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EspecificacaoId" Type="Int32" Nullable="false" />
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamento" FromRole="EspecificacaoEquipamento" ToRole="Equipamentos" />
   </EntityType>
   <EntityType Name="Especificacoes">
     <Key>
@@ -112,6 +128,7 @@
     <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="AtributoId" Type="Int32" Nullable="false" />
     <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Especificacoes" ToRole="Pessoas" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -128,7 +145,6 @@
     <Key>
       <PropertyRef Name="ManutencaoId" />
       <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
@@ -136,13 +152,12 @@
     <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Manutencao" ToRole="Equipamentos" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
   </EntityType>
   <EntityType Name="Pessoas">
     <Key>
       <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="AcessoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -156,6 +171,8 @@
     <Property Name="AcessoId" Type="Int32" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Pessoas" ToRole="Equipamentos" />
+    <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Pessoas" ToRole="Especificacoes" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
   </EntityType>
   <EntityType Name="Sidebar">
@@ -225,6 +242,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_cadastrouequipamento">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equipamento">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.EspecificacaoEquipamento" Role="EspecificacaoEquipamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="EspecificacaoEquipamento">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equipamentomanutencao">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="Manutencao">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_statusequipamento">
     <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
     <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
@@ -246,6 +299,18 @@
       </Principal>
       <Dependent Role="Equipamentos">
         <PropertyRef Name="TipoEquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cadastrouespecificacao">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Especificacoes" Role="Especificacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Especificacoes">
+        <PropertyRef Name="PessoaId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

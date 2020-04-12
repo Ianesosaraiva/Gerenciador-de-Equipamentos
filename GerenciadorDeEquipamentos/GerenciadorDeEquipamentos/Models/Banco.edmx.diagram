@@ -5,23 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="45a1b57f135c40c88704318a3fc8b78f" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="shield01Model.Acessos" Width="1.5" PointX="3.75" PointY="2" />
-        <EntityTypeShape EntityType="shield01Model.Atributos" Width="1.5" PointX="3" PointY="10.125" />
-        <EntityTypeShape EntityType="shield01Model.Departamentos" Width="1.5" PointX="0.75" PointY="2.625" />
-        <EntityTypeShape EntityType="shield01Model.Equipamentos" Width="1.5" PointX="3" PointY="5" />
-        <EntityTypeShape EntityType="shield01Model.EspecificacaoEquipamento" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="shield01Model.Especificacoes" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="shield01Model.Log" Width="1.5" PointX="8.75" PointY="3.75" />
-        <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="3" PointY="14.125" />
-        <EntityTypeShape EntityType="shield01Model.Pessoas" Width="1.5" PointX="6" PointY="5" />
-        <EntityTypeShape EntityType="shield01Model.Sidebar" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="shield01Model.Status" Width="1.5" PointX="0.75" PointY="5.875" />
-        <EntityTypeShape EntityType="shield01Model.TipoEquipamento" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="shield01Model.Acessos" Width="1.5" PointX="3.75" PointY="1.375" />
+        <EntityTypeShape EntityType="shield01Model.Atributos" Width="1.5" PointX="3" PointY="9.75" />
+        <EntityTypeShape EntityType="shield01Model.Departamentos" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="shield01Model.Equipamentos" Width="1.5" PointX="3" PointY="4.125" />
+        <EntityTypeShape EntityType="shield01Model.EspecificacaoEquipamento" Width="1.5" PointX="5.25" PointY="9.625" />
+        <EntityTypeShape EntityType="shield01Model.Especificacoes" Width="1.5" PointX="8.25" PointY="5.25" />
+        <EntityTypeShape EntityType="shield01Model.Log" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="8.25" PointY="1.875" />
+        <EntityTypeShape EntityType="shield01Model.Pessoas" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="shield01Model.Sidebar" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="shield01Model.Status" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="shield01Model.TipoEquipamento" Width="1.5" PointX="0.75" PointY="1.875" />
         <AssociationConnector Association="shield01Model.fk_acessopessoa" />
         <AssociationConnector Association="shield01Model.fk_atributotipoequipamento" />
         <AssociationConnector Association="shield01Model.fk_deparequipamento" />
+        <AssociationConnector Association="shield01Model.fk_cadastrouequipamento" />
+        <AssociationConnector Association="shield01Model.fk_equipamento" />
+        <AssociationConnector Association="shield01Model.fk_equipamentomanutencao" />
         <AssociationConnector Association="shield01Model.fk_statusequipamento" />
         <AssociationConnector Association="shield01Model.fk_tipoequipamento" />
+        <AssociationConnector Association="shield01Model.fk_cadastrouespecificacao" />
         <AssociationConnector Association="shield01Model.fk_statusmanutencao" />
         <AssociationConnector Association="shield01Model.fk_acessostatus" />
       </Diagram>

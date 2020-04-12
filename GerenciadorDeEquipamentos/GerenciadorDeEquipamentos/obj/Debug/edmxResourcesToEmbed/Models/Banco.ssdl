@@ -28,10 +28,6 @@
   <EntityType Name="Equipamentos">
     <Key>
       <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="StatusId" />
-      <PropertyRef Name="TipoEquipamentoId" />
-      <PropertyRef Name="DepartamentoId" />
     </Key>
     <Property Name="EquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Observacao" Type="varchar" MaxLength="200" />
@@ -80,7 +76,6 @@
     <Key>
       <PropertyRef Name="ManutencaoId" />
       <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="ManutencaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DataEntrada" Type="date" Nullable="false" />
@@ -92,8 +87,6 @@
   <EntityType Name="Pessoas">
     <Key>
       <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="AcessoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
@@ -169,12 +162,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_cadastrouequipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_cadastrouequipamento" />-->
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_cadastrouespecificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_cadastrouespecificacao" />-->
+  <Association Name="fk_cadastrouequipamento">
+    <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cadastrouespecificacao">
+    <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
+    <End Role="Especificacoes" Type="Self.Especificacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Especificacoes">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_deparequipamento">
     <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
     <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
@@ -187,12 +198,30 @@ warning 6035: The relationship 'fk_cadastrouespecificacao' has columns that are 
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_equipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_equipamento" />-->
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_equipamentomanutencao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_equipamentomanutencao" />-->
+  <Association Name="fk_equipamento">
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1" />
+    <End Role="EspecificacaoEquipamento" Type="Self.EspecificacaoEquipamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="EspecificacaoEquipamento">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equipamentomanutencao">
+    <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1" />
+    <End Role="Manutencao" Type="Self.Manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="Manutencao">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <!--Errors Found During Generation:
 warning 6035: The relationship 'fk_especificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fk_especificacao" />-->
@@ -260,9 +289,25 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
       <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
       <End Role="Atributos" EntitySet="Atributos" />
     </AssociationSet>
+    <AssociationSet Name="fk_cadastrouequipamento" Association="Self.fk_cadastrouequipamento">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cadastrouespecificacao" Association="Self.fk_cadastrouespecificacao">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
+    </AssociationSet>
     <AssociationSet Name="fk_deparequipamento" Association="Self.fk_deparequipamento">
       <End Role="Departamentos" EntitySet="Departamentos" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamento" Association="Self.fk_equipamento">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamentomanutencao" Association="Self.fk_equipamentomanutencao">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Manutencao" EntitySet="Manutencao" />
     </AssociationSet>
     <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
       <End Role="Status" EntitySet="Status" />

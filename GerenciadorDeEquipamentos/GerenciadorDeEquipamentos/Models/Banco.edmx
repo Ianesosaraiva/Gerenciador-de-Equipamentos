@@ -33,10 +33,6 @@
         <EntityType Name="Equipamentos">
           <Key>
             <PropertyRef Name="EquipamentoId" />
-            <PropertyRef Name="PessoaId" />
-            <PropertyRef Name="StatusId" />
-            <PropertyRef Name="TipoEquipamentoId" />
-            <PropertyRef Name="DepartamentoId" />
           </Key>
           <Property Name="EquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Observacao" Type="varchar" MaxLength="200" />
@@ -85,7 +81,6 @@
           <Key>
             <PropertyRef Name="ManutencaoId" />
             <PropertyRef Name="EquipamentoId" />
-            <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="ManutencaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DataEntrada" Type="date" Nullable="false" />
@@ -97,8 +92,6 @@
         <EntityType Name="Pessoas">
           <Key>
             <PropertyRef Name="PessoaId" />
-            <PropertyRef Name="AcessoId" />
-            <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
@@ -174,12 +167,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_cadastrouequipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_cadastrouequipamento" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_cadastrouespecificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_cadastrouespecificacao" />-->
+        <Association Name="fk_cadastrouequipamento">
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
+          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="PessoaId" />
+            </Principal>
+            <Dependent Role="Equipamentos">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cadastrouespecificacao">
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
+          <End Role="Especificacoes" Type="Self.Especificacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="PessoaId" />
+            </Principal>
+            <Dependent Role="Especificacoes">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_deparequipamento">
           <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
           <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
@@ -192,12 +203,30 @@ warning 6035: The relationship 'fk_cadastrouespecificacao' has columns that are 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_equipamento' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_equipamento" />-->
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_equipamentomanutencao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_equipamentomanutencao" />-->
+        <Association Name="fk_equipamento">
+          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1" />
+          <End Role="EspecificacaoEquipamento" Type="Self.EspecificacaoEquipamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipamentos">
+              <PropertyRef Name="EquipamentoId" />
+            </Principal>
+            <Dependent Role="EspecificacaoEquipamento">
+              <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipamentomanutencao">
+          <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="1" />
+          <End Role="Manutencao" Type="Self.Manutencao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipamentos">
+              <PropertyRef Name="EquipamentoId" />
+            </Principal>
+            <Dependent Role="Manutencao">
+              <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <!--Errors Found During Generation:
 warning 6035: The relationship 'fk_especificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="fk_especificacao" />-->
@@ -265,9 +294,25 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
             <End Role="Atributos" EntitySet="Atributos" />
           </AssociationSet>
+          <AssociationSet Name="fk_cadastrouequipamento" Association="Self.fk_cadastrouequipamento">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cadastrouespecificacao" Association="Self.fk_cadastrouespecificacao">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Especificacoes" EntitySet="Especificacoes" />
+          </AssociationSet>
           <AssociationSet Name="fk_deparequipamento" Association="Self.fk_deparequipamento">
             <End Role="Departamentos" EntitySet="Departamentos" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipamento" Association="Self.fk_equipamento">
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+            <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipamentomanutencao" Association="Self.fk_equipamentomanutencao">
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+            <End Role="Manutencao" EntitySet="Manutencao" />
           </AssociationSet>
           <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
             <End Role="Status" EntitySet="Status" />
@@ -311,6 +356,18 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             <End Role="Departamentos" EntitySet="Departamentos" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
           </AssociationSet>
+          <AssociationSet Name="fk_cadastrouequipamento" Association="shield01Model.fk_cadastrouequipamento">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipamento" Association="shield01Model.fk_equipamento">
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+            <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipamentomanutencao" Association="shield01Model.fk_equipamentomanutencao">
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+            <End Role="Manutencao" EntitySet="Manutencao" />
+          </AssociationSet>
           <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
             <End Role="Status" EntitySet="Status" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
@@ -318,6 +375,10 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <AssociationSet Name="fk_tipoequipamento" Association="shield01Model.fk_tipoequipamento">
             <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="fk_cadastrouespecificacao" Association="shield01Model.fk_cadastrouespecificacao">
+            <End Role="Pessoas" EntitySet="Pessoas" />
+            <End Role="Especificacoes" EntitySet="Especificacoes" />
           </AssociationSet>
           <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
             <End Role="Status" EntitySet="Status" />
@@ -359,10 +420,6 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
         <EntityType Name="Equipamentos">
           <Key>
             <PropertyRef Name="EquipamentoId" />
-            <PropertyRef Name="PessoaId" />
-            <PropertyRef Name="StatusId" />
-            <PropertyRef Name="TipoEquipamentoId" />
-            <PropertyRef Name="DepartamentoId" />
           </Key>
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -375,6 +432,9 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
           <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
+          <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Equipamentos" ToRole="Pessoas" />
+          <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_equipamento" FromRole="Equipamentos" ToRole="EspecificacaoEquipamento" />
+          <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Equipamentos" ToRole="Manutencao" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
           <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
         </EntityType>
@@ -387,6 +447,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="EspecificacaoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EspecificacaoId" Type="Int32" Nullable="false" />
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamento" FromRole="EspecificacaoEquipamento" ToRole="Equipamentos" />
         </EntityType>
         <EntityType Name="Especificacoes">
           <Key>
@@ -398,6 +459,7 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="AtributoId" Type="Int32" Nullable="false" />
           <Property Name="PessoaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Especificacoes" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="Log">
           <Key>
@@ -414,7 +476,6 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Key>
             <PropertyRef Name="ManutencaoId" />
             <PropertyRef Name="EquipamentoId" />
-            <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
@@ -422,13 +483,12 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Manutencao" ToRole="Equipamentos" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
         </EntityType>
         <EntityType Name="Pessoas">
           <Key>
             <PropertyRef Name="PessoaId" />
-            <PropertyRef Name="AcessoId" />
-            <PropertyRef Name="StatusId" />
           </Key>
           <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -442,6 +502,8 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
           <Property Name="AcessoId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Pessoas" ToRole="Equipamentos" />
+          <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Pessoas" ToRole="Especificacoes" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
         </EntityType>
         <EntityType Name="Sidebar">
@@ -511,6 +573,42 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_cadastrouequipamento">
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="PessoaId" />
+            </Principal>
+            <Dependent Role="Equipamentos">
+              <PropertyRef Name="PessoaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipamento">
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+          <End Type="shield01Model.EspecificacaoEquipamento" Role="EspecificacaoEquipamento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipamentos">
+              <PropertyRef Name="EquipamentoId" />
+            </Principal>
+            <Dependent Role="EspecificacaoEquipamento">
+              <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipamentomanutencao">
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+          <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipamentos">
+              <PropertyRef Name="EquipamentoId" />
+            </Principal>
+            <Dependent Role="Manutencao">
+              <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_statusequipamento">
           <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
           <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
@@ -532,6 +630,18 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
             </Principal>
             <Dependent Role="Equipamentos">
               <PropertyRef Name="TipoEquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_cadastrouespecificacao">
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+          <End Type="shield01Model.Especificacoes" Role="Especificacoes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pessoas">
+              <PropertyRef Name="PessoaId" />
+            </Principal>
+            <Dependent Role="Especificacoes">
+              <PropertyRef Name="PessoaId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

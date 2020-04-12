@@ -18,5 +18,7 @@ namespace GerenciadorDeEquipamentos.Models
         public string Nome { get; set; }
         public int AtributoId { get; set; }
         public int PessoaId { get; set; }
+    
+        public virtual Pessoas Pessoas { get; set; }
     }
 }
