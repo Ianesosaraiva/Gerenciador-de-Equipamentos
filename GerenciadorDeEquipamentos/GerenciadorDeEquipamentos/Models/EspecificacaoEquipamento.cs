@@ -19,5 +19,6 @@ namespace GerenciadorDeEquipamentos.Models
         public int EquipamentoId { get; set; }
     
         public virtual Equipamentos Equipamentos { get; set; }
+        public virtual Especificacoes Especificacoes { get; set; }
     }
 }

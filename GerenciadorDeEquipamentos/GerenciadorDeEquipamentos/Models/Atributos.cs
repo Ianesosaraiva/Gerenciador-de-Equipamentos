@@ -14,11 +14,19 @@ namespace GerenciadorDeEquipamentos.Models
     
     public partial class Atributos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Atributos()
+        {
+            this.Especificacoes = new HashSet<Especificacoes>();
+        }
+    
         public int AtributoId { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public int TipoEquipamentoId { get; set; }
     
         public virtual TipoEquipamento TipoEquipamento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Especificacoes> Especificacoes { get; set; }
     }
 }

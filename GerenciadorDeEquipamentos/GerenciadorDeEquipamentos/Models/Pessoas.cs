@@ -11,8 +11,7 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Pessoas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -28,7 +27,6 @@ namespace GerenciadorDeEquipamentos.Models
         public string CPF { get; set; }
         public string RG { get; set; }
         public string Telefone { get; set; }
-        [DataType(DataType.Date)]
         public System.DateTime DataCadastro { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> UltimoAcesso { get; set; }

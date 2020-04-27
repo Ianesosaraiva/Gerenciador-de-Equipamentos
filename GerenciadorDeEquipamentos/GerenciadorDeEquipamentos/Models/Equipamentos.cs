@@ -11,8 +11,7 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Equipamentos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,9 +23,7 @@ namespace GerenciadorDeEquipamentos.Models
     
         public int EquipamentoId { get; set; }
         public string Observacao { get; set; }
-        [DataType(DataType.Date)]
         public System.DateTime DataAquisicao { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DataGarantia { get; set; }
         public string NumeroPatrimonial { get; set; }
         public string ServiceTagSerial { get; set; }
