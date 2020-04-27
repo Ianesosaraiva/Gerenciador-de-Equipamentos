@@ -137,11 +137,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AtributosController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
+    <Compile Include="Controllers\EspecificacaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OdemServicoController.cs" />
+    <Compile Include="Controllers\PerifericosController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\SoftwareController.cs" />
+    <Compile Include="Controllers\TarefaController.cs" />
+    <Compile Include="Controllers\TipoEqueipamentoController.cs" />
+    <Compile Include="Controllers\TipoSolicitacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -575,7 +583,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Atributos\" />
     <Folder Include="Views\Departamento\" />
+    <Folder Include="Views\Especificacao\" />
+    <Folder Include="Views\OdemServico\" />
+    <Folder Include="Views\Perifericos\" />
+    <Folder Include="Views\Software\" />
+    <Folder Include="Views\Tarefa\" />
+    <Folder Include="Views\TipoEqueipamento\" />
+    <Folder Include="Views\TipoSolicitacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
