@@ -10,7 +10,6 @@
   <EntityType Name="Atributos">
     <Key>
       <PropertyRef Name="AtributoId" />
-      <PropertyRef Name="TipoEquipamentoId" />
     </Key>
     <Property Name="AtributoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
@@ -53,8 +52,6 @@
   <EntityType Name="Especificacoes">
     <Key>
       <PropertyRef Name="EspecificacaoId" />
-      <PropertyRef Name="AtributoId" />
-      <PropertyRef Name="PessoaId" />
     </Key>
     <Property Name="EspecificacaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="varchar" MaxLength="100" />
@@ -222,12 +219,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_especificacao' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_especificacao" />-->
-  <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_especificacaoatributo' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_especificacaoatributo" />-->
+  <Association Name="fk_especificacao">
+    <End Role="Especificacoes" Type="Self.Especificacoes" Multiplicity="1" />
+    <End Role="EspecificacaoEquipamento" Type="Self.EspecificacaoEquipamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especificacoes">
+        <PropertyRef Name="EspecificacaoId" />
+      </Principal>
+      <Dependent Role="EspecificacaoEquipamento">
+        <PropertyRef Name="EspecificacaoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_especificacaoatributo">
+    <End Role="Atributos" Type="Self.Atributos" Multiplicity="1" />
+    <End Role="Especificacoes" Type="Self.Especificacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atributos">
+        <PropertyRef Name="AtributoId" />
+      </Principal>
+      <Dependent Role="Especificacoes">
+        <PropertyRef Name="AtributoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_statusequipamento">
     <End Role="Status" Type="Self.Status" Multiplicity="1" />
     <End Role="Equipamentos" Type="Self.Equipamentos" Multiplicity="*" />
@@ -308,6 +323,14 @@ warning 6035: The relationship 'fk_especificacaoatributo' has columns that are n
     <AssociationSet Name="fk_equipamentomanutencao" Association="Self.fk_equipamentomanutencao">
       <End Role="Equipamentos" EntitySet="Equipamentos" />
       <End Role="Manutencao" EntitySet="Manutencao" />
+    </AssociationSet>
+    <AssociationSet Name="fk_especificacao" Association="Self.fk_especificacao">
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
+      <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_especificacaoatributo" Association="Self.fk_especificacaoatributo">
+      <End Role="Atributos" EntitySet="Atributos" />
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
     </AssociationSet>
     <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
       <End Role="Status" EntitySet="Status" />

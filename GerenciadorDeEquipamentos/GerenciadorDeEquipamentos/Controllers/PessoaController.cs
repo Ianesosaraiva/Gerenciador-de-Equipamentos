@@ -79,15 +79,24 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             try
             {
+                var pessoa = bd.Pessoas.FirstOrDefault(x => x.PessoaId == pessoas.PessoaId);
 
-                bd.Entry(pessoas).State = EntityState.Modified;
+                pessoa.RG = pessoas.RG;
+                pessoa.StatusId = pessoas.StatusId;
+                pessoa.Nome_Completo = pessoas.Nome_Completo;
+                pessoa.Telefone = pessoas.Telefone;
+                pessoa.AcessoId = pessoas.AcessoId;
+                pessoa.CPF = pessoas.CPF;
+                pessoa.Email = pessoas.Email;
+
+                bd.Entry(pessoa).State = EntityState.Modified;
                 bd.SaveChanges();
 
                 return RedirectToAction("ListarPessoas");
             }
             catch
             {
-                return RedirectToAction("EditarPessoas");
+                return RedirectToAction("ListarPessoas");
             }
         }
         //===============================================================================================
