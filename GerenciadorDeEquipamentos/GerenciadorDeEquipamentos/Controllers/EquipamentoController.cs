@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ASEC.Controllers
+namespace GerenciadorDeEquipamentos.Controllers
 {
     public class EquipamentoController : Controller
     {

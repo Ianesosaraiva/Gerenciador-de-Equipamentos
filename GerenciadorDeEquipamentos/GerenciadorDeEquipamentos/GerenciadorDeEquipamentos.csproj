@@ -382,8 +382,6 @@
     <Content Include="Content\select2\select2.min.css" />
     <Content Include="Content\select2\select2.min.js" />
     <Content Include="Scripts\tilt\tilt.jquery.min.js" />
-    <Content Include="Views\Equipamento\CadastroEquipamentos.html" />
-    <Content Include="Views\Equipamento\LitarEquipamentos.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -569,9 +567,9 @@
     <Content Include="Views\Equipamento\DeletarEquipamentos.cshtml" />
     <Content Include="Views\Equipamento\EditarEquipamentos.cshtml" />
     <Content Include="Views\Equipamento\ListarEquipamentos.cshtml" />
-    <Content Include="Views\Pessoa\ListarPessoa.cshtml" />
-    <Content Include="Views\Pessoa\CadastrarPessoa.cshtml" />
-    <Content Include="Views\Pessoa\EditarPessoa.cshtml" />
+    <Content Include="Views\Pessoa\ListarPessoas.cshtml" />
+    <Content Include="Views\Pessoa\CadastrarPessoas.cshtml" />
+    <Content Include="Views\Pessoa\EditarPessoas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,10 +1,9 @@
 ﻿@model GerenciadorDeEquipamentos.Models.Pessoas
 
 @{
-    ViewBag.Title = "Editar Pessoa";
+    ViewBag.Title = "Cadastrar Pessoa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -13,7 +12,7 @@
                     <div class="card-header card-header-primary">
                         <div class="row">
                             <div class="col-sm-10">
-                                <h4 class="card-title">Editar Usuários</h4>
+                                <h4 class="card-title">Cadastrar Usuários</h4>
                                 <p class="card-category">Preencha os campos corretamente! </p>
                             </div>
                             <div class="col-sm">
@@ -65,10 +64,15 @@
                                     @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
 
                                 </div>
+                                @*<div class="col-sm">
+                                        <label class="bmd-label-static">Data de Nascimento</label>
+                                        @Html.EditorFor(model => model., new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.DataCadastro, "", new { @class = "text-danger" })
+                                    </div>*@
                                 <div class="col-sm">
-                                    <label class="bmd-label-static">Data de Cadastro</label>
-                                    @Html.EditorFor(model => model.DataCadastro, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DataCadastro, "", new { @class = "text-danger" })
+                                    <label class="bmd-label-static">Senha</label>
+                                    @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -85,8 +89,8 @@
                             </div>
 
                             <div class="form-group mt-3">
-                                <button type="submit" class="btn btn-primary pull-right">Editar</button>
-                                <a href="@Url.Action("ListarPessoa", "Pessoa")" class="btn btn-primary">Voltar</a>
+                                <button type="submit" class="btn btn-primary pull-right">Criar</button>
+                                <a href="@Url.Action("ListarPessoas", "Pessoa")" class="btn btn-primary">Voltar</a>
                                 <div class="clearfix"></div>
                             </div>
                         }

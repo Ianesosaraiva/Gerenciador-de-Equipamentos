@@ -21,15 +21,12 @@ namespace GerenciadorDeEquipamentos.Controllers
             return View(listar);
         }
 
-        // POST: Pessoa/List/5
         [HttpPost]
         public ActionResult ListarPessoas(int? PessoaId)
         {
             if (PessoaId != null)
             {
-                //var pessoas = bd.Pessoas.Where(x => x.PessoaId == PessoaId);
-                Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
-
+                var pessoas = bd.Pessoas.Where(x => x.PessoaId == PessoaId);
                 return View(pessoas);
             }
             else
@@ -42,7 +39,8 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Pessoa/Create
         public ActionResult CadastrarPessoas()
         {
-            ViewBag.Pessoa = new SelectList(bd.Pessoas.ToList(), "PessoaId", "Detalhes");
+            ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -53,21 +51,24 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             try
             {
+                pessoas.DataCadastro = DateTime.Now;
                 bd.Pessoas.Add(pessoas);
                 bd.SaveChanges();
-                return RedirectToAction("ListarPessoa");
+                return RedirectToAction("ListarPessoas");
             }
             catch
             {
-                return RedirectToAction("CadastrarPessoas", "Home");
+                return RedirectToAction("ListarPessoas", "Home");
             }
         }
         //===============================================================================================
         // GET: Pessoa/Edit/5
-        public ActionResult Edit(int PessoaId)
+        [HttpGet]
+        public ActionResult EditarPessoas(int PessoaId)
         {
             Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
-            ViewBag.Pessoas = new SelectList(bd.Pessoas.ToList(), "EditarPessoas", "Detalhes");
+            ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
 
             return View(pessoas);
         }
@@ -78,6 +79,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             try
             {
+
                 bd.Entry(pessoas).State = EntityState.Modified;
                 bd.SaveChanges();
 
@@ -85,7 +87,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             }
             catch
             {
-                return RedirectToAction("EditarPessoas", "Home");
+                return RedirectToAction("EditarPessoas");
             }
         }
         //===============================================================================================

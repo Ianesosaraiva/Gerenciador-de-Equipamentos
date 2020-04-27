@@ -370,3 +370,7 @@ C:\Users\evers\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamento
 C:\Users\evers\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csproj.CopyComplete
 C:\Users\evers\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.dll
 C:\Users\evers\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.pdb
+C:\Users\nando\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\MySql.Data.dll
+C:\Users\nando\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\MySql.Data.Entity.EF6.dll
+C:\Users\nando\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\MySql.Data.xml
+C:\Users\nando\Source\Repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\MySql.Data.Entity.EF6.xml
