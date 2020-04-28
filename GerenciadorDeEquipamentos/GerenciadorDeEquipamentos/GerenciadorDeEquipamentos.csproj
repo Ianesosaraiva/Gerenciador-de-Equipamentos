@@ -580,17 +580,27 @@
     <Content Include="Views\Pessoa\CadastrarPessoas.cshtml" />
     <Content Include="Views\Pessoa\EditarPessoas.cshtml" />
     <Content Include="Views\Relatorio\RelatorioEquipamentos.cshtml" />
+    <Content Include="Views\TipoEqueipamento\CriarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEqueipamento\ListarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEqueipamento\EditarTipoEquipamentos.cshtml" />
+    <Content Include="Views\Atributos\CriarAtributos.cshtml" />
+    <Content Include="Views\Atributos\EditarAtributos.cshtml" />
+    <Content Include="Views\Atributos\ListarAtributos.cshtml" />
+    <Content Include="Views\Departamento\CriarDepartamentos.cshtml" />
+    <Content Include="Views\Departamento\EditarDepartamentos.cshtml" />
+    <Content Include="Views\Departamento\ListarDepartamentos.cshtml" />
+    <Content Include="Views\Perifericos\CriarPerifericos.cshtml" />
+    <Content Include="Views\Perifericos\EditarPerifericos.cshtml" />
+    <Content Include="Views\Perifericos\ListarPerifericos.cshtml" />
+    <Content Include="Views\Software\CadastrarSoftware.cshtml" />
+    <Content Include="Views\Software\EditarSoftware.cshtml" />
+    <Content Include="Views\Software\ListarSoftware.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Atributos\" />
-    <Folder Include="Views\Departamento\" />
     <Folder Include="Views\Especificacao\" />
     <Folder Include="Views\OdemServico\" />
-    <Folder Include="Views\Perifericos\" />
-    <Folder Include="Views\Software\" />
     <Folder Include="Views\Tarefa\" />
-    <Folder Include="Views\TipoEqueipamento\" />
     <Folder Include="Views\TipoSolicitacao\" />
   </ItemGroup>
   <ItemGroup>
