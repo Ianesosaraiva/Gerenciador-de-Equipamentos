@@ -8,43 +8,31 @@ using System.Web.Mvc;
 
 namespace GerenciadorDeEquipamentos.Controllers
 {
-    public class AtributosController : Controller
+    public class AtributoController : Controller
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarAtributos(int? AtributoId)
+        public ActionResult ListarAtributos()
         {
-            if (AtributoId != null)
-            {
-                var atributo = bd.Atributos.Where(x => x.AtributoId == AtributoId);
-                return View(atributo);
-            }
-            else
-            {
-                var atributo = bd.Atributos.ToList();
-                return View(atributo);
-            }
+            var atributos = bd.Atributos.ToList();
+            return View(atributos);
         }
         //===============================================================================================
+
         [Authorize]
         public ActionResult CriarAtributos()
         {
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
-            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
-
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarAtributos(Atributos atributo, int AtributoId)
+        public ActionResult CriarAtributos(Atributos atributo)
         {
-            atributo.AtributoId = Convert.ToInt32(HttpContext.User.Identity.Name);
-
             bd.Atributos.Add(atributo);
             bd.SaveChanges();
-            return RedirectToAction("ListarAtributo", "Atributo");
+            return RedirectToAction("ListarAtributos", "Atributo");
         }
 
         //===============================================================================================
@@ -55,9 +43,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var atributo = bd.Atributos.FirstOrDefault(x => x.AtributoId == AtributoId);
 
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
-            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
 
             return View(atributo);
         }
@@ -67,18 +53,14 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var atributoBD = bd.Atributos.FirstOrDefault(x => x.AtributoId == atributo.AtributoId);
 
-            //atributoBD.DataAquisicao = departamento.DataAquisicao;
-            //atributoBD.DataGarantia = departamento.DataGarantia;
-            //atributoBD.NumeroPatrimonial = departamento.NumeroPatrimonial;
-            //atributoBD.ServiceTagSerial = departamento.ServiceTagSerial;
-            //atributoBD.Observacao = departamento.Observacao;
-            //atributoBD.DepartamentoId = departamento.DepartamentoId;
-            //atributoBD.StatusId = departamento.StatusId;
+            atributoBD.Descricao = atributo.Descricao;
+            atributoBD.Nome = atributo.Nome;
+            atributoBD.TipoEquipamentoId = atributo.TipoEquipamentoId;
 
             bd.Entry(atributoBD).State = EntityState.Modified;
             bd.SaveChanges();
 
-            return RedirectToAction("ListarAtributo", "Atributo");
+            return RedirectToAction("ListarAtributos", "Atributo");
         }
 
         //===============================================================================================
