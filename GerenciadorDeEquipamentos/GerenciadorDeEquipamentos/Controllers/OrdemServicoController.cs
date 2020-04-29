@@ -13,7 +13,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarOdemServicos()
+        public ActionResult ListarOrdemServicos()
         {
             var odemServicos = bd.OrdemServico.ToList();
             return View(odemServicos);
