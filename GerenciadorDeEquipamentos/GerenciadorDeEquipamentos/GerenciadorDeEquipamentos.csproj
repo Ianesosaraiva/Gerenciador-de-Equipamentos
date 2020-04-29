@@ -622,12 +622,16 @@
     <Content Include="Views\Especificacao\CriarEspecificacoes.cshtml" />
     <Content Include="Views\Especificacao\EditarEspecificacoes.cshtml" />
     <Content Include="Views\Especificacao\ListarEspecificacoes.cshtml" />
+    <Content Include="Views\Tarefa\CadastrarTarefa.cshtml" />
+    <Content Include="Views\Tarefa\EditarTarefa.cshtml" />
+    <Content Include="Views\Tarefa\ListarTarefa.cshtml" />
+    <Content Include="Views\TipoSolicitacao\CadastrarTipoSolicitacao.cshtml" />
+    <Content Include="Views\TipoSolicitacao\EditarTipoSolicitacao.cshtml" />
+    <Content Include="Views\TipoSolicitacao\ListarTipoSolicitação.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\OdemServico\" />
-    <Folder Include="Views\Tarefa\" />
-    <Folder Include="Views\TipoSolicitacao\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
