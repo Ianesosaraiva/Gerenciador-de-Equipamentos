@@ -26,9 +26,9 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult CriarOrdemServicos(OrdemServico odemServico)
+        public ActionResult CriarOrdemServicos(OrdemServico ordemServico)
         {
-            bd.OrdemServico.Add(odemServico);
+            bd.OrdemServico.Add(ordemServico);
             bd.SaveChanges();
             return RedirectToAction("ListarodemServicos");
         }
@@ -37,17 +37,17 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarOrdemServico(int TipoSolicitacaoId)
+        public ActionResult EditarOrdemServico(int OrdemServicoId)
         {
-            var tipoSolicitacao = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == TipoSolicitacaoId);
+            var ordemServico = bd.OrdemServico.FirstOrDefault(x => x.OrdemServicoId == OrdemServicoId);
 
-            return View(tipoSolicitacao);
+            return View(ordemServico);
         }
 
         [HttpPost]
         public ActionResult EditarOrdemServico(OrdemServico ordemServico)
         {
-            var OrdemServicoBD = bd.OrdemServico.FirstOrDefault(x => x.TipoSolicitacaoId == ordemServico.OrdemServicoId);
+            var OrdemServicoBD = bd.OrdemServico.FirstOrDefault(x => x.OrdemServicoId == ordemServico.OrdemServicoId);
 
             OrdemServicoBD.ClienteEmail = ordemServico.ClienteEmail;
             OrdemServicoBD.ClienteNome = ordemServico.ClienteNome;
