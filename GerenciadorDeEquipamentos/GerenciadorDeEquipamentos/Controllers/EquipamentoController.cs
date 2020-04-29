@@ -17,13 +17,13 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             if (TipoEquipamentoId != null)
             {
-                var equipamentos = bd.Equipamentos.Where(x => x.TipoEquipamentoId == TipoEquipamentoId);
-                return View(equipamentos);
+                var equipamento = bd.Equipamentos.Where(x => x.TipoEquipamentoId == TipoEquipamentoId);
+                return View(equipamento);
             }
             else
             {
-                var equipamentos = bd.Equipamentos.ToList();
-                return View(equipamentos);
+                var equipamento = bd.Equipamentos.ToList();
+                return View(equipamento);
             }
         }
         //===============================================================================================

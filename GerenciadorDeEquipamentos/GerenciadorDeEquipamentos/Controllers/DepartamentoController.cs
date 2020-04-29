@@ -13,11 +13,11 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarEquipamentos(int? Departamento)
+        public ActionResult ListarDepartamentos(int? DepartamentoId)
         {
-            if (Departamento != null)
+            if (DepartamentoId != null)
             {
-                var departamento = bd.Departamentos.Where(x => x.DepartamentoId == Departamento);
+                var departamento = bd.Departamentos.Where(x => x.DepartamentoId == DepartamentoId);
                 return View(departamento);
             }
             else
@@ -28,7 +28,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CriarDepartamento()
+        public ActionResult CriarDepartamentos()
         {
             ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
@@ -38,7 +38,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult CriarDepartamento(Departamentos departamento, int DepartamentoId)
+        public ActionResult CriarDepartamentos(Departamentos departamento, int DepartamentoId)
         {
             departamento.DepartamentoId = Convert.ToInt32(HttpContext.User.Identity.Name);
 
@@ -51,7 +51,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarDepartamento(int DepartamentoId)
+        public ActionResult EditarDepartamentos(int DepartamentoId)
         {
             var departamento = bd.Departamentos.FirstOrDefault(x => x.DepartamentoId == DepartamentoId);
 
@@ -63,17 +63,17 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarDepartamento(Departamentos departamento)
+        public ActionResult EditarDepartamentos(Departamentos departamento)
         {
             var departamentoBD = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == departamento.DepartamentoId);
 
-            //equipamentoBD.DataAquisicao = departamento.DataAquisicao;
-            //equipamentoBD.DataGarantia = departamento.DataGarantia;
-            //equipamentoBD.NumeroPatrimonial = departamento.NumeroPatrimonial;
-            //equipamentoBD.ServiceTagSerial = departamento.ServiceTagSerial;
-            //equipamentoBD.Observacao = departamento.Observacao;
-            //equipamentoBD.DepartamentoId = departamento.DepartamentoId;
-            //equipamentoBD.StatusId = departamento.StatusId;
+            //departamentoBD.DataAquisicao = departamento.DataAquisicao;
+            //departamentoBD.DataGarantia = departamento.DataGarantia;
+            //departamentoBD.NumeroPatrimonial = departamento.NumeroPatrimonial;
+            //departamentoBD.ServiceTagSerial = departamento.ServiceTagSerial;
+            //departamentoBD.Observacao = departamento.Observacao;
+            //departamentoBD.DepartamentoId = departamento.DepartamentoId;
+            //departamentoBD.StatusId = departamento.StatusId;
 
             bd.Entry(departamentoBD).State = EntityState.Modified;
             bd.SaveChanges();
