@@ -618,10 +618,12 @@
     <Content Include="Views\Software\CadastrarSoftware.cshtml" />
     <Content Include="Views\Software\EditarSoftware.cshtml" />
     <Content Include="Views\Software\ListarSoftware.cshtml" />
+    <Content Include="Views\Especificacao\CriarEspecificacao.cshtml" />
+    <Content Include="Views\Especificacao\EditarEspecificacao.cshtml" />
+    <Content Include="Views\Especificacao\ListarEspecificacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Especificacao\" />
     <Folder Include="Views\OdemServico\" />
     <Folder Include="Views\Tarefa\" />
     <Folder Include="Views\TipoSolicitacao\" />
