@@ -47,7 +47,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpPost]
         public ActionResult EditarTipoSolicitacoes(TipoSolicitacao tipoSolicitacao)
         {
-            var tipoSolicitacaoBD = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == tipoSolicitacao.tipoSolicitacao);
+            var tipoSolicitacaoBD = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == tipoSolicitacao.TipoSolicitacaoId);
 
             tipoSolicitacaoBD.Titulo = tipoSolicitacao.Titulo;
             tipoSolicitacaoBD.Descricao = tipoSolicitacao.Descricao;

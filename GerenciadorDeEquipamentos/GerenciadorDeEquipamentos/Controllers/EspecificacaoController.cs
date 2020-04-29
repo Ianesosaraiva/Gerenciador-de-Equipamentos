@@ -13,34 +13,24 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarEspecificacoes(int? EspecificacaoId)
+        public ActionResult ListarEspecificacoes()
         {
-            if (EspecificacaoId != null)
-            {
-                var especificao = bd.Especificacoes.Where(x => x.EspecificacaoId == EspecificacaoId);
-                return View(especificao);
-            }
-            else
-            {
-                var especificao = bd.Especificacoes.ToList();
-                return View(especificao);
-            }
+            var especificao = bd.Especificacoes.ToList();
+            return View(especificao);
         }
         //===============================================================================================
         [Authorize]
         public ActionResult CriarEspecificacoes()
         {
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
-            ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
-            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
+            ViewBag.atributos = new SelectList(bd.Atributos.ToList(), "AtributoId", "Nome");
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarEspecificacoes(Especificacoes especificao, int EspecificacaoId)
+        public ActionResult CriarEspecificacoes(Especificacoes especificao)
         {
-            especificao.EspecificacaoId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            especificao.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
 
             bd.Especificacoes.Add(especificao);
             bd.SaveChanges();
@@ -55,9 +45,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var especificao = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == EspecificacaoId);
 
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
-            ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
-            ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
+            ViewBag.atributos = new SelectList(bd.Atributos.ToList(), "AtributoId", "Nome");
 
             return View(especificao);
         }
@@ -67,13 +55,8 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var especificacaoBD = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == especificao.EspecificacaoId);
 
-            //especificacaoBD.Atributos = especificacoes.Atributos;
-            //especificacaoBD.DataGarantia = departamento.DataGarantia;
-            //especificacaoBD.NumeroPatrimonial = departamento.NumeroPatrimonial;
-            //especificacaoBD.ServiceTagSerial = departamento.ServiceTagSerial;
-            //especificacaoBD.Observacao = departamento.Observacao;
-            //especificacaoBD.DepartamentoId = departamento.DepartamentoId;
-            //especificacaoBD.StatusId = departamento.StatusId;
+            especificacaoBD.AtributoId = especificao.AtributoId;
+            especificacaoBD.Nome = especificao.Nome;
 
             bd.Entry(especificacaoBD).State = EntityState.Modified;
             bd.SaveChanges();

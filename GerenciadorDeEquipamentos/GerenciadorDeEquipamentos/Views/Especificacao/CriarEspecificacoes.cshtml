@@ -42,7 +42,8 @@
                                 <div class="row mt-3">
                                     <div class="col-sm">
                                         <label class="bmd-label-static">Atributo</label>
-                                        <textarea class="form-control" name="atributo" rows="2"></textarea>
+                                        @Html.DropDownList("AtributoId", ViewBag.atributos as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                        @Html.ValidationMessageFor(model => model.AtributoId, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
 
