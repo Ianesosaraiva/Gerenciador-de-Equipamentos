@@ -615,9 +615,10 @@
     <Content Include="Views\Perifericos\CriarPerifericos.cshtml" />
     <Content Include="Views\Perifericos\EditarPerifericos.cshtml" />
     <Content Include="Views\Perifericos\ListarPerifericos.cshtml" />
-    <Content Include="Views\Software\CadastrarSoftware.cshtml" />
-    <Content Include="Views\Software\EditarSoftware.cshtml" />
-    <Content Include="Views\Software\ListarSoftware.cshtml" />
+    <Content Include="Views\Software\CadastrarSoftwares.cshtml" />
+    <Content Include="Views\Software\EditarSoftwares.cshtml" />
+    <Content Include="Views\Software\ListarSoftwares.cshtml" />
+    <Content Include="Views\Atributo\DetalhesAtributos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
