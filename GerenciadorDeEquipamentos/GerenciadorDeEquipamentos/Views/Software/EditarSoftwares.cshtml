@@ -1,4 +1,4 @@
-﻿
+﻿@model GerenciadorDeEquipamentos.Models.Softwares
 @{
     ViewBag.Title = "EditarSoftware";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -33,55 +33,34 @@
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="row mt-3">
                                 <div class="col-sm">
-                                    <label class="bmd-label-static">Tipo de Equipamento</label>
-
+                                    <label class="bmd-label-static">Nome</label>
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm">
-
-                                </div>
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Status</label>
-
+                                    <label class="bmd-label-static">Descrição</label>
+                                    @Html.EditorFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+
                             <div class="row mt-3">
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Data da Aquisição</label>
-
-
+                                    @Html.EditorFor(model => model.DataAquisicao, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.DataAquisicao, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm">
-                                    <label class="bmd-label-static">Data da Garantia</label>
-
+                                    <label class="bmd-label-static">Status</label>
+                                    @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
-                            <div class="row mt-3">
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Número Patrimonial</label>
-
-                                </div>
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Service TagSerial</label>
-
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Descrição</label>
-                                    <textarea class="form-control" rows="2"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Observação</label>
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="submit" value="Create" class="btn btn-primary" />
-                                <a href="@Url.Action("ListarEquipamentos", "Equipamento")" class="btn btn-primary">Voltar</a>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary pull-right">Editar</button>
+                                <a href="@Url.Action("ListarSoftwares", "Software")" class="btn btn-primary">Voltar</a>
+                                <div class="clearfix"></div>
                             </div>
                         }
                     </div>

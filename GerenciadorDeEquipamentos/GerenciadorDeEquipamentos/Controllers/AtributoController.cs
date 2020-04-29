@@ -65,5 +65,9 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
+        public ActionResult DetalhesAtributos(Atributos atributo)
+        {
+            return View(atributo);
+        }
     }
 }

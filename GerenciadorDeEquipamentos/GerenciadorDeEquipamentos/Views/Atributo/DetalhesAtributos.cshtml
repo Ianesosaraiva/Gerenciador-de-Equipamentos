@@ -1,0 +1,51 @@
+﻿@model GerenciadorDeEquipamentos.Models.Atributos
+
+@{
+    ViewBag.Title = "Detalhes Atributos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> Detalhes </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoEquipamento.Nome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoEquipamento.Nome)
+                                </dd>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

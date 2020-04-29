@@ -1,7 +1,6 @@
-﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Atributos>
-
+﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Softwares>
 @{
-    ViewBag.Title = "ListarAtributos";
+    ViewBag.Title = "Listar Softwares";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +10,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title mt-0"> Lista de Atributos</h4>
+                        <h4 class="card-title mt-0"> Lista de Softwares</h4>
 
                     </div>
                     <div class="card-body">
@@ -25,7 +24,10 @@
                                     @Html.DisplayName("Descrição")
                                 </th>
                                 <th>
-                                    @Html.DisplayName("Tipo de Equipamento")
+                                    @Html.DisplayName("Data Compra")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Status")
                                 </th>
                                 <th>Ações</th>
                                 </thead>
@@ -40,7 +42,10 @@
                                                 @Html.DisplayFor(modelItem => item.Descricao)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.TipoEquipamento.Nome)
+                                                @Html.DisplayFor(modelItem => item.DataAquisicao)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status.Descricao)
                                             </td>
                                             <td>
                                                 <ul class="navbar-nav">
@@ -52,9 +57,9 @@
                                                             </p>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                                            <a class="dropdown-item" href="@Url.Action("DetalhesAtributos", "Atributo", new { Atributo = item})">Visualizar Mais</a>
-                                                            <a class="dropdown-item" href="@Url.Action("EditarAtributos", "Atributo", new { AtributoId = item.AtributoId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirAtributos", "Atributo")">Excluir</a>
+                                                            <a class="dropdown-item" href="#">Visualizar Mais</a>
+                                                            <a class="dropdown-item" href="@Url.Action("EditarSoftwares", "Software", new { SoftwareId = item.SoftwareId})">Editar</a>
+                                                            <a class="dropdown-item" href="@Url.Action("ExcluirSoftwares", "Software")">Excluir</a>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -67,7 +72,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
             </div>
