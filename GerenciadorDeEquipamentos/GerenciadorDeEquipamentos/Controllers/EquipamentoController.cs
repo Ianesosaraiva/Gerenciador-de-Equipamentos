@@ -61,7 +61,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
             return View(equipamento);
         }
-
+        //===============================================================================================
         [HttpPost]
         public ActionResult EditarEquipamentos(Equipamentos equipamento)
         {
@@ -86,21 +86,6 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var especificacaoEquipamento = bd.EspecificacaoEquipamento.Where(x => x.EquipamentoId == EquipamentoId);
             return View(especificacaoEquipamento);
-        }
-
-        //===============================================================================================
-        [Authorize]
-        public ActionResult AdicionarEquipamentoEspecs(int EquipamentoId, int AtributoId)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AdicionarEquipamentoEspecs(EspecificacaoEquipamento especificacaoEquipamento)
-        {
-
-
-            return View();
         }
 
         //===============================================================================================
