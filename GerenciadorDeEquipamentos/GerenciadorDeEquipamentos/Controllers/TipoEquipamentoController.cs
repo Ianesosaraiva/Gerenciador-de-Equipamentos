@@ -13,7 +13,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarTipoEqueipamentos()
+        public ActionResult ListarTipoEquipamentos()
         {
             var tipoEquipamentos = bd.TipoEquipamento.ToList();
             return View(tipoEquipamentos);
@@ -30,7 +30,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             bd.TipoEquipamento.Add(tipoEquipamento);
             bd.SaveChanges();
-            return RedirectToAction("ListarTipoEquipamento");
+            return RedirectToAction("ListarTipoEquipamentos");
         }
 
         //===============================================================================================
@@ -54,7 +54,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             bd.Entry(tipoEquipamentoBD).State = EntityState.Modified;
             bd.SaveChanges();
 
-            return RedirectToAction("ListarEquipamento");
+            return RedirectToAction("ListarTipoEquipamentos");
         }
 
         //===============================================================================================
