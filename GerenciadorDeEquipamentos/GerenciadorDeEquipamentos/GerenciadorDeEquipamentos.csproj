@@ -147,7 +147,7 @@
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\SoftwareController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
-    <Compile Include="Controllers\TipoEqueipamentoController.cs" />
+    <Compile Include="Controllers\TipoEquipamentoController.cs" />
     <Compile Include="Controllers\TipoSolicitacaoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -603,9 +603,9 @@
     <Content Include="Views\Pessoa\CadastrarPessoas.cshtml" />
     <Content Include="Views\Pessoa\EditarPessoas.cshtml" />
     <Content Include="Views\Relatorio\RelatorioEquipamentos.cshtml" />
-    <Content Include="Views\TipoEqueipamento\CriarTipoEquipamentos.cshtml" />
-    <Content Include="Views\TipoEqueipamento\ListarTipoEquipamentos.cshtml" />
-    <Content Include="Views\TipoEqueipamento\EditarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEquipamento\CriarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEquipamento\ListarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEquipamento\EditarTipoEquipamentos.cshtml" />
     <Content Include="Views\Atributo\CriarAtributos.cshtml" />
     <Content Include="Views\Atributo\EditarAtributos.cshtml" />
     <Content Include="Views\Atributo\ListarAtributos.cshtml" />

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace GerenciadorDeEquipamentos.Controllers
 {
-    public class TipoEqueipamentoController : Controller
+    public class TipoEquipamentoController : Controller
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
