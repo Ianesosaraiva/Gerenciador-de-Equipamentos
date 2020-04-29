@@ -12,25 +12,25 @@ namespace GerenciadorDeEquipamentos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Departamentos
+    public partial class Softwares
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Departamentos()
+        public Softwares()
         {
-            this.Equipamentos = new HashSet<Equipamentos>();
-            this.Transferencia = new HashSet<Transferencia>();
-            this.Transferencia1 = new HashSet<Transferencia>();
+            this.SoftwareEquipemento = new HashSet<SoftwareEquipemento>();
         }
     
-        public int DepartamentoId { get; set; }
+        public int SoftwareId { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string Observacao { get; set; }
+        public System.DateTime DataAquisicao { get; set; }
+        public int StatusId { get; set; }
+        public int PessoaId { get; set; }
     
+        public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipamentos> Equipamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transferencia> Transferencia { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transferencia> Transferencia1 { get; set; }
+        public virtual ICollection<SoftwareEquipemento> SoftwareEquipemento { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

@@ -183,6 +183,9 @@
     <Compile Include="Models\Equipamentos.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Equipe.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EspecificacaoEquipamento.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -195,16 +198,37 @@
     <Compile Include="Models\Manutencao.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\OrdemServico.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Pessoas.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Prioridade.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sidebar.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SoftwareEquipemento.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Softwares.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Status.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Tarefa.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TipoEquipamento.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoSolicitacao.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transferencia.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

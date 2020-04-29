@@ -58,7 +58,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             }
             catch
             {
-                return RedirectToAction("ListarPessoas", "Home");
+                return RedirectToAction("ListarPessoas");
             }
         }
         //===============================================================================================
@@ -84,7 +84,8 @@ namespace GerenciadorDeEquipamentos.Controllers
                 pessoa.RG = pessoas.RG;
                 pessoa.StatusId = pessoas.StatusId;
                 pessoa.Nome_Completo = pessoas.Nome_Completo;
-                pessoa.Telefone = pessoas.Telefone;
+                pessoa.DataNascimento = pessoas.DataNascimento;
+                pessoa.Contato = pessoas.Contato;
                 pessoa.AcessoId = pessoas.AcessoId;
                 pessoa.CPF = pessoas.CPF;
                 pessoa.Email = pessoas.Email;
@@ -103,19 +104,20 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         // POST: Pessoa/Delete/5
         [HttpPost]
-        public ActionResult DeletarPessoa(int PessoaId)
+        public ActionResult DeletarPessoas(int PessoaId)
         {
             try
             {
                 Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
-                bd.Entry(pessoas).State = EntityState.Deleted;
+                pessoas.StatusId = 2;
+                bd.Entry(pessoas).State = EntityState.Modified;
                 bd.SaveChanges();
 
                 return RedirectToAction("ListarPessoas");
             }
             catch
             {
-                return RedirectToAction("EditarPessoas", "Home");
+                return RedirectToAction("ListarPessoas");
             }
         }
         //===============================================================================================

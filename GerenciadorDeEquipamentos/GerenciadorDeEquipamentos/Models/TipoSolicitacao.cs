@@ -12,33 +12,23 @@ namespace GerenciadorDeEquipamentos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Status
+    public partial class TipoSolicitacao
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Status()
+        public TipoSolicitacao()
         {
-            this.Equipamentos = new HashSet<Equipamentos>();
-            this.Manutencao = new HashSet<Manutencao>();
             this.OrdemServico = new HashSet<OrdemServico>();
-            this.Pessoas = new HashSet<Pessoas>();
-            this.Softwares = new HashSet<Softwares>();
             this.Tarefa = new HashSet<Tarefa>();
         }
     
-        public int StatusId { get; set; }
+        public int TipoSolicitacaoId { get; set; }
+        public string Titulo { get; set; }
         public string Descricao { get; set; }
-        public int Tipo { get; set; }
+        public int PessoaId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipamentos> Equipamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manutencao> Manutencao { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdemServico> OrdemServico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pessoas> Pessoas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Softwares> Softwares { get; set; }
+        public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tarefa> Tarefa { get; set; }
     }

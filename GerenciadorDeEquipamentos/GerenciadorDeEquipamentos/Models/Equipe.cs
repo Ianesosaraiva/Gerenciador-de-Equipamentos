@@ -12,25 +12,21 @@ namespace GerenciadorDeEquipamentos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Departamentos
+    public partial class Equipe
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Departamentos()
+        public Equipe()
         {
-            this.Equipamentos = new HashSet<Equipamentos>();
-            this.Transferencia = new HashSet<Transferencia>();
-            this.Transferencia1 = new HashSet<Transferencia>();
+            this.OrdemServico = new HashSet<OrdemServico>();
         }
     
-        public int DepartamentoId { get; set; }
-        public string Nome { get; set; }
+        public int EquipeId { get; set; }
+        public string Titulo { get; set; }
         public string Descricao { get; set; }
+        public int ResponsavelId { get; set; }
     
+        public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Equipamentos> Equipamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transferencia> Transferencia { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Transferencia> Transferencia1 { get; set; }
+        public virtual ICollection<OrdemServico> OrdemServico { get; set; }
     }
 }

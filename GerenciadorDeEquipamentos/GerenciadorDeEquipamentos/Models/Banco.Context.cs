@@ -29,13 +29,21 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<Atributos> Atributos { get; set; }
         public virtual DbSet<Departamentos> Departamentos { get; set; }
         public virtual DbSet<Equipamentos> Equipamentos { get; set; }
+        public virtual DbSet<Equipe> Equipe { get; set; }
         public virtual DbSet<EspecificacaoEquipamento> EspecificacaoEquipamento { get; set; }
         public virtual DbSet<Especificacoes> Especificacoes { get; set; }
         public virtual DbSet<Log> Log { get; set; }
         public virtual DbSet<Manutencao> Manutencao { get; set; }
+        public virtual DbSet<OrdemServico> OrdemServico { get; set; }
         public virtual DbSet<Pessoas> Pessoas { get; set; }
+        public virtual DbSet<Prioridade> Prioridade { get; set; }
         public virtual DbSet<Sidebar> Sidebar { get; set; }
+        public virtual DbSet<SoftwareEquipemento> SoftwareEquipemento { get; set; }
+        public virtual DbSet<Softwares> Softwares { get; set; }
         public virtual DbSet<Status> Status { get; set; }
+        public virtual DbSet<Tarefa> Tarefa { get; set; }
         public virtual DbSet<TipoEquipamento> TipoEquipamento { get; set; }
+        public virtual DbSet<TipoSolicitacao> TipoSolicitacao { get; set; }
+        public virtual DbSet<Transferencia> Transferencia { get; set; }
     }
 }

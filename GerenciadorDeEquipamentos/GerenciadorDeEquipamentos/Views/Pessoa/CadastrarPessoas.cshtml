@@ -60,15 +60,15 @@
                             <div class="row mt-3">
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Contato</label>
-                                    @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.Contato, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Contato, "", new { @class = "text-danger" })
 
                                 </div>
-                                @*<div class="col-sm">
-                                        <label class="bmd-label-static">Data de Nascimento</label>
-                                        @Html.EditorFor(model => model., new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.DataCadastro, "", new { @class = "text-danger" })
-                                    </div>*@
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data de Nascimento</label>
+                                    @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
+                                </div>
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Senha</label>
                                     @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control" } })

@@ -1,6 +1,7 @@
 ﻿using GerenciadorDeEquipamentos.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -31,10 +32,14 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpPost]
         public ActionResult Login(DataLogin pessoas)
         {
-            var user = bd.Pessoas.FirstOrDefault(x => x.Email == pessoas.Email && x.Senha == pessoas.Senha);
+            var user = bd.Pessoas.FirstOrDefault(x => x.Email == pessoas.Email && x.Senha == pessoas.Senha && x.StatusId != 2);
 
             if (user != null)
             {
+                user.UltimoAcesso = DateTime.Now;
+
+                bd.Entry(user).State = EntityState.Modified;
+                bd.SaveChanges();
                 FormsAuthentication.SetAuthCookie(user.PessoaId.ToString(), true);
                 return RedirectToAction("Index", "Home");
             }
