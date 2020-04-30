@@ -1,11 +1,16 @@
-﻿@{
-    ViewBag.Title = "GerenciarOS";
+﻿@using GerenciadorDeEquipamentos.Models
+@{
+    ViewBag.Title = "Gerenciar OS";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var colaboradores = ViewBag.colaboradores;
-    //var equipes = ViewBag.equipes;
+
+    IEnumerable<vw_colaborador_OS_tarefas> colaboradores = ViewBag.osColaborador;
+    IEnumerable<vw_ordemServico_equipe> equipes = ViewBag.osEquipe;
+
     int aguardandoAtendimento = ViewBag.AguardandoAtendimento;
     int naoAtribuidos = ViewBag.NaoAtribuidos;
     int total = ViewBag.Total;
+
+    int cont = 0;
 }
 
 <div class="content">
@@ -37,7 +42,7 @@
                             <div class="card-icon">
                                 <i class="material-icons">desktop_windows</i>
                             </div>
-                            <p class="card-category">Total de OS</p>
+                            <p class="card-category">Total de Ordens de Serviço</p>
                             <h3 class="card-title">
                                 @total
                             </h3>
@@ -54,7 +59,6 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <a href="@Url.Action("ListarOrdemServico","OrdemServico", new { tipo = 1})" style="color:azure">
-
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">shop</i>
@@ -80,7 +84,7 @@
                             <div class="card-icon">
                                 <i class="material-icons">person</i>
                             </div>
-                            <p class="card-category">Não Atribuidos</p>
+                            <p class="card-category">Não Atribuido a Equipes</p>
                             <h3 class="card-title">
                                 @naoAtribuidos
                             </h3>
@@ -97,182 +101,190 @@
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="card card-chart">
-            <div class="card-header card-header-rose">
-                <div id="roundedLineChart" class="ct-chart">
-                    <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%"
-                         class="ct-chart-line" style="width: 100%; height: 100%;">
-                        <g class="ct-grids">
-                            <line y1="120" y2="120" x1="40" x2="91" class="ct-grid ct-vertical"></line>
-                            <line y1="96" y2="96" x1="40" x2="91" class="ct-grid ct-vertical"></line>
-                            <line y1="72" y2="72" x1="40" x2="91" class="ct-grid ct-vertical"></line>
-                            <line y1="48" y2="48" x1="40" x2="91" class="ct-grid ct-vertical"></line>
-                            <line y1="24" y2="24" x1="40" x2="91" class="ct-grid ct-vertical"></line>
-                            <line y1="0" y2="0" x1="40" x2="91" class="ct-grid ct-vertical">
-                            </line>
-                        </g>
-                        <g><g class="ct-series ct-series-a"><path d="M 40 91.2 C 41.214 89.2 44.857 77.2 47.286 79.2 C 49.714 81.2 52.143 103.2 54.571 103.2 C 57 103.2 59.429 85.6 61.857 79.2 C 64.286 72.8 66.714 65.2 69.143 64.8 C 71.571 64.4 74 82.8 76.429 76.8 C 78.857 70.8 82.5 36.8 83.714 28.8" class="ct-line"></path></g></g>
-                        <g class="ct-labels">
-                            <foreignObject style="overflow: visible;" x="40" y="125" width="7.285714285714286" height="20">
-                                <span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">M</span>
-                            </foreignObject>
-                            <foreignObject style="overflow: visible;" x="47.285714285714285" y="125" width="7.285714285714286" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">T</span></foreignObject>
-                            <foreignObject style="overflow: visible;" x="54.57142857142857" y="125" width="7.2857142857142865" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">W</span></foreignObject>
-                            <foreignObject style="overflow: visible;" x="61.85714285714286" y="125" width="7.285714285714285" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">T</span></foreignObject>
-                            <foreignObject style="overflow: visible;" x="69.14285714285714" y="125" width="7.285714285714288" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">F</span></foreignObject>
-                            <foreignObject style="overflow: visible;" x="76.42857142857143" y="125" width="7.285714285714285" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 7px; height: 20px;">S</span></foreignObject>
-                            <foreignObject style="overflow: visible;" x="83.71428571428572" y="125" width="30" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 30px; height: 20px;">S</span></foreignObject>
-                            <foreignObject style="overflow: visible;" y="96" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">0</span></foreignObject>
-                            <foreignObject style="overflow: visible;" y="72" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">10</span></foreignObject>
-                            <foreignObject style="overflow: visible;" y="48" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">20</span></foreignObject>
-                            <foreignObject style="overflow: visible;" y="24" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">30</span></foreignObject>
-                            <foreignObject style="overflow: visible;" y="0" x="0" height="24" width="30">
-                                <span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">40</span>
-                            </foreignObject>
-                            <foreignObject style="overflow: visible;" y="-30" x="0" height="30" width="30">
-                                <span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 30px; width: 30px;">50</span>
-                            </foreignObject>
-                        </g>
-                    </svg>
-                </div>
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">Rounded Line Chart</h4>
-                <p class="card-category">Line Chart</p>
-            </div>
-        </div>
-    </div>
+    @*@{
+            var myChart = new Chart(width: 600, height: 400)
+                .AddTitle("Product Sales")
+                .DataBindTable(dataSource: ta, xField: "Name")
+                .Write();
+        }*@
 
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-primary">
-                <div class="row">
-                    <div class="col-sm-10">
-                        <h4 class="card-title">Desempenho</h4>
-                        <p></p>
+    @{
+        var myChart = new Chart(width: 600, height: 400)
+            .AddTitle("Chart Title")
+            .AddSeries(
+                name: "Employee",
+                xValue: new[] { "Peter", "Andrew", "Julie", "Mary", "Dave" },
+                yValues: new[] { "2", "6", "4", "5", "3" });
+    }
+
+    <div class="row">
+        @while (cont < 3)
+        {
+            <div class="col-md-4">
+                <div class="card card-chart">
+                    <div class="card-header card-header-primary">
+                        <div id="roundedLineChart" class="ct-chart">
+                            <svg xmlns:ct="http://gionkunz.github.com/chartist-js/ct" width="100%" height="100%" class="ct-chart-line" style="width: 100%; height: 100%;">
+                                <g class="ct-grids">
+                                    <line y1="120" y2="120" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                    <line y1="96" y2="96" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                    <line y1="72" y2="72" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                    <line y1="48" y2="48" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                    <line y1="24" y2="24" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                    <line y1="0" y2="0" x1="40" x2="215.65625" class="ct-grid ct-vertical"></line>
+                                </g>
+                                <g>
+                                    <g class="ct-series ct-series-a">
+                                        <path d="M 40 91.2 C 44.182 89.2 56.729 77.2 65.094 79.2 C 73.458 81.2 81.823 103.2 90.188 103.2 C 98.552 103.2 106.917 85.6 115.281 79.2 C 123.646 72.8 132.01 65.2 140.375 64.8 C 148.74 64.4 157.104 82.8 165.469 76.8 C 173.833 70.8 186.38 36.8 190.563 28.8" class="ct-line"></path>
+                                    </g>
+                                </g>
+                                <g class="ct-labels">
+                                    <foreignObject style="overflow: visible;" x="40" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">M</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="65.09375" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">T</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="90.1875" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">W</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="115.28125" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">T</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="140.375" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">F</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="165.46875" y="125" width="25.09375" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 25px; height: 20px;">S</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" x="190.5625" y="125" width="30" height="20"><span class="ct-label ct-horizontal ct-end" xmlns="http://www.w3.org/2000/xmlns/" style="width: 30px; height: 20px;">S</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="96" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">0</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="72" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">10</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="48" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">20</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="24" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">30</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="0" x="0" height="24" width="30"><span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 24px; width: 30px;">40</span></foreignObject>
+                                    <foreignObject style="overflow: visible;" y="-30" x="0" height="30" width="30">
+                                        <span class="ct-label ct-vertical ct-start" xmlns="http://www.w3.org/2000/xmlns/" style="height: 30px; width: 30px;">50</span>
+                                    </foreignObject>
+                                </g>
+                            </svg>
+                        </div>
                     </div>
-                    @*<div class="col-sm">
-                            <a href="@Url.Action("CriarOrdemServico")">
-                                <span>Criar Ordem Serviço</span>
-                                <i class="material-icons" style="padding-top: 12px;" title="Criar Ordem Serviço">add</i>
-                            </a>
-                        </div>*@
+                    <div class="card-body">
+                        <h4 class="card-title">Gráfico de Tarefas</h4>
+                        <p class="card-category">Tarefas</p>
+                    </div>
                 </div>
             </div>
+            cont++;
+        }
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <h4 class="card-title">Desempenho</h4>
+                            <p></p>
+                        </div>
+                        @*<div class="col-sm">
+                                <a href="@Url.Action("CriarOrdemServico")">
+                                    <span>Criar Ordem Serviço</span>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Criar Ordem Serviço">add</i>
+                                </a>
+                            </div>*@
+                    </div>
+                </div>
 
 
-            <div class="card-body">
-                <ul class="nav nav-pills nav-pills-warning" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
-                            Colaborador
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
-                            Equipe
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content tab-space">
-                    <div class="table-responsive tab-pane active" id="link1">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>
-                                    @Html.DisplayName("Colaborador")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Finalizadas")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Abertas")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Finalizados")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Abertos")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tempo de Atendimento")
-                                </th>
-                            </tr>
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                                Colaborador
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                                Equipe
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content tab-space">
+                        <div class="table-responsive tab-pane active" id="link1">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayName("Colaborador")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Tarefas Finalizadas")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Tarefas Abertas")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("OS Finalizados")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("OS Abertos")
+                                    </th>
+                                    @*<th>
+                                            @Html.DisplayName("Tempo de Atendimento")
+                                        </th>*@
+                                </tr>
 
-                            @*@foreach (var item in colaboradores)
+                                @foreach (var item in colaboradores)
                                 {
                                     <tr>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.Nome)
+                                            @Html.DisplayFor(modelItem => item.Colaborador)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.TarefasFinalizadas)
+                                            @Html.DisplayFor(modelItem => item.TarefasEncerradas)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.TarefasAbertas)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.OSFinalizados)
+                                            @Html.DisplayFor(modelItem => item.OSEncerrados)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.OSAbertos)
                                         </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Tempo)
-                                        </td>
+                                        @*<td>
+                                                @Html.DisplayFor(modelItem => item.Tempo)
+                                            </td>*@
                                     </tr>
-                                }*@
+                                }
 
-                        </table>
-                    </div>
-                    <div class="table-responsive tab-pane" id="link2">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>
-                                    @Html.DisplayName("Equipe")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Responsável")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Abertas")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Finalizadas")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Finalizados")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Abertos")
-                                </th>
-                            </tr>
-
-                            @*@foreach (var item in equipes)
+                            </table>
+                        </div>
+                        <div class="table-responsive tab-pane" id="link2">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>
+                                        @Html.DisplayName("Equipe")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("Responsável")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("OS Encerrados")
+                                    </th>
+                                    <th>
+                                        @Html.DisplayName("OS Abertos")
+                                    </th>
+                                </tr>
+                                @foreach (var item in equipes)
                                 {
-                                         <tr>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.Nome)
-                                             </td>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.Responsavel)
-                                             </td>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.TarefasFinalizadas)
-                                             </td>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.TarefasAbertas)
-                                             </td>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.OSFinalizados)
-                                             </td>
-                                             <td>
-                                                 @Html.DisplayFor(modelItem => item.OSAbertos)
-                                             </td>
-                                         </tr>
-                                     }*@
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Equipe)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Responsavel)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OSEncerrados)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.OSAbertos)
+                                    </td>
 
-                        </table>
+                                </tr>
+                                }
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

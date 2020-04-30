@@ -24,7 +24,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             else if (tipo == 2)
             {
                 //Ordens de Serviço não atribuidas
-                var ordensServicos = bd.OrdemServico.Where(x=>x.EquipeId == null).ToList();
+                var ordensServicos = bd.OrdemServico.Where(x => x.EquipeId == null).ToList();
                 return View(ordensServicos);
             }
             else
@@ -41,12 +41,8 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.NaoAtribuidos = bd.OrdemServico.Where(x => x.EquipeId == null).Count();
             ViewBag.Total = bd.OrdemServico.ToList().Count();
 
-            var ta = bd.Tarefa.Where(x => x.DataEncerramento == null).Select(n => n.Pessoas.PessoaId);
-            var tf = bd.Tarefa.Where(x => x.DataEncerramento != null).Select(n => n.Pessoas.PessoaId);
-
-            var osa = bd.OrdemServico.Where(x => x.DataEncerramento != null).Select(n => n.EquipeId);
-            var osf = bd.OrdemServico.Where(x => x.DataEncerramento != null).Select(n => n.EquipeId);
-
+            ViewBag.osEquipe = bd.vw_ordemServico_equipe.ToList();
+            ViewBag.osColaborador = bd.vw_colaborador_OS_tarefas.ToList();
 
             return View();
         }

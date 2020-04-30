@@ -21,21 +21,6 @@ namespace GerenciadorDeEquipamentos.Controllers
             return View(listar);
         }
 
-        [HttpPost]
-        public ActionResult ListarPessoas(int? PessoaId)
-        {
-            if (PessoaId != null)
-            {
-                var pessoas = bd.Pessoas.Where(x => x.PessoaId == PessoaId);
-                return View(pessoas);
-            }
-            else
-            {
-                var pessoas = bd.Pessoas.ToList();
-                return View(pessoas);
-            }
-        }
-
         // GET: Pessoa/Create
         public ActionResult CadastrarPessoas()
         {

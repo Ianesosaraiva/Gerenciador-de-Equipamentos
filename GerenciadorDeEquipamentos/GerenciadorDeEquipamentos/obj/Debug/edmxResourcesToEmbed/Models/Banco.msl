@@ -232,5 +232,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="vw_ordemServico_equipe">
+      <EntityTypeMapping TypeName="shield01Model.vw_ordemServico_equipe">
+        <MappingFragment StoreEntitySet="vw_ordemServico_equipe">
+          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+          <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+          <ScalarProperty Name="Equipe" ColumnName="Equipe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_colaborador_OS_tarefas">
+      <EntityTypeMapping TypeName="shield01Model.vw_colaborador_OS_tarefas">
+        <MappingFragment StoreEntitySet="vw_colaborador_OS_tarefas">
+          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+          <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
+          <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
+          <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

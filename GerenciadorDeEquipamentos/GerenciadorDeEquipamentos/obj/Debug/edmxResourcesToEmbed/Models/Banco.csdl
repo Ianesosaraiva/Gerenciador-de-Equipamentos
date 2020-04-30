@@ -153,6 +153,8 @@
       <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
       <End Role="Tarefa" EntitySet="Tarefa" />
     </AssociationSet>
+    <EntitySet Name="vw_ordemServico_equipe" EntityType="shield01Model.vw_ordemServico_equipe" />
+    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
   </EntityContainer>
   <EntityType Name="Acessos">
     <Key>
@@ -831,4 +833,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="vw_ordemServico_equipe">
+    <Key>
+      <PropertyRef Name="Equipe" />
+      <PropertyRef Name="Responsavel" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_colaborador_OS_tarefas">
+    <Key>
+      <PropertyRef Name="Colaborador" />
+      <PropertyRef Name="TarefasEncerradas" />
+      <PropertyRef Name="TarefasAbertas" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
+    <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
 </Schema>

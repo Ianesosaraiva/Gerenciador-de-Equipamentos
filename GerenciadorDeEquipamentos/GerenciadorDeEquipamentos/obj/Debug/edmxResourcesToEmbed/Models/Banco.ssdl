@@ -215,6 +215,36 @@
     <Property Name="DataTransferencia" Type="date" Nullable="false" />
     <Property Name="Observacao" Type="mediumtext" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_colaborador_OS_tarefas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_colaborador_OS_tarefas">
+    <Key>
+      <PropertyRef Name="Colaborador" />
+      <PropertyRef Name="TarefasEncerradas" />
+      <PropertyRef Name="TarefasAbertas" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Colaborador" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="TarefasEncerradas" Type="bigint" Nullable="false" />
+    <Property Name="TarefasAbertas" Type="bigint" Nullable="false" />
+    <Property Name="OSEncerrados" Type="bigint" Nullable="false" />
+    <Property Name="OSAbertos" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_ordemServico_equipe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_ordemServico_equipe">
+    <Key>
+      <PropertyRef Name="Equipe" />
+      <PropertyRef Name="Responsavel" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Equipe" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Responsavel" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="OSEncerrados" Type="bigint" Nullable="false" />
+    <Property Name="OSAbertos" Type="bigint" Nullable="false" />
+  </EntityType>
   <Association Name="Equipe_ibfk_1">
     <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
     <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
@@ -632,6 +662,23 @@
     <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="TipoSolicitacao" EntityType="Self.TipoSolicitacao" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Transferencia" EntityType="Self.Transferencia" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="Self.vw_colaborador_OS_tarefas" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_colaborador_OS_tarefas`.`Colaborador`, 
+`vw_colaborador_OS_tarefas`.`TarefasEncerradas`, 
+`vw_colaborador_OS_tarefas`.`TarefasAbertas`, 
+`vw_colaborador_OS_tarefas`.`OSEncerrados`, 
+`vw_colaborador_OS_tarefas`.`OSAbertos`
+FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_ordemServico_equipe" EntityType="Self.vw_ordemServico_equipe" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_ordemServico_equipe`.`Equipe`, 
+`vw_ordemServico_equipe`.`Responsavel`, 
+`vw_ordemServico_equipe`.`OSEncerrados`, 
+`vw_ordemServico_equipe`.`OSAbertos`
+FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="Equipe_ibfk_1" Association="Self.Equipe_ibfk_1">
       <End Role="Pessoas" EntitySet="Pessoas" />
       <End Role="Equipe" EntitySet="Equipe" />
