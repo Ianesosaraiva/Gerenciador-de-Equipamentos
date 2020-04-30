@@ -19,7 +19,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
             DadosIndex dados = new DadosIndex
             {
-                NomeUsuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).Nome_Completo.Split(' ')[0],
+                NomeUsuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).NomeCompleto.Split(' ')[0],
                 qtdUsuariosAtivos = bd.Pessoas.Where(x => x.StatusId == 1).Count(),
                 qtdEquipamentosAtivos = bd.Equipamentos.Where(x => x.StatusId == 1).Count(),
                 qtdSoftwaresAtivos = bd.Softwares.Where(x => x.StatusId == 1).Count(),

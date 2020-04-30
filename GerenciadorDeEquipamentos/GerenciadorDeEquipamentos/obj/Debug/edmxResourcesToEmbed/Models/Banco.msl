@@ -127,7 +127,7 @@
           <ScalarProperty Name="RG" ColumnName="RG" />
           <ScalarProperty Name="CPF" ColumnName="CPF" />
           <ScalarProperty Name="Senha" ColumnName="Senha" />
-          <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
+          <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
           <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
         </MappingFragment>
       </EntityTypeMapping>

@@ -83,7 +83,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
                 pessoa.RG = pessoas.RG;
                 pessoa.StatusId = pessoas.StatusId;
-                pessoa.Nome_Completo = pessoas.Nome_Completo;
+                pessoa.NomeCompleto = pessoas.NomeCompleto;
                 pessoa.DataNascimento = pessoas.DataNascimento;
                 pessoa.Contato = pessoas.Contato;
                 pessoa.AcessoId = pessoas.AcessoId;

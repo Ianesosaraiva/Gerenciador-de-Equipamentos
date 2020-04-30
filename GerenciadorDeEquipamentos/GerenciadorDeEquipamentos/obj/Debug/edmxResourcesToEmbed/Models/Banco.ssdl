@@ -110,7 +110,7 @@
       <PropertyRef Name="PessoaId" />
     </Key>
     <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="NomeCompleto" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
     <Property Name="RG" Type="varchar" MaxLength="45" />
