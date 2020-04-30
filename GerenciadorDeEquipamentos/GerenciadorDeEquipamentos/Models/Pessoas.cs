@@ -28,7 +28,7 @@ namespace GerenciadorDeEquipamentos.Models
         }
     
         public int PessoaId { get; set; }
-        public string Nome_Completo { get; set; }
+        public string NomeCompleto { get; set; }
         public string Senha { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }

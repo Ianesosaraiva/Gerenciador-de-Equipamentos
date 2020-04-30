@@ -115,7 +115,7 @@
             <PropertyRef Name="PessoaId" />
           </Key>
           <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome Completo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="NomeCompleto" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="RG" Type="varchar" MaxLength="45" />
@@ -1066,7 +1066,7 @@
             <PropertyRef Name="PessoaId" />
           </Key>
           <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NomeCompleto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="RG" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -1737,7 +1737,7 @@
                 <ScalarProperty Name="RG" ColumnName="RG" />
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
                 <ScalarProperty Name="Senha" ColumnName="Senha" />
-                <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
+                <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
                 <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
               </MappingFragment>
             </EntityTypeMapping>
