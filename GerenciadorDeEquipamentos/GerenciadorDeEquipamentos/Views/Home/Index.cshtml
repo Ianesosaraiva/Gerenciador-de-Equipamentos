@@ -8,8 +8,8 @@
 <!-- Navbar -->
 <!-- O Navbar -->
 @*<div class="navbar-wrapper">
-    <a class="navbar-brand">Início</a>
-</div>*@
+        <a class="navbar-brand">Início</a>
+    </div>*@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -41,7 +41,9 @@
                             <i class="material-icons">shop</i>
                         </div>
                         <p class="card-category">Licenças</p>
-                        <h3 class="card-title">60</h3>
+                        <h3 class="card-title">
+                            @Model.qtdSoftwaresAtivos
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -72,17 +74,150 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-info card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">call</i>
+                    <a href="@Url.Action("GerenciarOS","OrdemServico")" style="color:azure">
+
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">call</i>
+                            </div>
+                            <p class="card-category">OS</p>
+                            <h3 class="card-title">
+                                @Model.qtdOSAbertos
+                            </h3>
                         </div>
-                        <p class="card-category">OS</p>
-                        <h3 class="card-title">6</h3>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">update</i> Ordem de Serviço
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarAtributos","Atributo")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">memory</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Atributos</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> RAN, Processador, HD, etc...
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">update</i> Ordem de Serviço
-                        </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarEspecificacoes","Especificacao")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">devices_other</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Especificações</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Quantidade de RAN, de HD, etc...
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarTarefas","Tarefa")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">filter_list</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Tarefas</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Atividades exercidas, etc...
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("AbrirChamado","OrdemServico")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">call</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Abrir um Chamado</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Abrir chamado..
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarTipoEquipamentos","TipoEquipamento")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">devices</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Tipos de Equipamentos</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Computador, impressora, etc...
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarTipoSolicitacoes","TipoSolicitacao")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">list_alt</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title">Tipos de Solicitações</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Suporte a Rede, Suporte a Sistema, etc...
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>

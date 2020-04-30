@@ -20,7 +20,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult CadastrarSoftwares()
         {
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -41,7 +41,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         public ActionResult EditarSoftwares(int SoftwareId)
         {
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
             var softwares = bd.Softwares.FirstOrDefault(x => x.SoftwareId == SoftwareId);
 
             return View(softwares);

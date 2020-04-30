@@ -20,14 +20,22 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult Tarefas()
+        public ActionResult CriarTarefa()
         {
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.ToList(), "OrdemServicoId", "Titulo");
+            ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
+            ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x=>x.Tipo == 1).ToList(), "StatusId", "Descricao");
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarTarefas(Tarefa tarefa)
+        public ActionResult CriarTarefa(Tarefa tarefa)
         {
+            tarefa.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+            tarefa.DataAbertura = DateTime.Now;
+
             bd.Tarefa.Add(tarefa);
             bd.SaveChanges();
             return RedirectToAction("ListarTarefas");
@@ -37,8 +45,13 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarTarefas(int TarefaId)
+        public ActionResult EditarTarefa(int TarefaId)
         {
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.ToList(), "OrdemServicoId", "Titulo");
+            ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
+            ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+
             var tarefa = bd.Tarefa.FirstOrDefault(x => x.TarefaId == TarefaId);
 
             return View(tarefa);
@@ -49,7 +62,9 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var tarefaBD = bd.Tarefa.FirstOrDefault(x => x.TarefaId == tarefa.TarefaId);
 
-            tarefaBD.DataAbertura = tarefa.DataAbertura;
+            tarefaBD.TipoSolicitacaoId = tarefa.TipoSolicitacaoId;
+            tarefaBD.OrdemServicoId = tarefa.OrdemServicoId;
+            tarefaBD.PrioridadeId = tarefa.PrioridadeId;
             tarefaBD.DataEncerramento = tarefa.DataEncerramento;
             tarefaBD.Descricao = tarefa.Descricao;
 

@@ -1,0 +1,236 @@
+﻿@{
+    ViewBag.Title = "GerenciarOS";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var colaboradores = ViewBag.colaboradores;
+    //var equipes = ViewBag.equipes;
+    int aguardandoAtendimento = ViewBag.AguardandoAtendimento;
+    int naoAtribuidos = ViewBag.NaoAtribuidos;
+    int total = ViewBag.Total;
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-info card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">call</i>
+                        </div>
+                        <p class="card-category">Produtividade no período</p>
+                        <h3 class="card-title">
+                            16% @* @Model.qtdOSAbertos*@
+                        </h3>
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Ordem de Serviço
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <a href="@Url.Action("ListarOrdemServico","OrdemServico")" style="color:azure">
+
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">desktop_windows</i>
+                            </div>
+                            <p class="card-category">Total de OS</p>
+                            <h3 class="card-title">
+                                @total
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">desktop_windows</i>
+                                Total geral
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <a href="@Url.Action("ListarOrdemServico","OrdemServico", new { tipo = 1})" style="color:azure">
+
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">shop</i>
+                            </div>
+                            <p class="card-category">Aguardando Atendimento</p>
+                            <h3 class="card-title">
+                                @aguardandoAtendimento
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">date_range</i> Aguardando Atendimento
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <a href="@Url.Action("ListarOrdemServico","OrdemServico", new { tipo = 2})" style="color:azure">
+
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <p class="card-category">Não Atribuidos</p>
+                            <h3 class="card-title">
+                                @naoAtribuidos
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+
+                                <i class="fa fa-user"></i> Não Atribuidos
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-primary">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <h4 class="card-title">Desempenho</h4>
+                        <p></p>
+                    </div>
+                    @*<div class="col-sm">
+                            <a href="@Url.Action("CriarOrdemServico")">
+                                <span>Criar Ordem Serviço</span>
+                                <i class="material-icons" style="padding-top: 12px;" title="Criar Ordem Serviço">add</i>
+                            </a>
+                        </div>*@
+                </div>
+            </div>
+
+
+            <div class="card-body">
+                <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                            Colaborador
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                            Equipe
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content tab-space">
+                    <div class="table-responsive tab-pane active" id="link1">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("Colaborador")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Tarefas Finalizadas")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Tarefas Abertas")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OS Finalizados")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OS Abertos")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Tempo de Atendimento")
+                                </th>
+                            </tr>
+
+                            @*@foreach (var item in colaboradores)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Nome)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TarefasFinalizadas)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TarefasAbertas)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OSFinalizados)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.OSAbertos)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Tempo)
+                                        </td>
+                                    </tr>
+                                }*@
+
+                        </table>
+                    </div>
+                    <div class="table-responsive tab-pane" id="link2">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>
+                                    @Html.DisplayName("Equipe")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Responsável")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Tarefas Abertas")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("Tarefas Finalizadas")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OS Finalizados")
+                                </th>
+                                <th>
+                                    @Html.DisplayName("OS Abertos")
+                                </th>
+                            </tr>
+
+                            @*@foreach (var item in equipes)
+                                {
+                                         <tr>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.Nome)
+                                             </td>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.Responsavel)
+                                             </td>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.TarefasFinalizadas)
+                                             </td>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.TarefasAbertas)
+                                             </td>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.OSFinalizados)
+                                             </td>
+                                             <td>
+                                                 @Html.DisplayFor(modelItem => item.OSAbertos)
+                                             </td>
+                                         </tr>
+                                     }*@
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

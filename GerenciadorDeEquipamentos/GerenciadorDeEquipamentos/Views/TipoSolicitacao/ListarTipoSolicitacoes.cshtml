@@ -1,7 +1,7 @@
-﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Especificacoes>
+﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.TipoSolicitacao>
 
 @{
-    ViewBag.Title = "ListarEspecificacao";
+    ViewBag.Title = "ListarTipoSolicitação";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -13,13 +13,13 @@
                     <div class="card-header card-header-primary">
                         <div class="row">
                             <div class="col-sm-10">
-                                <h4 class="card-title">Lista de Especificações</h4>
+                                <h4 class="card-title">Lista de Tipo de Solicitação</h4>
                                 <p></p>
                             </div>
                             <div class="col-sm">
-                                <a href="@Url.Action("CriarEspecificacoes")">
-                                    <span>Criar Especificação</span>
-                                    <i class="material-icons" style="padding-top: 12px;" title="Criar Especificação">add</i>
+                                <a href="@Url.Action("CriarTipoSolicitacao")">
+                                    <span>Criar Tipo de Solicitação</span>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Criar Tipo de Solicitação">add</i>
                                 </a>
                             </div>
                         </div>
@@ -29,10 +29,10 @@
                             <table class="table table-hover">
                                 <thead class="text-primary">
                                 <th>
-                                    @Html.DisplayName("Nome da Especificação")
+                                    @Html.DisplayName("Tipo de Solicitação")
                                 </th>
                                 <th>
-                                    @Html.DisplayName("Atributo")
+                                    @Html.DisplayName("Descrição")
                                 </th>
                                 <th>Ações</th>
                                 </thead>
@@ -41,10 +41,10 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Nome)
+                                                @Html.DisplayFor(modelItem => item.Titulo)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Atributos.Nome)
+                                                @Html.DisplayFor(modelItem => item.Descricao)
                                             </td>
 
                                             <td>
@@ -58,8 +58,8 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                                             <a class="dropdown-item" href="#">Visualizar Mais</a>
-                                                            <a class="dropdown-item" href="@Url.Action("EditarEspecificacoes", "Especificacao", new { EspecificacaoId = item.EspecificacaoId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirEspecificacoes", "Especificacao")">Excluir</a>
+                                                            <a class="dropdown-item" href="@Url.Action("EditarTipoSolicitacao", "TipoSolicitacao", new { TipoSolicitacaoId = item.TipoSolicitacaoId})">Editar</a>
+                                                            <a class="dropdown-item" href="@Url.Action("ExcluirTipoSolicitacao", "TipoSolicitacao")">Excluir</a>
                                                         </div>
                                                     </li>
                                                 </ul>

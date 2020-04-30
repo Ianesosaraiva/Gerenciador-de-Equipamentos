@@ -20,24 +20,25 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CriarTipoSolicitacoes()
+        public ActionResult CriarTipoSolicitacao()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarTipoSolicitacoes(TipoSolicitacao tipoSolicitacao)
+        public ActionResult CriarTipoSolicitacao(TipoSolicitacao tipoSolicitacao)
         {
+            tipoSolicitacao.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
             bd.TipoSolicitacao.Add(tipoSolicitacao);
             bd.SaveChanges();
-            return RedirectToAction("ListarTipoSolicitacao");
+            return RedirectToAction("ListarTipoSolicitacoes");
         }
 
         //===============================================================================================
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarTipoSolicitacoes(int TipoSolicitacaoId)
+        public ActionResult EditarTipoSolicitacao(int TipoSolicitacaoId)
         {
             var tipoSolicitacao = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == TipoSolicitacaoId);
 
@@ -45,7 +46,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarTipoSolicitacoes(TipoSolicitacao tipoSolicitacao)
+        public ActionResult EditarTipoSolicitacao(TipoSolicitacao tipoSolicitacao)
         {
             var tipoSolicitacaoBD = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == tipoSolicitacao.TipoSolicitacaoId);
 
@@ -55,7 +56,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             bd.Entry(tipoSolicitacaoBD).State = EntityState.Modified;
             bd.SaveChanges();
 
-            return RedirectToAction("ListarDepartamentos");
+            return RedirectToAction("ListarTipoSolicitacoes");
         }
 
         //===============================================================================================

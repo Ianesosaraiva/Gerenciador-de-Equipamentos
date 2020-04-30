@@ -43,7 +43,7 @@
     <Key>
       <PropertyRef Name="EquipeId" />
     </Key>
-    <Property Name="EquipeId" Type="int" Nullable="false" />
+    <Property Name="EquipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descricao" Type="mediumtext" />
     <Property Name="ResponsavelId" Type="int" Nullable="false" />
@@ -93,7 +93,7 @@
     <Key>
       <PropertyRef Name="OrdemServicoId" />
     </Key>
-    <Property Name="OrdemServicoId" Type="int" Nullable="false" />
+    <Property Name="OrdemServicoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="ClienteNome" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="ClienteEmail" Type="varchar" MaxLength="200" Nullable="false" />
@@ -126,7 +126,7 @@
     <Key>
       <PropertyRef Name="PrioridadeId" />
     </Key>
-    <Property Name="PrioridadeId" Type="int" Nullable="false" />
+    <Property Name="PrioridadeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Sidebar">
@@ -147,7 +147,7 @@
       <PropertyRef Name="SoftwareId" />
       <PropertyRef Name="EquipamentoId" />
     </Key>
-    <Property Name="SoftwareEquipementoId" Type="int" Nullable="false" />
+    <Property Name="SoftwareEquipementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Data" Type="date" />
     <Property Name="SoftwareId" Type="int" Nullable="false" />
     <Property Name="EquipamentoId" Type="int" Nullable="false" />
@@ -157,7 +157,7 @@
     <Key>
       <PropertyRef Name="SoftwareId" />
     </Key>
-    <Property Name="SoftwareId" Type="int" Nullable="false" />
+    <Property Name="SoftwareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nome" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descricao" Type="mediumtext" />
     <Property Name="Observacao" Type="varchar" MaxLength="200" />
@@ -177,7 +177,7 @@
     <Key>
       <PropertyRef Name="TarefaId" />
     </Key>
-    <Property Name="TarefaId" Type="int" Nullable="false" />
+    <Property Name="TarefaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="OrdemServicoId" Type="int" />
     <Property Name="PessoaId" Type="int" Nullable="false" />
     <Property Name="PrioridadeId" Type="int" Nullable="false" />
@@ -198,7 +198,7 @@
     <Key>
       <PropertyRef Name="TipoSolicitacaoId" />
     </Key>
-    <Property Name="TipoSolicitacaoId" Type="int" Nullable="false" />
+    <Property Name="TipoSolicitacaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descricao" Type="mediumtext" />
     <Property Name="PessoaId" Type="int" Nullable="false" />
@@ -207,7 +207,7 @@
     <Key>
       <PropertyRef Name="TransferenciaId" />
     </Key>
-    <Property Name="TransferenciaId" Type="int" Nullable="false" />
+    <Property Name="TransferenciaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="DepartamentoAtual" Type="int" Nullable="false" />
     <Property Name="DepartamentoAntigo" Type="int" Nullable="false" />
     <Property Name="EquipamentoId" Type="int" Nullable="false" />

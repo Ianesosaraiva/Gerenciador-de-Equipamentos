@@ -30,7 +30,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult CriarEquipamentos()
         {
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
             ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
           
@@ -55,7 +55,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var equipamento = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == EquipamentoId);
 
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
             ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
 

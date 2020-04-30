@@ -200,6 +200,7 @@
     <Compile Include="Models\OrdemServico.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Desempenho.cs" />
     <Compile Include="Models\Pessoas.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -622,16 +623,22 @@
     <Content Include="Views\Especificacao\CriarEspecificacoes.cshtml" />
     <Content Include="Views\Especificacao\EditarEspecificacoes.cshtml" />
     <Content Include="Views\Especificacao\ListarEspecificacoes.cshtml" />
-    <Content Include="Views\Tarefa\CadastrarTarefa.cshtml" />
+    <Content Include="Views\Tarefa\CriarTarefa.cshtml" />
     <Content Include="Views\Tarefa\EditarTarefa.cshtml" />
-    <Content Include="Views\Tarefa\ListarTarefa.cshtml" />
-    <Content Include="Views\TipoSolicitacao\CadastrarTipoSolicitacao.cshtml" />
+    <Content Include="Views\Tarefa\ListarTarefas.cshtml" />
+    <Content Include="Views\TipoSolicitacao\CriarTipoSolicitacao.cshtml" />
     <Content Include="Views\TipoSolicitacao\EditarTipoSolicitacao.cshtml" />
-    <Content Include="Views\TipoSolicitacao\ListarTipoSolicitação.cshtml" />
+    <Content Include="Views\TipoSolicitacao\ListarTipoSolicitacoes.cshtml" />
+    <Content Include="Views\OrdemServico\ListarOrdemServico.cshtml" />
+    <Content Include="Views\OrdemServico\CriarOrdemServico.cshtml" />
+    <Content Include="Views\OrdemServico\EditarOrdemServico.cshtml" />
+    <Content Include="Views\OrdemServico\AbrirChamado.cshtml" />
+    <Content Include="Views\OrdemServico\Sucesso.cshtml" />
+    <Content Include="Views\OrdemServico\GerenciarOS.cshtml" />
+    <Content Include="Views\Shared\_Chamado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\OdemServico\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

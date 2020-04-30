@@ -48,7 +48,7 @@
           <Key>
             <PropertyRef Name="EquipeId" />
           </Key>
-          <Property Name="EquipeId" Type="int" Nullable="false" />
+          <Property Name="EquipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descricao" Type="mediumtext" />
           <Property Name="ResponsavelId" Type="int" Nullable="false" />
@@ -98,7 +98,7 @@
           <Key>
             <PropertyRef Name="OrdemServicoId" />
           </Key>
-          <Property Name="OrdemServicoId" Type="int" Nullable="false" />
+          <Property Name="OrdemServicoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ClienteNome" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ClienteEmail" Type="varchar" MaxLength="200" Nullable="false" />
@@ -131,7 +131,7 @@
           <Key>
             <PropertyRef Name="PrioridadeId" />
           </Key>
-          <Property Name="PrioridadeId" Type="int" Nullable="false" />
+          <Property Name="PrioridadeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Sidebar">
@@ -152,7 +152,7 @@
             <PropertyRef Name="SoftwareId" />
             <PropertyRef Name="EquipamentoId" />
           </Key>
-          <Property Name="SoftwareEquipementoId" Type="int" Nullable="false" />
+          <Property Name="SoftwareEquipementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Data" Type="date" />
           <Property Name="SoftwareId" Type="int" Nullable="false" />
           <Property Name="EquipamentoId" Type="int" Nullable="false" />
@@ -162,7 +162,7 @@
           <Key>
             <PropertyRef Name="SoftwareId" />
           </Key>
-          <Property Name="SoftwareId" Type="int" Nullable="false" />
+          <Property Name="SoftwareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descricao" Type="mediumtext" />
           <Property Name="Observacao" Type="varchar" MaxLength="200" />
@@ -182,7 +182,7 @@
           <Key>
             <PropertyRef Name="TarefaId" />
           </Key>
-          <Property Name="TarefaId" Type="int" Nullable="false" />
+          <Property Name="TarefaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrdemServicoId" Type="int" />
           <Property Name="PessoaId" Type="int" Nullable="false" />
           <Property Name="PrioridadeId" Type="int" Nullable="false" />
@@ -203,7 +203,7 @@
           <Key>
             <PropertyRef Name="TipoSolicitacaoId" />
           </Key>
-          <Property Name="TipoSolicitacaoId" Type="int" Nullable="false" />
+          <Property Name="TipoSolicitacaoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descricao" Type="mediumtext" />
           <Property Name="PessoaId" Type="int" Nullable="false" />
@@ -212,7 +212,7 @@
           <Key>
             <PropertyRef Name="TransferenciaId" />
           </Key>
-          <Property Name="TransferenciaId" Type="int" Nullable="false" />
+          <Property Name="TransferenciaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DepartamentoAtual" Type="int" Nullable="false" />
           <Property Name="DepartamentoAntigo" Type="int" Nullable="false" />
           <Property Name="EquipamentoId" Type="int" Nullable="false" />
@@ -985,7 +985,7 @@
           <Key>
             <PropertyRef Name="EquipeId" />
           </Key>
-          <Property Name="EquipeId" Type="Int32" Nullable="false" />
+          <Property Name="EquipeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="ResponsavelId" Type="Int32" Nullable="false" />
@@ -1044,7 +1044,7 @@
           <Key>
             <PropertyRef Name="OrdemServicoId" />
           </Key>
-          <Property Name="OrdemServicoId" Type="Int32" Nullable="false" />
+          <Property Name="OrdemServicoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ClienteNome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ClienteEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -1092,7 +1092,7 @@
           <Key>
             <PropertyRef Name="PrioridadeId" />
           </Key>
-          <Property Name="PrioridadeId" Type="Int32" Nullable="false" />
+          <Property Name="PrioridadeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_4" FromRole="Prioridade" ToRole="OrdemServico" />
           <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_5" FromRole="Prioridade" ToRole="Tarefa" />
@@ -1115,7 +1115,7 @@
             <PropertyRef Name="SoftwareId" />
             <PropertyRef Name="EquipamentoId" />
           </Key>
-          <Property Name="SoftwareEquipementoId" Type="Int32" Nullable="false" />
+          <Property Name="SoftwareEquipementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="DateTime" />
           <Property Name="SoftwareId" Type="Int32" Nullable="false" />
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
@@ -1128,7 +1128,7 @@
           <Key>
             <PropertyRef Name="SoftwareId" />
           </Key>
-          <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+          <Property Name="SoftwareId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -1157,7 +1157,7 @@
           <Key>
             <PropertyRef Name="TarefaId" />
           </Key>
-          <Property Name="TarefaId" Type="Int32" Nullable="false" />
+          <Property Name="TarefaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrdemServicoId" Type="Int32" />
           <Property Name="PessoaId" Type="Int32" Nullable="false" />
           <Property Name="PrioridadeId" Type="Int32" Nullable="false" />
@@ -1185,7 +1185,7 @@
           <Key>
             <PropertyRef Name="TipoSolicitacaoId" />
           </Key>
-          <Property Name="TipoSolicitacaoId" Type="Int32" Nullable="false" />
+          <Property Name="TipoSolicitacaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="PessoaId" Type="Int32" Nullable="false" />
@@ -1197,7 +1197,7 @@
           <Key>
             <PropertyRef Name="TransferenciaId" />
           </Key>
-          <Property Name="TransferenciaId" Type="Int32" Nullable="false" />
+          <Property Name="TransferenciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartamentoAtual" Type="Int32" Nullable="false" />
           <Property Name="DepartamentoAntigo" Type="Int32" Nullable="false" />
           <Property Name="EquipamentoId" Type="Int32" Nullable="false" />

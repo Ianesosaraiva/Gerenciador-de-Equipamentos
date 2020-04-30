@@ -40,7 +40,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         public ActionResult CadastrarPessoas()
         {
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -68,7 +68,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
 
             return View(pessoas);
         }

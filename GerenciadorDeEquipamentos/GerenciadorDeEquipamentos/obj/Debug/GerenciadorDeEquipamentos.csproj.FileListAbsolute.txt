@@ -468,10 +468,7 @@ C:\Users\ianes\source\repos\Gerenciador de Equipamentos\GerenciadorDeEquipamento
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csproj.CopyComplete
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.dll
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.pdb
-C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csprojAssemblyReference.cache
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csproj.CoreCompileInputs.cache
-C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.dll
-C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.pdb
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\GerenciadorDeEquipamentos.dll.config
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\GerenciadorDeEquipamentos.dll
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\GerenciadorDeEquipamentos.pdb
@@ -562,3 +559,6 @@ C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamen
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\pt-br\System.Web.WebPages.Deployment.resources.dll
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\bin\pt-br\System.Web.WebPages.Razor.resources.dll
 C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csproj.CopyComplete
+C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.dll
+C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.pdb
+C:\Users\ianes\source\repos\Gerenciador de Equipamentos-1\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csprojAssemblyReference.cache
