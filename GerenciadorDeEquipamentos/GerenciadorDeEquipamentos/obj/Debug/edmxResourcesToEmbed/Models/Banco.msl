@@ -253,5 +253,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="vw_tarefas_status_dados">
+      <EntityTypeMapping TypeName="shield01Model.vw_tarefas_status_dados">
+        <MappingFragment StoreEntitySet="vw_tarefas_status_dados">
+          <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+          <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+          <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+          <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+          <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
+          <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

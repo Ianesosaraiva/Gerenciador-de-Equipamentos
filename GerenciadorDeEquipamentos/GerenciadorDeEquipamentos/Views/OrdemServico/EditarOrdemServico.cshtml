@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Editar Ordem de Serviço";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var tipo = ViewBag.tipo;
 }
 
 <div class="content">
@@ -83,7 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Editar" class="btn btn-primary" />
-                                <a href="@Url.Action("ListarOrdensServico", "OrdemServico")" class="btn btn-primary">Voltar</a>
+                                <a href="@Url.Action("ListarOrdemServico", "OrdemServico", new { tipo = tipo})" class="btn btn-primary">Voltar</a>
                             </div>
                         }
 

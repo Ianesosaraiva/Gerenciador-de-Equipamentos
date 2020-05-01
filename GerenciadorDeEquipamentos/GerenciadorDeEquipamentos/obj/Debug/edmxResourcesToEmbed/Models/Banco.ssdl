@@ -245,6 +245,29 @@ warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have
     <Property Name="OSEncerrados" Type="bigint" Nullable="false" />
     <Property Name="OSAbertos" Type="bigint" Nullable="false" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'def.shield01.vw_produtividade_os' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="vw_produtividade_os">
+          <Property Name="Produtividade" Type="decimal" Precision="27" Scale="4" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_tarefas_status_dados">
+    <Key>
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
+    </Key>
+    <Property Name="AguardandoAtendente" Type="bigint" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="bigint" Nullable="false" />
+    <Property Name="EmAtendimento" Type="bigint" Nullable="false" />
+    <Property Name="Encerrado" Type="bigint" Nullable="false" />
+    <Property Name="Cancelado" Type="bigint" Nullable="false" />
+    <Property Name="Pausado" Type="bigint" Nullable="false" />
+  </EntityType>
   <Association Name="Equipe_ibfk_1">
     <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="1" />
     <End Role="Equipe" Type="Self.Equipe" Multiplicity="*" />
@@ -678,6 +701,16 @@ FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
 `vw_equipe_ordemServico`.`OSEncerrados`, 
 `vw_equipe_ordemServico`.`OSAbertos`
 FROM `vw_equipe_ordemServico` AS `vw_equipe_ordemServico`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_tarefas_status_dados" EntityType="Self.vw_tarefas_status_dados" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_tarefas_status_dados`.`AguardandoAtendente`, 
+`vw_tarefas_status_dados`.`AguardandoAtendimento`, 
+`vw_tarefas_status_dados`.`EmAtendimento`, 
+`vw_tarefas_status_dados`.`Encerrado`, 
+`vw_tarefas_status_dados`.`Cancelado`, 
+`vw_tarefas_status_dados`.`Pausado`
+FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="Equipe_ibfk_1" Association="Self.Equipe_ibfk_1">
       <End Role="Pessoas" EntitySet="Pessoas" />

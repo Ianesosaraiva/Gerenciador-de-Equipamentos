@@ -21,6 +21,8 @@
     <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
     <EntitySet Name="TipoSolicitacao" EntityType="shield01Model.TipoSolicitacao" />
     <EntitySet Name="Transferencia" EntityType="shield01Model.Transferencia" />
+    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
+    <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
     <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
       <End Role="Acessos" EntitySet="Acessos" />
       <End Role="Pessoas" EntitySet="Pessoas" />
@@ -153,8 +155,7 @@
       <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
       <End Role="Tarefa" EntitySet="Tarefa" />
     </AssociationSet>
-    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
-    <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
+    <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
   </EntityContainer>
   <EntityType Name="Acessos">
     <Key>
@@ -436,6 +437,32 @@
     <NavigationProperty Name="Departamentos1" Relationship="shield01Model.Transferencia_ibfk_4" FromRole="Transferencia" ToRole="Departamentos" />
     <NavigationProperty Name="Equipamentos" Relationship="shield01Model.Transferencia_ibfk_2" FromRole="Transferencia" ToRole="Equipamentos" />
     <NavigationProperty Name="Pessoas" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Transferencia" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="vw_colaborador_OS_tarefas">
+    <Key>
+      <PropertyRef Name="Colaborador" />
+      <PropertyRef Name="TarefasEncerradas" />
+      <PropertyRef Name="TarefasAbertas" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
+    <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_equipe_ordemServico">
+    <Key>
+      <PropertyRef Name="Equipe" />
+      <PropertyRef Name="Responsavel" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
   </EntityType>
   <Association Name="fk_acessopessoa">
     <End Type="shield01Model.Acessos" Role="Acessos" Multiplicity="1" />
@@ -833,30 +860,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="vw_colaborador_OS_tarefas">
+  <EntityType Name="vw_tarefas_status_dados">
     <Key>
-      <PropertyRef Name="Colaborador" />
-      <PropertyRef Name="TarefasEncerradas" />
-      <PropertyRef Name="TarefasAbertas" />
-      <PropertyRef Name="OSEncerrados" />
-      <PropertyRef Name="OSAbertos" />
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
     </Key>
-    <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
-    <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
-    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
-    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
-  </EntityType>
-  <EntityType Name="vw_equipe_ordemServico">
-    <Key>
-      <PropertyRef Name="Equipe" />
-      <PropertyRef Name="Responsavel" />
-      <PropertyRef Name="OSEncerrados" />
-      <PropertyRef Name="OSAbertos" />
-    </Key>
-    <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
-    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="Encerrado" Type="Int64" Nullable="false" />
+    <Property Name="Cancelado" Type="Int64" Nullable="false" />
+    <Property Name="Pausado" Type="Int64" Nullable="false" />
   </EntityType>
 </Schema>

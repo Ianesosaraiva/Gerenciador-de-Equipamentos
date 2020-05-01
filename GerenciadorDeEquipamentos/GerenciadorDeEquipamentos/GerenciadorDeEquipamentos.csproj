@@ -192,6 +192,7 @@
     <Compile Include="Models\Especificacoes.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Graficos.cs" />
     <Compile Include="Models\Log.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -238,6 +239,9 @@
     <Compile Include="Models\vw_equipe_ordemServico.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_tarefas_status_dados.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +258,77 @@
     <Content Include="Content\sb-admin-2.css" />
     <Content Include="Content\sb-admin-2.min.css" />
     <Content Include="Content\util.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.bootstrap.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.bootstrap.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.bootstrap4.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.bootstrap4.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.dataTables.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.dataTables.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.foundation.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.foundation.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.jqueryui.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.jqueryui.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.semanticui.css" />
+    <Content Include="Datatables\Buttons-1.5.6\css\buttons.semanticui.min.css" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.bootstrap.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.bootstrap.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.bootstrap4.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.bootstrap4.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.colVis.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.colVis.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.flash.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.flash.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.foundation.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.foundation.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.html5.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.html5.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.jqueryui.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.jqueryui.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.print.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.print.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.semanticui.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\buttons.semanticui.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\dataTables.buttons.js" />
+    <Content Include="Datatables\Buttons-1.5.6\js\dataTables.buttons.min.js" />
+    <Content Include="Datatables\Buttons-1.5.6\swf\flashExport.swf" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.foundation.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.foundation.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.jqueryui.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.semanticui.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\jquery.dataTables.css" />
+    <Content Include="Datatables\DataTables-1.10.18\css\jquery.dataTables.min.css" />
+    <Content Include="Datatables\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="Datatables\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="Datatables\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="Datatables\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="Datatables\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <Content Include="Datatables\DataTables-1.10.18\js\jquery.dataTables.min.js" />
+    <Content Include="Datatables\datatables.css" />
+    <Content Include="Datatables\datatables.js" />
+    <Content Include="Datatables\datatables.min.css" />
+    <Content Include="Datatables\datatables.min.js" />
+    <Content Include="Datatables\JSZip-2.5.0\jszip.js" />
+    <Content Include="Datatables\JSZip-2.5.0\jszip.min.js" />
+    <Content Include="Datatables\pdfmake-0.1.36\pdfmake.js" />
+    <Content Include="Datatables\pdfmake-0.1.36\pdfmake.min.js" />
+    <Content Include="Datatables\pdfmake-0.1.36\vfs_fonts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -371,6 +446,8 @@
     <Content Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </Content>
+    <Content Include="Datatables\Buttons-1.5.6\css\common.scss" />
+    <Content Include="Datatables\Buttons-1.5.6\css\mixins.scss" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Dados.js" />
@@ -646,6 +723,7 @@
     <Content Include="Views\Equipe\ListarEquipes.cshtml" />
     <Content Include="Views\Equipe\CriarEquipe.cshtml" />
     <Content Include="Views\Equipe\EditarEquipe.cshtml" />
+    <Content Include="Views\OrdemServico\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

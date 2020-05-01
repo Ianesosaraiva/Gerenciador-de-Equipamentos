@@ -15,6 +15,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult ListarOrdemServico(int? tipo)
         {
+            Session["tipo"] = tipo;
             if (tipo == 1)
             {
                 //Ordens de Serviço aguardando atendimento
@@ -40,9 +41,17 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.AguardandoAtendimento = bd.OrdemServico.Where(x => x.StatusId == 3).Count();
             ViewBag.NaoAtribuidos = bd.OrdemServico.Where(x => x.EquipeId == null).Count();
             ViewBag.Total = bd.OrdemServico.ToList().Count();
+            //int todos = bd.OrdemServico.Count();
+            //int encerrados = bd.OrdemServico.Where(x => x.StatusId == 6).Count();
+            //string total = $"{ (encerrados / 5) * 100}";
+            ViewBag.produtividade = bd.OrdemServico.Where(x => x.StatusId == 6).Count() / bd.OrdemServico.Count();
 
             ViewBag.osEquipe = bd.vw_equipe_ordemServico.ToList();
             ViewBag.osColaborador = bd.vw_colaborador_OS_tarefas.ToList();
+
+            ViewBag.graficoOS = bd.OrdemServico.Where(x=>x.StatusId == 6).GroupBy(x=>x.DataEncerramento).ToList();
+
+            ViewBag.graficoTarefas = bd.vw_tarefas_status_dados.FirstOrDefault();
 
             return View();
         }
@@ -53,8 +62,9 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
-            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Titulo");
+            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
+            ViewBag.tipo = Session["tipo"];
             return View();
         }
 
@@ -65,7 +75,9 @@ namespace GerenciadorDeEquipamentos.Controllers
 
             bd.OrdemServico.Add(ordemServico);
             bd.SaveChanges();
-            return RedirectToAction("ListarOrdemServico");
+
+            int tipo = Convert.ToInt32(Session["tipo"]);
+            return RedirectToAction("ListarOrdemServico", new { tipo = tipo});
         }
 
         //===============================================================================================
@@ -75,7 +87,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
-            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Titulo");
+            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
             return View();
         }
@@ -104,9 +116,10 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
-            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Titulo");
+            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
             var ordemServico = bd.OrdemServico.FirstOrDefault(x => x.OrdemServicoId == OrdemServicoId);
 
+            ViewBag.tipo = Session["tipo"];
             return View(ordemServico);
         }
 
@@ -128,7 +141,8 @@ namespace GerenciadorDeEquipamentos.Controllers
             bd.Entry(OrdemServicoBD).State = EntityState.Modified;
             bd.SaveChanges();
 
-            return RedirectToAction("ListarOrdemServico");
+            int tipo = Convert.ToInt32(Session["tipo"]);
+            return RedirectToAction("ListarOrdemServico", new { tipo = tipo });
         }
 
         public ActionResult Sucesso(int? status)
