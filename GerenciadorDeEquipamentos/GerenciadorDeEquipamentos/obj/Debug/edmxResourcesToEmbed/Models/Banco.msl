@@ -49,7 +49,7 @@
         <MappingFragment StoreEntitySet="Equipe">
           <ScalarProperty Name="ResponsavelId" ColumnName="ResponsavelId" />
           <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -232,16 +232,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_ordemServico_equipe">
-      <EntityTypeMapping TypeName="shield01Model.vw_ordemServico_equipe">
-        <MappingFragment StoreEntitySet="vw_ordemServico_equipe">
-          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
-          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
-          <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
-          <ScalarProperty Name="Equipe" ColumnName="Equipe" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="vw_colaborador_OS_tarefas">
       <EntityTypeMapping TypeName="shield01Model.vw_colaborador_OS_tarefas">
         <MappingFragment StoreEntitySet="vw_colaborador_OS_tarefas">
@@ -250,6 +240,16 @@
           <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
           <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
           <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_equipe_ordemServico">
+      <EntityTypeMapping TypeName="shield01Model.vw_equipe_ordemServico">
+        <MappingFragment StoreEntitySet="vw_equipe_ordemServico">
+          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+          <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+          <ScalarProperty Name="Equipe" ColumnName="Equipe" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

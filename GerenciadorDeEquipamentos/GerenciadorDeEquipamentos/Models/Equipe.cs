@@ -21,7 +21,7 @@ namespace GerenciadorDeEquipamentos.Models
         }
     
         public int EquipeId { get; set; }
-        public string Titulo { get; set; }
+        public string Nome { get; set; }
         public string Descricao { get; set; }
         public int ResponsavelId { get; set; }
     

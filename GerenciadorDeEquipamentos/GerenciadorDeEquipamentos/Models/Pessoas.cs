@@ -11,8 +11,7 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Pessoas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,16 +33,12 @@ namespace GerenciadorDeEquipamentos.Models
         public string CPF { get; set; }
         public string RG { get; set; }
         public string Contato { get; set; }
-
-        [DataType(DataType.Date)]
-        public System.DateTime? DataCadastro { get; set; }
+        public System.DateTime DataCadastro { get; set; }
         public string Email { get; set; }
         public Nullable<System.DateTime> UltimoAcesso { get; set; }
         public int AcessoId { get; set; }
         public int StatusId { get; set; }
-
-        [DataType(DataType.Date)]
-        public System.DateTime? DataNascimento { get; set; }
+        public System.DateTime DataNascimento { get; set; }
     
         public virtual Acessos Acessos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

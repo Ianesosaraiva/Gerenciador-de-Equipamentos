@@ -49,7 +49,7 @@
             <PropertyRef Name="EquipeId" />
           </Key>
           <Property Name="EquipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Descricao" Type="mediumtext" />
           <Property Name="ResponsavelId" Type="int" Nullable="false" />
         </EntityType>
@@ -237,8 +237,8 @@ warning 6002: The table/view 'def.shield01.vw_colaborador_OS_tarefas' does not h
           <Property Name="OSAbertos" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'def.shield01.vw_ordemServico_equipe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_ordemServico_equipe">
+warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_equipe_ordemServico">
           <Key>
             <PropertyRef Name="Equipe" />
             <PropertyRef Name="Responsavel" />
@@ -676,13 +676,13 @@ warning 6002: The table/view 'def.shield01.vw_ordemServico_equipe' does not have
 `vw_colaborador_OS_tarefas`.`OSAbertos`
 FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_ordemServico_equipe" EntityType="Self.vw_ordemServico_equipe" store:Type="Views" store:Schema="shield01">
+          <EntitySet Name="vw_equipe_ordemServico" EntityType="Self.vw_equipe_ordemServico" store:Type="Views" store:Schema="shield01">
             <DefiningQuery>SELECT
-`vw_ordemServico_equipe`.`Equipe`, 
-`vw_ordemServico_equipe`.`Responsavel`, 
-`vw_ordemServico_equipe`.`OSEncerrados`, 
-`vw_ordemServico_equipe`.`OSAbertos`
-FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
+`vw_equipe_ordemServico`.`Equipe`, 
+`vw_equipe_ordemServico`.`Responsavel`, 
+`vw_equipe_ordemServico`.`OSEncerrados`, 
+`vw_equipe_ordemServico`.`OSAbertos`
+FROM `vw_equipe_ordemServico` AS `vw_equipe_ordemServico`</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="Equipe_ibfk_1" Association="Self.Equipe_ibfk_1">
             <End Role="Pessoas" EntitySet="Pessoas" />
@@ -974,8 +974,8 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
             <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
             <End Role="Tarefa" EntitySet="Tarefa" />
           </AssociationSet>
-          <EntitySet Name="vw_ordemServico_equipe" EntityType="shield01Model.vw_ordemServico_equipe" />
           <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
+          <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
         </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
@@ -1035,7 +1035,7 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
             <PropertyRef Name="EquipeId" />
           </Key>
           <Property Name="EquipeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="ResponsavelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Equipe" ToRole="Pessoas" />
@@ -1654,18 +1654,6 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_ordemServico_equipe">
-          <Key>
-            <PropertyRef Name="Equipe" />
-            <PropertyRef Name="Responsavel" />
-            <PropertyRef Name="OSEncerrados" />
-            <PropertyRef Name="OSAbertos" />
-          </Key>
-          <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
-          <Property Name="OSAbertos" Type="Int64" Nullable="false" />
-        </EntityType>
         <EntityType Name="vw_colaborador_OS_tarefas">
           <Key>
             <PropertyRef Name="Colaborador" />
@@ -1677,6 +1665,18 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
           <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
           <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
+          <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+          <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_equipe_ordemServico">
+          <Key>
+            <PropertyRef Name="Equipe" />
+            <PropertyRef Name="Responsavel" />
+            <PropertyRef Name="OSEncerrados" />
+            <PropertyRef Name="OSAbertos" />
+          </Key>
+          <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
           <Property Name="OSAbertos" Type="Int64" Nullable="false" />
         </EntityType>
@@ -1734,7 +1734,7 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
               <MappingFragment StoreEntitySet="Equipe">
                 <ScalarProperty Name="ResponsavelId" ColumnName="ResponsavelId" />
                 <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1917,16 +1917,6 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_ordemServico_equipe">
-            <EntityTypeMapping TypeName="shield01Model.vw_ordemServico_equipe">
-              <MappingFragment StoreEntitySet="vw_ordemServico_equipe">
-                <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
-                <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
-                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
-                <ScalarProperty Name="Equipe" ColumnName="Equipe" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vw_colaborador_OS_tarefas">
             <EntityTypeMapping TypeName="shield01Model.vw_colaborador_OS_tarefas">
               <MappingFragment StoreEntitySet="vw_colaborador_OS_tarefas">
@@ -1935,6 +1925,16 @@ FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
                 <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
                 <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
                 <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_equipe_ordemServico">
+            <EntityTypeMapping TypeName="shield01Model.vw_equipe_ordemServico">
+              <MappingFragment StoreEntitySet="vw_equipe_ordemServico">
+                <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+                <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+                <ScalarProperty Name="Equipe" ColumnName="Equipe" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

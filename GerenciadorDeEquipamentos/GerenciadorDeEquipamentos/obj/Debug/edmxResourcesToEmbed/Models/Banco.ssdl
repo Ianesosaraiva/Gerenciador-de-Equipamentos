@@ -44,7 +44,7 @@
       <PropertyRef Name="EquipeId" />
     </Key>
     <Property Name="EquipeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Titulo" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="Descricao" Type="mediumtext" />
     <Property Name="ResponsavelId" Type="int" Nullable="false" />
   </EntityType>
@@ -232,8 +232,8 @@ warning 6002: The table/view 'def.shield01.vw_colaborador_OS_tarefas' does not h
     <Property Name="OSAbertos" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'def.shield01.vw_ordemServico_equipe' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="vw_ordemServico_equipe">
+warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_equipe_ordemServico">
     <Key>
       <PropertyRef Name="Equipe" />
       <PropertyRef Name="Responsavel" />
@@ -671,13 +671,13 @@ warning 6002: The table/view 'def.shield01.vw_ordemServico_equipe' does not have
 `vw_colaborador_OS_tarefas`.`OSAbertos`
 FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="vw_ordemServico_equipe" EntityType="Self.vw_ordemServico_equipe" store:Type="Views" store:Schema="shield01">
+    <EntitySet Name="vw_equipe_ordemServico" EntityType="Self.vw_equipe_ordemServico" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT
-`vw_ordemServico_equipe`.`Equipe`, 
-`vw_ordemServico_equipe`.`Responsavel`, 
-`vw_ordemServico_equipe`.`OSEncerrados`, 
-`vw_ordemServico_equipe`.`OSAbertos`
-FROM `vw_ordemServico_equipe` AS `vw_ordemServico_equipe`</DefiningQuery>
+`vw_equipe_ordemServico`.`Equipe`, 
+`vw_equipe_ordemServico`.`Responsavel`, 
+`vw_equipe_ordemServico`.`OSEncerrados`, 
+`vw_equipe_ordemServico`.`OSAbertos`
+FROM `vw_equipe_ordemServico` AS `vw_equipe_ordemServico`</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="Equipe_ibfk_1" Association="Self.Equipe_ibfk_1">
       <End Role="Pessoas" EntitySet="Pessoas" />

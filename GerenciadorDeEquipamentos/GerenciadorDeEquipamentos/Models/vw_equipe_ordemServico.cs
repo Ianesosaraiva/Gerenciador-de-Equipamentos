@@ -12,7 +12,7 @@ namespace GerenciadorDeEquipamentos.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vw_ordemServico_equipe
+    public partial class vw_equipe_ordemServico
     {
         public string Equipe { get; set; }
         public string Responsavel { get; set; }

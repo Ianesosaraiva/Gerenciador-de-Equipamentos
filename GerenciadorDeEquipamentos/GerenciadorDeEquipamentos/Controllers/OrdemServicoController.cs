@@ -41,7 +41,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.NaoAtribuidos = bd.OrdemServico.Where(x => x.EquipeId == null).Count();
             ViewBag.Total = bd.OrdemServico.ToList().Count();
 
-            ViewBag.osEquipe = bd.vw_ordemServico_equipe.ToList();
+            ViewBag.osEquipe = bd.vw_equipe_ordemServico.ToList();
             ViewBag.osColaborador = bd.vw_colaborador_OS_tarefas.ToList();
 
             return View();

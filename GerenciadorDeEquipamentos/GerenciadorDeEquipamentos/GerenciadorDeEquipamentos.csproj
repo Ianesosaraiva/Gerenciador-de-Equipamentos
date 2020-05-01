@@ -140,6 +140,7 @@
     <Compile Include="Controllers\AtributoController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\EquipamentoController.cs" />
+    <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\EspecificacaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -234,7 +235,7 @@
     <Compile Include="Models\vw_colaborador_OS_tarefas.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vw_ordemServico_equipe.cs">
+    <Compile Include="Models\vw_equipe_ordemServico.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -642,6 +643,9 @@
     <Content Include="Views\OrdemServico\Sucesso.cshtml" />
     <Content Include="Views\OrdemServico\GerenciarOS.cshtml" />
     <Content Include="Views\Shared\_Chamado.cshtml" />
+    <Content Include="Views\Equipe\ListarEquipes.cshtml" />
+    <Content Include="Views\Equipe\CriarEquipe.cshtml" />
+    <Content Include="Views\Equipe\EditarEquipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

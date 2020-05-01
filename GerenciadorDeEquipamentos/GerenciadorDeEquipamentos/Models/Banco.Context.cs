@@ -45,7 +45,7 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<TipoEquipamento> TipoEquipamento { get; set; }
         public virtual DbSet<TipoSolicitacao> TipoSolicitacao { get; set; }
         public virtual DbSet<Transferencia> Transferencia { get; set; }
-        public virtual DbSet<vw_ordemServico_equipe> vw_ordemServico_equipe { get; set; }
         public virtual DbSet<vw_colaborador_OS_tarefas> vw_colaborador_OS_tarefas { get; set; }
+        public virtual DbSet<vw_equipe_ordemServico> vw_equipe_ordemServico { get; set; }
     }
 }
