@@ -48,5 +48,7 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<vw_colaborador_OS_tarefas> vw_colaborador_OS_tarefas { get; set; }
         public virtual DbSet<vw_equipe_ordemServico> vw_equipe_ordemServico { get; set; }
         public virtual DbSet<vw_tarefas_status_dados> vw_tarefas_status_dados { get; set; }
+        public virtual DbSet<Licencas> Licencas { get; set; }
+        public virtual DbSet<vw_os_status_dados_produtividade> vw_os_status_dados_produtividade { get; set; }
     }
 }

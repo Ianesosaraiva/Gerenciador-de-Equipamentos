@@ -1,6 +1,6 @@
-﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Softwares>
+﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Licencas>
 @{
-    ViewBag.Title = "Listar Softwares";
+    ViewBag.Title = "Listar Licencas";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,26 +10,37 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title mt-0"> Lista de Softwares</h4>
-
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Lista de Licenças</h4>
+                                <p></p>
+                            </div>
+                            <div class="col-sm">
+                                <a href="@Url.Action("CadastrarLicenca")">
+                                    <i class="material-icons" style="padding-top: 12px;" title="Criar Licenças">add</i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table id="datatables" class="table table-hover">
                                 <thead class="text-primary">
-                                <th>
-                                    @Html.DisplayName("Nome")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Descrição")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Data Compra")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Status")
-                                </th>
-                                <th>Ações</th>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Nome")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Software")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Quantidade")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Preço")
+                                        </th>
+                                        <th>Ações</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
@@ -39,13 +50,13 @@
                                                 @Html.DisplayFor(modelItem => item.Nome)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Descricao)
+                                                @Html.DisplayFor(modelItem => item.Softwares.Nome)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.DataAquisicao)
+                                                @Html.DisplayFor(modelItem => item.Quantidade)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Status.Descricao)
+                                                @Html.DisplayFor(modelItem => item.Preco)
                                             </td>
                                             <td>
                                                 <ul class="navbar-nav">
@@ -58,9 +69,8 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                                             <a class="dropdown-item" href="#">Visualizar Mais</a>
-                                                            <a class="dropdown-item" href="@Url.Action("EditarSoftwares", "Software", new { SoftwareId = item.SoftwareId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ListarLicencas", "Licenca", new { SoftwareId = item.SoftwareId})">Licenças</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirSoftwares", "Software")">Excluir</a>
+                                                            <a class="dropdown-item" href="@Url.Action("EditarLicenca", "Licenca", new { SoftwareId = item.SoftwareId})">Editar</a>
+                                                            <a class="dropdown-item" href="@Url.Action("DeletarLicenca", "Licenca", new { LicencaId = item.LicencaId})">Excluir</a>
                                                         </div>
                                                     </li>
                                                 </ul>

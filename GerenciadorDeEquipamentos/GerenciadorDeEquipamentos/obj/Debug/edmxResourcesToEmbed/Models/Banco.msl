@@ -265,5 +265,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Licencas">
+      <EntityTypeMapping TypeName="shield01Model.Licencas">
+        <MappingFragment StoreEntitySet="Licencas">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+          <ScalarProperty Name="LicencaId" ColumnName="LicencaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_os_status_dados_produtividade">
+      <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados_produtividade">
+        <MappingFragment StoreEntitySet="vw_os_status_dados_produtividade">
+          <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+          <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+          <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+          <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+          <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
+          <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+          <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -156,6 +156,12 @@
       <End Role="Tarefa" EntitySet="Tarefa" />
     </AssociationSet>
     <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
+    <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
+    <AssociationSet Name="Licencas_ibfk_1" Association="shield01Model.Licencas_ibfk_1">
+      <End Role="Softwares" EntitySet="Softwares" />
+      <End Role="Licencas" EntitySet="Licencas" />
+    </AssociationSet>
+    <EntitySet Name="vw_os_status_dados_produtividade" EntityType="shield01Model.vw_os_status_dados_produtividade" />
   </EntityContainer>
   <EntityType Name="Acessos">
     <Key>
@@ -367,6 +373,7 @@
     <NavigationProperty Name="Pessoas" Relationship="shield01Model.Softwares_ibfk_1" FromRole="Softwares" ToRole="Pessoas" />
     <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_2" FromRole="Softwares" ToRole="SoftwareEquipemento" />
     <NavigationProperty Name="Status" Relationship="shield01Model.Softwares_ibfk_2" FromRole="Softwares" ToRole="Status" />
+    <NavigationProperty Name="Licencas" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Softwares" ToRole="Licencas" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -869,6 +876,48 @@
       <PropertyRef Name="Cancelado" />
       <PropertyRef Name="Pausado" />
     </Key>
+    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="Encerrado" Type="Int64" Nullable="false" />
+    <Property Name="Cancelado" Type="Int64" Nullable="false" />
+    <Property Name="Pausado" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Licencas">
+    <Key>
+      <PropertyRef Name="LicencaId" />
+      <PropertyRef Name="SoftwareId" />
+    </Key>
+    <Property Name="LicencaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+    <Property Name="Quantidade" Type="Int32" Nullable="false" />
+    <Property Name="Preco" Type="Double" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Licencas" ToRole="Softwares" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="Licencas_ibfk_1">
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
+    <End Type="shield01Model.Licencas" Role="Licencas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Softwares">
+        <PropertyRef Name="SoftwareId" />
+      </Principal>
+      <Dependent Role="Licencas">
+        <PropertyRef Name="SoftwareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="vw_os_status_dados_produtividade">
+    <Key>
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
+    </Key>
+    <Property Name="Produtividade" Type="Decimal" />
     <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
     <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
     <Property Name="EmAtendimento" Type="Int64" Nullable="false" />

@@ -143,6 +143,7 @@
     <Compile Include="Controllers\EquipeController.cs" />
     <Compile Include="Controllers\EspecificacaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LicencaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
@@ -193,6 +194,9 @@
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Graficos.cs" />
+    <Compile Include="Models\Licencas.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Log.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -237,6 +241,9 @@
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_equipe_ordemServico.cs">
+      <DependentUpon>Banco.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_os_status_dados_produtividade.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_tarefas_status_dados.cs">
@@ -724,6 +731,10 @@
     <Content Include="Views\Equipe\CriarEquipe.cshtml" />
     <Content Include="Views\Equipe\EditarEquipe.cshtml" />
     <Content Include="Views\OrdemServico\View.cshtml" />
+    <Content Include="Views\Licenca\ListarLicencas.cshtml" />
+    <Content Include="Views\Licenca\CadastrarLicenca.cshtml" />
+    <Content Include="Views\Licenca\EditarLicenca.cshtml" />
+    <Content Include="Views\Software\GerenciarSoftwares.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
