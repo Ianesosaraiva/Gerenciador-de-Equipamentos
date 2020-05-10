@@ -1,16 +1,10 @@
-﻿@model GerenciadorDeEquipamentos.Models.DadosIndex
+﻿@model GerenciadorDeEquipamentos.Models.Equipamentos
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GerenciarEquipamento";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    int cont = 0;
 }
 
-
-<!-- Navbar -->
-<!-- O Navbar -->
-@*<div class="navbar-wrapper">
-        <a class="navbar-brand">Início</a>
-    </div>*@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -20,15 +14,14 @@
                         <div class="card-icon">
                             <i class="material-icons">desktop_windows</i>
                         </div>
-                        <p class="card-category">Ativos</p>
+                        <p class="card-category">Equipamentos</p>
                         <h3 class="card-title">
-                            @Model.qtdEquipamentosAtivos
+                            
                         </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">desktop_windows</i>
-                            <a href="@Url.Action("GerenciarEquipamentos", "Equipamento")">Gerenciar Ativos</a>
+                            <a href="@Url.Action("CriarEquipamentos", "Equipamento")">Cadastrar Equipamento</a>
                         </div>
                     </div>
                 </div>
@@ -39,16 +32,16 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-success card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">shop</i>
+                            <i class="material-icons">desktop_windows</i>
                         </div>
-                        <p class="card-category">Licenças</p>
+                        <p class="card-category">Equipamentos</p>
                         <h3 class="card-title">
-                            @Model.qtdSoftwaresAtivos
+                            
                         </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="material-icons">date_range</i> Licenças Ativas
+                            <a href="@Url.Action("CriarEquipamentos", "Equipamento")">Listar Equipamento</a>
                         </div>
                     </div>
                 </div>
@@ -62,13 +55,14 @@
                         <div class="card-icon">
                             <i class="material-icons">person</i>
                         </div>
-                        <p class="card-category">Usuários</p>
-                        <h3 class="card-title">@Model.qtdUsuariosAtivos</h3>
+                        <p class="card-category">Eqipamentos em Manutenção</p>
+                        <h3 class="card-title">
+
+                        </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-
-                            <i class="fa fa-user"></i> Usuários Logados
+                            <i class="fa fa-user"></i> Manutenção
                         </div>
                     </div>
                 </div>
@@ -107,7 +101,7 @@
                                 <i class="material-icons">timeline</i>
                             </div>
                             <h4 class="card-title">
-                                Gráfico com dados Importantes 
+                                Gráfico com dados Importantes
                                 @*Equipamentos e OS *@
                                 <small> - Rounded</small>
                             </h4>
@@ -312,3 +306,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

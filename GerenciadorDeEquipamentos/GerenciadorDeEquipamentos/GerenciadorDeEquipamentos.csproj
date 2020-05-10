@@ -724,6 +724,7 @@
     <Content Include="Views\Equipe\CriarEquipe.cshtml" />
     <Content Include="Views\Equipe\EditarEquipe.cshtml" />
     <Content Include="Views\OrdemServico\View.cshtml" />
+    <Content Include="Views\Equipamento\GerenciarEquipamento.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
