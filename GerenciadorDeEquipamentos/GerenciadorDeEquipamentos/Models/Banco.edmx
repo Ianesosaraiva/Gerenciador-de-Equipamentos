@@ -72,6 +72,18 @@
           <Property Name="AtributoId" Type="int" Nullable="false" />
           <Property Name="PessoaId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Licencas">
+          <Key>
+            <PropertyRef Name="LicencaId" />
+            <PropertyRef Name="SoftwareId" />
+          </Key>
+          <Property Name="LicencaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoftwareId" Type="int" Nullable="false" />
+          <Property Name="Quantidade" Type="int" Nullable="false" />
+          <Property Name="Preco" Type="double" />
+          <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Descricao" Type="mediumtext" />
+        </EntityType>
         <EntityType Name="Log">
           <Key>
             <PropertyRef Name="LogId" />
@@ -251,10 +263,24 @@ warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have
           <Property Name="OSAbertos" Type="bigint" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'def.shield01.vw_produtividade_os' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="vw_produtividade_os">
+warning 6002: The table/view 'def.shield01.vw_os_status_dados_produtividade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_os_status_dados_produtividade">
+          <Key>
+            <PropertyRef Name="AguardandoAtendente" />
+            <PropertyRef Name="AguardandoAtendimento" />
+            <PropertyRef Name="EmAtendimento" />
+            <PropertyRef Name="Encerrado" />
+            <PropertyRef Name="Cancelado" />
+            <PropertyRef Name="Pausado" />
+          </Key>
           <Property Name="Produtividade" Type="decimal" Precision="27" Scale="4" />
-        </EntityType>-->
+          <Property Name="AguardandoAtendente" Type="bigint" Nullable="false" />
+          <Property Name="AguardandoAtendimento" Type="bigint" Nullable="false" />
+          <Property Name="EmAtendimento" Type="bigint" Nullable="false" />
+          <Property Name="Encerrado" Type="bigint" Nullable="false" />
+          <Property Name="Cancelado" Type="bigint" Nullable="false" />
+          <Property Name="Pausado" Type="bigint" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="vw_tarefas_status_dados">
@@ -438,6 +464,18 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
             </Principal>
             <Dependent Role="Equipamentos">
               <PropertyRef Name="TipoEquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Licencas_ibfk_1">
+          <End Role="Softwares" Type="Self.Softwares" Multiplicity="1" />
+          <End Role="Licencas" Type="Self.Licencas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Softwares">
+              <PropertyRef Name="SoftwareId" />
+            </Principal>
+            <Dependent Role="Licencas">
+              <PropertyRef Name="SoftwareId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -677,6 +715,7 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
           <EntitySet Name="Equipe" EntityType="Self.Equipe" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Especificacoes" EntityType="Self.Especificacoes" Schema="shield01" store:Type="Tables" />
+          <EntitySet Name="Licencas" EntityType="Self.Licencas" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Log" EntityType="Self.Log" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="Manutencao" EntityType="Self.Manutencao" Schema="shield01" store:Type="Tables" />
           <EntitySet Name="OrdemServico" EntityType="Self.OrdemServico" Schema="shield01" store:Type="Tables" />
@@ -706,6 +745,17 @@ FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
 `vw_equipe_ordemServico`.`OSEncerrados`, 
 `vw_equipe_ordemServico`.`OSAbertos`
 FROM `vw_equipe_ordemServico` AS `vw_equipe_ordemServico`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_os_status_dados_produtividade" EntityType="Self.vw_os_status_dados_produtividade" store:Type="Views" store:Schema="shield01">
+            <DefiningQuery>SELECT
+`vw_os_status_dados_produtividade`.`Produtividade`, 
+`vw_os_status_dados_produtividade`.`AguardandoAtendente`, 
+`vw_os_status_dados_produtividade`.`AguardandoAtendimento`, 
+`vw_os_status_dados_produtividade`.`EmAtendimento`, 
+`vw_os_status_dados_produtividade`.`Encerrado`, 
+`vw_os_status_dados_produtividade`.`Cancelado`, 
+`vw_os_status_dados_produtividade`.`Pausado`
+FROM `vw_os_status_dados_produtividade` AS `vw_os_status_dados_produtividade`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_tarefas_status_dados" EntityType="Self.vw_tarefas_status_dados" store:Type="Views" store:Schema="shield01">
             <DefiningQuery>SELECT
@@ -772,6 +822,10 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <AssociationSet Name="fk_tipoequipamento" Association="Self.fk_tipoequipamento">
             <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
+          </AssociationSet>
+          <AssociationSet Name="Licencas_ibfk_1" Association="Self.Licencas_ibfk_1">
+            <End Role="Softwares" EntitySet="Softwares" />
+            <End Role="Licencas" EntitySet="Licencas" />
           </AssociationSet>
           <AssociationSet Name="OrdemServico_ibfk_1" Association="Self.OrdemServico_ibfk_1">
             <End Role="Equipe" EntitySet="Equipe" />
@@ -1010,6 +1064,12 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <End Role="Tarefa" EntitySet="Tarefa" />
           </AssociationSet>
           <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
+          <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
+          <AssociationSet Name="Licencas_ibfk_1" Association="shield01Model.Licencas_ibfk_1">
+            <End Role="Softwares" EntitySet="Softwares" />
+            <End Role="Licencas" EntitySet="Licencas" />
+          </AssociationSet>
+          <EntitySet Name="vw_os_status_dados_produtividade" EntityType="shield01Model.vw_os_status_dados_produtividade" />
         </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
@@ -1221,6 +1281,7 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.Softwares_ibfk_1" FromRole="Softwares" ToRole="Pessoas" />
           <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_2" FromRole="Softwares" ToRole="SoftwareEquipemento" />
           <NavigationProperty Name="Status" Relationship="shield01Model.Softwares_ibfk_2" FromRole="Softwares" ToRole="Status" />
+          <NavigationProperty Name="Licencas" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Softwares" ToRole="Licencas" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -1730,6 +1791,48 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <Property Name="Cancelado" Type="Int64" Nullable="false" />
           <Property Name="Pausado" Type="Int64" Nullable="false" />
         </EntityType>
+        <EntityType Name="Licencas">
+          <Key>
+            <PropertyRef Name="LicencaId" />
+            <PropertyRef Name="SoftwareId" />
+          </Key>
+          <Property Name="LicencaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+          <Property Name="Quantidade" Type="Int32" Nullable="false" />
+          <Property Name="Preco" Type="Double" />
+          <NavigationProperty Name="Softwares" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Licencas" ToRole="Softwares" />
+          <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="Licencas_ibfk_1">
+          <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
+          <End Type="shield01Model.Licencas" Role="Licencas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Softwares">
+              <PropertyRef Name="SoftwareId" />
+            </Principal>
+            <Dependent Role="Licencas">
+              <PropertyRef Name="SoftwareId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_os_status_dados_produtividade">
+          <Key>
+            <PropertyRef Name="AguardandoAtendente" />
+            <PropertyRef Name="AguardandoAtendimento" />
+            <PropertyRef Name="EmAtendimento" />
+            <PropertyRef Name="Encerrado" />
+            <PropertyRef Name="Cancelado" />
+            <PropertyRef Name="Pausado" />
+          </Key>
+          <Property Name="Produtividade" Type="Decimal" />
+          <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+          <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+          <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+          <Property Name="Encerrado" Type="Int64" Nullable="false" />
+          <Property Name="Cancelado" Type="Int64" Nullable="false" />
+          <Property Name="Pausado" Type="Int64" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1997,6 +2100,31 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
                 <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
                 <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
                 <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Licencas">
+            <EntityTypeMapping TypeName="shield01Model.Licencas">
+              <MappingFragment StoreEntitySet="Licencas">
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Preco" ColumnName="Preco" />
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+                <ScalarProperty Name="LicencaId" ColumnName="LicencaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_os_status_dados_produtividade">
+            <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados_produtividade">
+              <MappingFragment StoreEntitySet="vw_os_status_dados_produtividade">
+                <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+                <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+                <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+                <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
+                <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+                <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

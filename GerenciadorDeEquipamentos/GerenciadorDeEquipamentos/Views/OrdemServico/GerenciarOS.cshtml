@@ -8,12 +8,11 @@
     vw_tarefas_status_dados graficoTarefas = ViewBag.graficoTarefas;
     var graficoOS = ViewBag.graficoOS;
 
-    int produtividade = ViewBag.produtividade;
+    int produtividade = Convert.ToInt32(ViewBag.produtividade);
     int aguardandoAtendimento = ViewBag.AguardandoAtendimento;
     int naoAtribuidos = ViewBag.NaoAtribuidos;
     int total = ViewBag.Total;
 
-    int cont = 0;
 }
 <asp:Literal id="ltlResultado" runat="server" />
 <div class="content">
@@ -410,18 +409,7 @@
         }*@
         
         data.addRows([
-            [1, 37.8],
-            [2, 30.9],
-            [3, 25.4],
-            [4, 11.7],
-            [5, 11.9],
-            [6, 8.8],
-            [7, 7.6],
-            [8, 12.3],
-            [9, 16.9],
-            [10, 12.81],
-            [11, 12.81],
-            [12, 12.81],
+
         ]);
 
         var options = {

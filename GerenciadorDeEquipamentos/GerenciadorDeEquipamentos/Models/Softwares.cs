@@ -18,6 +18,7 @@ namespace GerenciadorDeEquipamentos.Models
         public Softwares()
         {
             this.SoftwareEquipemento = new HashSet<SoftwareEquipemento>();
+            this.Licencas = new HashSet<Licencas>();
         }
     
         public int SoftwareId { get; set; }
@@ -32,5 +33,7 @@ namespace GerenciadorDeEquipamentos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoftwareEquipemento> SoftwareEquipemento { get; set; }
         public virtual Status Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Licencas> Licencas { get; set; }
     }
 }

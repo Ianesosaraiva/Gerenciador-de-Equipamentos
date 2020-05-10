@@ -41,15 +41,12 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.AguardandoAtendimento = bd.OrdemServico.Where(x => x.StatusId == 3).Count();
             ViewBag.NaoAtribuidos = bd.OrdemServico.Where(x => x.EquipeId == null).Count();
             ViewBag.Total = bd.OrdemServico.ToList().Count();
-            //int todos = bd.OrdemServico.Count();
-            //int encerrados = bd.OrdemServico.Where(x => x.StatusId == 6).Count();
-            //string total = $"{ (encerrados / 5) * 100}";
-            ViewBag.produtividade = bd.OrdemServico.Where(x => x.StatusId == 6).Count() / bd.OrdemServico.Count();
+            ViewBag.produtividade = bd.vw_os_status_dados_produtividade.FirstOrDefault().Produtividade;
 
             ViewBag.osEquipe = bd.vw_equipe_ordemServico.ToList();
             ViewBag.osColaborador = bd.vw_colaborador_OS_tarefas.ToList();
 
-            ViewBag.graficoOS = bd.OrdemServico.Where(x=>x.StatusId == 6).GroupBy(x=>x.DataEncerramento).ToList();
+            ViewBag.graficoOS = bd.OrdemServico.Where(x=>x.StatusId == 6).GroupBy(x=>x.DataEncerramento).ToArray();
 
             ViewBag.graficoTarefas = bd.vw_tarefas_status_dados.FirstOrDefault();
 

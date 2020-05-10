@@ -63,5 +63,10 @@ namespace GerenciadorDeEquipamentos.Controllers
             return RedirectToAction("ListarSoftwares");
         }
 
+
+        public ActionResult GerenciarSoftwares()
+        {
+            return View();
+        }
     }
 }
