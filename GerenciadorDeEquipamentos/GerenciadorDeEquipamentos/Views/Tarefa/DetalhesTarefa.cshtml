@@ -1,0 +1,89 @@
+﻿@model GerenciadorDeEquipamentos.Models.Tarefa
+
+@{
+    ViewBag.Title = "DetalhesTarefa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> Detalhes </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <dl class="table table-hover">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataAbertura)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataAbertura)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.DataEncerramento)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataEncerramento)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.OrdemServico.Titulo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.OrdemServico.Titulo)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Pessoas.NomeCompleto)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Pessoas.NomeCompleto)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Prioridade.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Prioridade.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Status.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Status.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoSolicitacao.Titulo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoSolicitacao.Titulo)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
