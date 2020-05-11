@@ -62,11 +62,21 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var tarefaBD = bd.Tarefa.FirstOrDefault(x => x.TarefaId == tarefa.TarefaId);
 
+            if(tarefa.StatusId != 6 && tarefaBD.StatusId == 6)
+            {
+                tarefaBD.DataEncerramento = null;
+            }
+
             tarefaBD.TipoSolicitacaoId = tarefa.TipoSolicitacaoId;
             tarefaBD.OrdemServicoId = tarefa.OrdemServicoId;
             tarefaBD.PrioridadeId = tarefa.PrioridadeId;
-            tarefaBD.DataEncerramento = tarefa.DataEncerramento;
             tarefaBD.Descricao = tarefa.Descricao;
+            tarefaBD.StatusId = tarefa.StatusId;
+
+            if(tarefa.StatusId == 6)
+            {
+                tarefaBD.DataEncerramento = DateTime.Now;
+            }
 
             bd.Entry(tarefaBD).State = EntityState.Modified;
             bd.SaveChanges();

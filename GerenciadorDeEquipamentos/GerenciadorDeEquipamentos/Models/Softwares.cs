@@ -17,8 +17,8 @@ namespace GerenciadorDeEquipamentos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Softwares()
         {
-            this.SoftwareEquipemento = new HashSet<SoftwareEquipemento>();
             this.Licencas = new HashSet<Licencas>();
+            this.SoftwareEquipemento = new HashSet<SoftwareEquipemento>();
         }
     
         public int SoftwareId { get; set; }
@@ -29,11 +29,11 @@ namespace GerenciadorDeEquipamentos.Models
         public int StatusId { get; set; }
         public int PessoaId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Licencas> Licencas { get; set; }
         public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoftwareEquipemento> SoftwareEquipemento { get; set; }
         public virtual Status Status { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Licencas> Licencas { get; set; }
     }
 }

@@ -1,0 +1,83 @@
+﻿@model GerenciadorDeEquipamentos.Models.Tarefa
+
+@{
+    ViewBag.Title = "Nova Tarefa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Adicionar Nova Tarefa</h4>
+                                <p class="card-category">Preencha os campos corretamente! </p>
+                            </div>
+                            <div class="col-sm">
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Listar Tarefas">list</i>
+                                </a>
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;">person</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Ordem de Serviço</label>
+                                    @Html.DropDownList("OrdemServicoId", ViewBag.ordemServico as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.OrdemServicoId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Tipo de Solicitação</label>
+                                    @Html.DropDownList("TipoSolicitacaoId", ViewBag.tipoSolicitacao as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.TipoSolicitacaoId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Prioridade</label>
+                                    @Html.DropDownList("PrioridadeId", ViewBag.prioridade as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.PrioridadeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data da Abertura</label>
+                                    @Html.EditorFor(model => model.DataAbertura, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.DataAbertura, "", new { @class = "text-danger" })
+                                </div><div class="col-sm">
+                                    <label class="bmd-label-static">Status</label>
+                                    @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Descrição</label>
+                                    <textarea class="form-control" name="descricao" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Adicionar" class="btn btn-primary" />
+                                <a href="@Url.Action("ListarTarefas", "Tarefa")" class="btn btn-primary">Voltar</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

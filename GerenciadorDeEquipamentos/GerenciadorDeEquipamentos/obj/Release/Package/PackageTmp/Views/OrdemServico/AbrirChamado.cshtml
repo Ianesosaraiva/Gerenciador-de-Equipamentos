@@ -1,0 +1,71 @@
+﻿@model GerenciadorDeEquipamentos.Models.OrdemServico
+
+@{
+    ViewBag.Title = "Abrir Chamado";
+    Layout = "~/Views/Shared/_Chamado.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Abrir Chamado</h4>
+                                <p class="card-category">Preencha os campos corretamente! </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Título</label>
+                                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Prioridade</label>
+                                    @Html.DropDownList("PrioridadeId", ViewBag.prioridade as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.PrioridadeId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Nome do Cliente</label>
+                                    @Html.EditorFor(model => model.ClienteNome, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ClienteNome, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Email do Cliente</label>
+                                    @Html.EditorFor(model => model.ClienteEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ClienteEmail, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Descrição</label>
+                                    <textarea class="form-control" name="descricao" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

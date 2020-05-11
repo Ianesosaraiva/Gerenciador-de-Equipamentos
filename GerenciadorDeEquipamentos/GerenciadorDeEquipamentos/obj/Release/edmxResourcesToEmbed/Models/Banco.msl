@@ -28,6 +28,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmailConfig">
+      <EntityTypeMapping TypeName="shield01Model.EmailConfig">
+        <MappingFragment StoreEntitySet="EmailConfig">
+          <ScalarProperty Name="EmailSenha" ColumnName="EmailSenha" />
+          <ScalarProperty Name="FlgSSL" ColumnName="FlgSSL" />
+          <ScalarProperty Name="EmailUsuario" ColumnName="EmailUsuario" />
+          <ScalarProperty Name="EnderecoEmail" ColumnName="EnderecoEmail" />
+          <ScalarProperty Name="NumeroPorta" ColumnName="NumeroPorta" />
+          <ScalarProperty Name="NomeServidor" ColumnName="NomeServidor" />
+          <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Equipamentos">
       <EntityTypeMapping TypeName="shield01Model.Equipamentos">
         <MappingFragment StoreEntitySet="Equipamentos">
@@ -41,6 +54,16 @@
           <ScalarProperty Name="DataAquisicao" ColumnName="DataAquisicao" />
           <ScalarProperty Name="Observacao" ColumnName="Observacao" />
           <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipe">
+      <EntityTypeMapping TypeName="shield01Model.Equipe">
+        <MappingFragment StoreEntitySet="Equipe">
+          <ScalarProperty Name="ResponsavelId" ColumnName="ResponsavelId" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,6 +83,18 @@
           <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licencas">
+      <EntityTypeMapping TypeName="shield01Model.Licencas">
+        <MappingFragment StoreEntitySet="Licencas">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+          <ScalarProperty Name="LicencaId" ColumnName="LicencaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,28 +122,107 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="OrdemServico">
+      <EntityTypeMapping TypeName="shield01Model.OrdemServico">
+        <MappingFragment StoreEntitySet="OrdemServico">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="DataEncerramento" ColumnName="DataEncerramento" />
+          <ScalarProperty Name="DataAbertura" ColumnName="DataAbertura" />
+          <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
+          <ScalarProperty Name="PrioridadeId" ColumnName="PrioridadeId" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="TipoSolicitacaoId" ColumnName="TipoSolicitacaoId" />
+          <ScalarProperty Name="ClienteEmail" ColumnName="ClienteEmail" />
+          <ScalarProperty Name="ClienteNome" ColumnName="ClienteNome" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="OrdemServicoId" ColumnName="OrdemServicoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Pessoas">
       <EntityTypeMapping TypeName="shield01Model.Pessoas">
         <MappingFragment StoreEntitySet="Pessoas">
+          <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
           <ScalarProperty Name="UltimoAcesso" ColumnName="UltimoAcesso" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
-          <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+          <ScalarProperty Name="Contato" ColumnName="Contato" />
           <ScalarProperty Name="RG" ColumnName="RG" />
           <ScalarProperty Name="CPF" ColumnName="CPF" />
           <ScalarProperty Name="Senha" ColumnName="Senha" />
-          <ScalarProperty Name="Nome_Completo" ColumnName="Nome Completo" />
+          <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
           <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prioridade">
+      <EntityTypeMapping TypeName="shield01Model.Prioridade">
+        <MappingFragment StoreEntitySet="Prioridade">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="PrioridadeId" ColumnName="PrioridadeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sidebar">
+      <EntityTypeMapping TypeName="shield01Model.Sidebar">
+        <MappingFragment StoreEntitySet="Sidebar">
+          <ScalarProperty Name="pai" ColumnName="pai" />
+          <ScalarProperty Name="tipo" ColumnName="tipo" />
+          <ScalarProperty Name="controller" ColumnName="controller" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoftwareEquipemento">
+      <EntityTypeMapping TypeName="shield01Model.SoftwareEquipemento">
+        <MappingFragment StoreEntitySet="SoftwareEquipemento">
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="SoftwareEquipementoId" ColumnName="SoftwareEquipementoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Softwares">
+      <EntityTypeMapping TypeName="shield01Model.Softwares">
+        <MappingFragment StoreEntitySet="Softwares">
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="DataAquisicao" ColumnName="DataAquisicao" />
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Status">
       <EntityTypeMapping TypeName="shield01Model.Status">
         <MappingFragment StoreEntitySet="Status">
-          <ScalarProperty Name="Descrição" ColumnName="Descrição" />
+          <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tarefa">
+      <EntityTypeMapping TypeName="shield01Model.Tarefa">
+        <MappingFragment StoreEntitySet="Tarefa">
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="DataEncerramento" ColumnName="DataEncerramento" />
+          <ScalarProperty Name="DataAbertura" ColumnName="DataAbertura" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="TipoSolicitacaoId" ColumnName="TipoSolicitacaoId" />
+          <ScalarProperty Name="PrioridadeId" ColumnName="PrioridadeId" />
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="OrdemServicoId" ColumnName="OrdemServicoId" />
+          <ScalarProperty Name="TarefaId" ColumnName="TarefaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -117,6 +231,75 @@
         <MappingFragment StoreEntitySet="TipoEquipamento">
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="TipoEquipamentoId" ColumnName="TipoEquipamentoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoSolicitacao">
+      <EntityTypeMapping TypeName="shield01Model.TipoSolicitacao">
+        <MappingFragment StoreEntitySet="TipoSolicitacao">
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="TipoSolicitacaoId" ColumnName="TipoSolicitacaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transferencia">
+      <EntityTypeMapping TypeName="shield01Model.Transferencia">
+        <MappingFragment StoreEntitySet="Transferencia">
+          <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+          <ScalarProperty Name="DataTransferencia" ColumnName="DataTransferencia" />
+          <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
+          <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+          <ScalarProperty Name="DepartamentoAntigo" ColumnName="DepartamentoAntigo" />
+          <ScalarProperty Name="DepartamentoAtual" ColumnName="DepartamentoAtual" />
+          <ScalarProperty Name="TransferenciaId" ColumnName="TransferenciaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_colaborador_OS_tarefas">
+      <EntityTypeMapping TypeName="shield01Model.vw_colaborador_OS_tarefas">
+        <MappingFragment StoreEntitySet="vw_colaborador_OS_tarefas">
+          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+          <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
+          <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
+          <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_equipe_ordemServico">
+      <EntityTypeMapping TypeName="shield01Model.vw_equipe_ordemServico">
+        <MappingFragment StoreEntitySet="vw_equipe_ordemServico">
+          <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+          <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+          <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+          <ScalarProperty Name="Equipe" ColumnName="Equipe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_os_status_dados_produtividade">
+      <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados_produtividade">
+        <MappingFragment StoreEntitySet="vw_os_status_dados_produtividade">
+          <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+          <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+          <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+          <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+          <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
+          <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+          <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_tarefas_status_dados">
+      <EntityTypeMapping TypeName="shield01Model.vw_tarefas_status_dados">
+        <MappingFragment StoreEntitySet="vw_tarefas_status_dados">
+          <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+          <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+          <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+          <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+          <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
+          <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

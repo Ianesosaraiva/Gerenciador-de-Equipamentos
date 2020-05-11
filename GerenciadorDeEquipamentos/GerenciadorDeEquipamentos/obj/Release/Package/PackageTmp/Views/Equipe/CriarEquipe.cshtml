@@ -1,0 +1,68 @@
+﻿@model GerenciadorDeEquipamentos.Models.Equipe
+
+@{
+    ViewBag.Title = "Criar Equipe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Cadastrar Equipe</h4>
+                                <p class="card-category">Preencha os campos corretamente! </p>
+                            </div>
+                            <div class="col-sm">
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Listar Equipes">list</i>
+                                </a>
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;">person</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Nome da Equipe</label>
+                                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Responsável</label>
+                                    @Html.DropDownList("ResponsavelId", ViewBag.responsavel as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.ResponsavelId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Descrição</label>
+                                    <textarea class="form-control" name="descricao" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-primary pull-right">Cadastrar</button>
+                                <a href="@Url.Action("ListarEquipes", "Equipe")" class="btn btn-primary">Voltar</a>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

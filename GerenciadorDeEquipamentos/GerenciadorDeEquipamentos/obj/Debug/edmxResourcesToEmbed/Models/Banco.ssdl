@@ -24,6 +24,18 @@
     <Property Name="Nome" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Descricao" Type="mediumtext" />
   </EntityType>
+  <EntityType Name="EmailConfig">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NomeServidor" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="NumeroPorta" Type="int" Nullable="false" />
+    <Property Name="EnderecoEmail" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="EmailUsuario" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="FlgSSL" Type="tinyint" Nullable="false" />
+    <Property Name="EmailSenha" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
   <EntityType Name="Equipamentos">
     <Key>
       <PropertyRef Name="EquipamentoId" />
@@ -51,8 +63,6 @@
   <EntityType Name="EspecificacaoEquipamento">
     <Key>
       <PropertyRef Name="EspecificacaoEquipamentoId" />
-      <PropertyRef Name="EspecificacaoId" />
-      <PropertyRef Name="EquipamentoId" />
     </Key>
     <Property Name="EspecificacaoEquipamentoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="EspecificacaoId" Type="int" Nullable="false" />
@@ -244,6 +254,26 @@ warning 6002: The table/view 'def.shield01.vw_colaborador_OS_tarefas' does not h
     <Property Name="OSAbertos" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_dados_index_os' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_dados_index_os">
+    <Key>
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="Total" />
+    </Key>
+    <Property Name="Produtividade" Type="decimal" Precision="27" Scale="4" />
+    <Property Name="AguardandoAtendimento" Type="bigint" Nullable="false" />
+    <Property Name="Total" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_equipamentos_manutencao_por_mes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_equipamentos_manutencao_por_mes">
+    <Key>
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Mes" Type="int" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="vw_equipe_ordemServico">
     <Key>
@@ -258,23 +288,51 @@ warning 6002: The table/view 'def.shield01.vw_equipe_ordemServico' does not have
     <Property Name="OSAbertos" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'def.shield01.vw_os_status_dados_produtividade' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="vw_os_status_dados_produtividade">
+warning 6002: The table/view 'def.shield01.vw_os_encerrados_por_mes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_os_encerrados_por_mes">
     <Key>
-      <PropertyRef Name="AguardandoAtendente" />
-      <PropertyRef Name="AguardandoAtendimento" />
-      <PropertyRef Name="EmAtendimento" />
-      <PropertyRef Name="Encerrado" />
-      <PropertyRef Name="Cancelado" />
-      <PropertyRef Name="Pausado" />
+      <PropertyRef Name="Quantidade" />
     </Key>
-    <Property Name="Produtividade" Type="decimal" Precision="27" Scale="4" />
-    <Property Name="AguardandoAtendente" Type="bigint" Nullable="false" />
-    <Property Name="AguardandoAtendimento" Type="bigint" Nullable="false" />
-    <Property Name="EmAtendimento" Type="bigint" Nullable="false" />
-    <Property Name="Encerrado" Type="bigint" Nullable="false" />
-    <Property Name="Cancelado" Type="bigint" Nullable="false" />
-    <Property Name="Pausado" Type="bigint" Nullable="false" />
+    <Property Name="Mes" Type="int" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_os_status_dados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_os_status_dados">
+    <Key>
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Status" Type="mediumtext" Nullable="false" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_quantidade_equipamentos_por_departamento' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_quantidade_equipamentos_por_departamento">
+    <Key>
+      <PropertyRef Name="Departamento" />
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Departamento" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_quantidade_equipamentos_por_tipo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_quantidade_equipamentos_por_tipo">
+    <Key>
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="TipoDeEquipamento" Type="varchar" MaxLength="100" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.shield01.vw_tarefas_encerradas_por_mes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_tarefas_encerradas_por_mes">
+    <Key>
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Mes" Type="int" />
+    <Property Name="Quantidade" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -706,6 +764,7 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
     <EntitySet Name="Acessos" EntityType="Self.Acessos" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Atributos" EntityType="Self.Atributos" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="shield01" store:Type="Tables" />
+    <EntitySet Name="EmailConfig" EntityType="Self.EmailConfig" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Equipamentos" EntityType="Self.Equipamentos" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Equipe" EntityType="Self.Equipe" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="EspecificacaoEquipamento" EntityType="Self.EspecificacaoEquipamento" Schema="shield01" store:Type="Tables" />
@@ -733,6 +792,19 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
 `vw_colaborador_OS_tarefas`.`OSAbertos`
 FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="vw_dados_index_os" EntityType="Self.vw_dados_index_os" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_dados_index_os`.`Produtividade`, 
+`vw_dados_index_os`.`AguardandoAtendimento`, 
+`vw_dados_index_os`.`Total`
+FROM `vw_dados_index_os` AS `vw_dados_index_os`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_equipamentos_manutencao_por_mes" EntityType="Self.vw_equipamentos_manutencao_por_mes" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_equipamentos_manutencao_por_mes`.`Mes`, 
+`vw_equipamentos_manutencao_por_mes`.`Quantidade`
+FROM `vw_equipamentos_manutencao_por_mes` AS `vw_equipamentos_manutencao_por_mes`</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="vw_equipe_ordemServico" EntityType="Self.vw_equipe_ordemServico" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT
 `vw_equipe_ordemServico`.`Equipe`, 
@@ -741,16 +813,35 @@ FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
 `vw_equipe_ordemServico`.`OSAbertos`
 FROM `vw_equipe_ordemServico` AS `vw_equipe_ordemServico`</DefiningQuery>
     </EntitySet>
-    <EntitySet Name="vw_os_status_dados_produtividade" EntityType="Self.vw_os_status_dados_produtividade" store:Type="Views" store:Schema="shield01">
+    <EntitySet Name="vw_os_encerrados_por_mes" EntityType="Self.vw_os_encerrados_por_mes" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT
-`vw_os_status_dados_produtividade`.`Produtividade`, 
-`vw_os_status_dados_produtividade`.`AguardandoAtendente`, 
-`vw_os_status_dados_produtividade`.`AguardandoAtendimento`, 
-`vw_os_status_dados_produtividade`.`EmAtendimento`, 
-`vw_os_status_dados_produtividade`.`Encerrado`, 
-`vw_os_status_dados_produtividade`.`Cancelado`, 
-`vw_os_status_dados_produtividade`.`Pausado`
-FROM `vw_os_status_dados_produtividade` AS `vw_os_status_dados_produtividade`</DefiningQuery>
+`vw_os_encerrados_por_mes`.`Mes`, 
+`vw_os_encerrados_por_mes`.`Quantidade`
+FROM `vw_os_encerrados_por_mes` AS `vw_os_encerrados_por_mes`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_os_status_dados" EntityType="Self.vw_os_status_dados" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_os_status_dados`.`Status`, 
+`vw_os_status_dados`.`Quantidade`
+FROM `vw_os_status_dados` AS `vw_os_status_dados`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_quantidade_equipamentos_por_departamento" EntityType="Self.vw_quantidade_equipamentos_por_departamento" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_quantidade_equipamentos_por_departamento`.`Departamento`, 
+`vw_quantidade_equipamentos_por_departamento`.`Quantidade`
+FROM `vw_quantidade_equipamentos_por_departamento` AS `vw_quantidade_equipamentos_por_departamento`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_quantidade_equipamentos_por_tipo" EntityType="Self.vw_quantidade_equipamentos_por_tipo" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_quantidade_equipamentos_por_tipo`.`TipoDeEquipamento`, 
+`vw_quantidade_equipamentos_por_tipo`.`Quantidade`
+FROM `vw_quantidade_equipamentos_por_tipo` AS `vw_quantidade_equipamentos_por_tipo`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_tarefas_encerradas_por_mes" EntityType="Self.vw_tarefas_encerradas_por_mes" store:Type="Views" store:Schema="shield01">
+      <DefiningQuery>SELECT
+`vw_tarefas_encerradas_por_mes`.`Mes`, 
+`vw_tarefas_encerradas_por_mes`.`Quantidade`
+FROM `vw_tarefas_encerradas_por_mes` AS `vw_tarefas_encerradas_por_mes`</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vw_tarefas_status_dados" EntityType="Self.vw_tarefas_status_dados" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT

@@ -4,6 +4,7 @@
     ViewBag.Title = "Editar Ordem de Serviço";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var tipo = ViewBag.tipo;
+    string message = ViewBag.messagem as string;
 }
 
 <div class="content">
@@ -33,6 +34,11 @@
                             @Html.AntiForgeryToken()
 
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            if(message != null)
+                            {
+                                <h5 class="my-3 mb-2" style="color: red" align="center">@message</h5>
+                            }
 
                             <div class="row mt-3">
                                 <div class="col-sm">

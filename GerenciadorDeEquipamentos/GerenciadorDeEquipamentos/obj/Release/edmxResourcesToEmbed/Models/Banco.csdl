@@ -4,14 +4,29 @@
     <EntitySet Name="Acessos" EntityType="shield01Model.Acessos" />
     <EntitySet Name="Atributos" EntityType="shield01Model.Atributos" />
     <EntitySet Name="Departamentos" EntityType="shield01Model.Departamentos" />
+    <EntitySet Name="EmailConfig" EntityType="shield01Model.EmailConfig" />
     <EntitySet Name="Equipamentos" EntityType="shield01Model.Equipamentos" />
+    <EntitySet Name="Equipe" EntityType="shield01Model.Equipe" />
     <EntitySet Name="EspecificacaoEquipamento" EntityType="shield01Model.EspecificacaoEquipamento" />
     <EntitySet Name="Especificacoes" EntityType="shield01Model.Especificacoes" />
+    <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
     <EntitySet Name="Log" EntityType="shield01Model.Log" />
     <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
+    <EntitySet Name="OrdemServico" EntityType="shield01Model.OrdemServico" />
     <EntitySet Name="Pessoas" EntityType="shield01Model.Pessoas" />
+    <EntitySet Name="Prioridade" EntityType="shield01Model.Prioridade" />
+    <EntitySet Name="Sidebar" EntityType="shield01Model.Sidebar" />
+    <EntitySet Name="SoftwareEquipemento" EntityType="shield01Model.SoftwareEquipemento" />
+    <EntitySet Name="Softwares" EntityType="shield01Model.Softwares" />
     <EntitySet Name="Status" EntityType="shield01Model.Status" />
+    <EntitySet Name="Tarefa" EntityType="shield01Model.Tarefa" />
     <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
+    <EntitySet Name="TipoSolicitacao" EntityType="shield01Model.TipoSolicitacao" />
+    <EntitySet Name="Transferencia" EntityType="shield01Model.Transferencia" />
+    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
+    <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
+    <EntitySet Name="vw_os_status_dados_produtividade" EntityType="shield01Model.vw_os_status_dados_produtividade" />
+    <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
     <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
       <End Role="Acessos" EntitySet="Acessos" />
       <End Role="Pessoas" EntitySet="Pessoas" />
@@ -20,9 +35,33 @@
       <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
       <End Role="Atributos" EntitySet="Atributos" />
     </AssociationSet>
+    <AssociationSet Name="fk_especificacaoatributo" Association="shield01Model.fk_especificacaoatributo">
+      <End Role="Atributos" EntitySet="Atributos" />
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
+    </AssociationSet>
     <AssociationSet Name="fk_deparequipamento" Association="shield01Model.fk_deparequipamento">
       <End Role="Departamentos" EntitySet="Departamentos" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="Transferencia_ibfk_3" Association="shield01Model.Transferencia_ibfk_3">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Transferencia" EntitySet="Transferencia" />
+    </AssociationSet>
+    <AssociationSet Name="Transferencia_ibfk_4" Association="shield01Model.Transferencia_ibfk_4">
+      <End Role="Departamentos" EntitySet="Departamentos" />
+      <End Role="Transferencia" EntitySet="Transferencia" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cadastrouequipamento" Association="shield01Model.fk_cadastrouequipamento">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamento" Association="shield01Model.fk_equipamento">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_equipamentomanutencao" Association="shield01Model.fk_equipamentomanutencao">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Manutencao" EntitySet="Manutencao" />
     </AssociationSet>
     <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
       <End Role="Status" EntitySet="Status" />
@@ -32,13 +71,97 @@
       <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
     </AssociationSet>
+    <AssociationSet Name="SoftwareEquipemento_ibfk_3" Association="shield01Model.SoftwareEquipemento_ibfk_3">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="SoftwareEquipemento" EntitySet="SoftwareEquipemento" />
+    </AssociationSet>
+    <AssociationSet Name="Transferencia_ibfk_2" Association="shield01Model.Transferencia_ibfk_2">
+      <End Role="Equipamentos" EntitySet="Equipamentos" />
+      <End Role="Transferencia" EntitySet="Transferencia" />
+    </AssociationSet>
+    <AssociationSet Name="Equipe_ibfk_1" Association="shield01Model.Equipe_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Equipe" EntitySet="Equipe" />
+    </AssociationSet>
+    <AssociationSet Name="OrdemServico_ibfk_1" Association="shield01Model.OrdemServico_ibfk_1">
+      <End Role="Equipe" EntitySet="Equipe" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="fk_especificacao" Association="shield01Model.fk_especificacao">
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
+      <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cadastrouespecificacao" Association="shield01Model.fk_cadastrouespecificacao">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Especificacoes" EntitySet="Especificacoes" />
+    </AssociationSet>
+    <AssociationSet Name="Licencas_ibfk_1" Association="shield01Model.Licencas_ibfk_1">
+      <End Role="Softwares" EntitySet="Softwares" />
+      <End Role="Licencas" EntitySet="Licencas" />
+    </AssociationSet>
     <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
       <End Role="Status" EntitySet="Status" />
       <End Role="Manutencao" EntitySet="Manutencao" />
     </AssociationSet>
+    <AssociationSet Name="OrdemServico_ibfk_2" Association="shield01Model.OrdemServico_ibfk_2">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="OrdemServico_ibfk_3" Association="shield01Model.OrdemServico_ibfk_3">
+      <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="OrdemServico_ibfk_4" Association="shield01Model.OrdemServico_ibfk_4">
+      <End Role="Prioridade" EntitySet="Prioridade" />
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+    </AssociationSet>
+    <AssociationSet Name="Tarefa_ibfk_2" Association="shield01Model.Tarefa_ibfk_2">
+      <End Role="OrdemServico" EntitySet="OrdemServico" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
     <AssociationSet Name="fk_acessostatus" Association="shield01Model.fk_acessostatus">
       <End Role="Status" EntitySet="Status" />
       <End Role="Pessoas" EntitySet="Pessoas" />
+    </AssociationSet>
+    <AssociationSet Name="SoftwareEquipemento_ibfk_1" Association="shield01Model.SoftwareEquipemento_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="SoftwareEquipemento" EntitySet="SoftwareEquipemento" />
+    </AssociationSet>
+    <AssociationSet Name="Softwares_ibfk_1" Association="shield01Model.Softwares_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Softwares" EntitySet="Softwares" />
+    </AssociationSet>
+    <AssociationSet Name="Tarefa_ibfk_1" Association="shield01Model.Tarefa_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
+    <AssociationSet Name="TipoSolicitacao_ibfk_1" Association="shield01Model.TipoSolicitacao_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
+    </AssociationSet>
+    <AssociationSet Name="Transferencia_ibfk_1" Association="shield01Model.Transferencia_ibfk_1">
+      <End Role="Pessoas" EntitySet="Pessoas" />
+      <End Role="Transferencia" EntitySet="Transferencia" />
+    </AssociationSet>
+    <AssociationSet Name="Tarefa_ibfk_5" Association="shield01Model.Tarefa_ibfk_5">
+      <End Role="Prioridade" EntitySet="Prioridade" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
+    <AssociationSet Name="SoftwareEquipemento_ibfk_2" Association="shield01Model.SoftwareEquipemento_ibfk_2">
+      <End Role="Softwares" EntitySet="Softwares" />
+      <End Role="SoftwareEquipemento" EntitySet="SoftwareEquipemento" />
+    </AssociationSet>
+    <AssociationSet Name="Softwares_ibfk_2" Association="shield01Model.Softwares_ibfk_2">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Softwares" EntitySet="Softwares" />
+    </AssociationSet>
+    <AssociationSet Name="Tarefa_ibfk_3" Association="shield01Model.Tarefa_ibfk_3">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
+    </AssociationSet>
+    <AssociationSet Name="Tarefa_ibfk_4" Association="shield01Model.Tarefa_ibfk_4">
+      <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
+      <End Role="Tarefa" EntitySet="Tarefa" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Acessos">
@@ -52,13 +175,13 @@
   <EntityType Name="Atributos">
     <Key>
       <PropertyRef Name="AtributoId" />
-      <PropertyRef Name="TipoEquipamentoId" />
     </Key>
     <Property Name="AtributoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
     <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="Atributos" ToRole="TipoEquipamento" />
+    <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_especificacaoatributo" FromRole="Atributos" ToRole="Especificacoes" />
   </EntityType>
   <EntityType Name="Departamentos">
     <Key>
@@ -68,14 +191,24 @@
     <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Departamentos" ToRole="Equipamentos" />
+    <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_3" FromRole="Departamentos" ToRole="Transferencia" />
+    <NavigationProperty Name="Transferencia1" Relationship="shield01Model.Transferencia_ibfk_4" FromRole="Departamentos" ToRole="Transferencia" />
+  </EntityType>
+  <EntityType Name="EmailConfig">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeServidor" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroPorta" Type="Int32" Nullable="false" />
+    <Property Name="EnderecoEmail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="EmailUsuario" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="FlgSSL" Type="SByte" Nullable="false" />
+    <Property Name="EmailSenha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Equipamentos">
     <Key>
       <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="StatusId" />
-      <PropertyRef Name="TipoEquipamentoId" />
-      <PropertyRef Name="DepartamentoId" />
     </Key>
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -88,29 +221,59 @@
     <Property Name="TipoEquipamentoId" Type="Int32" Nullable="false" />
     <Property Name="DepartamentoId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Equipamentos" ToRole="Pessoas" />
+    <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_equipamento" FromRole="Equipamentos" ToRole="EspecificacaoEquipamento" />
+    <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Equipamentos" ToRole="Manutencao" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
     <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
+    <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_3" FromRole="Equipamentos" ToRole="SoftwareEquipemento" />
+    <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_2" FromRole="Equipamentos" ToRole="Transferencia" />
+  </EntityType>
+  <EntityType Name="Equipe">
+    <Key>
+      <PropertyRef Name="EquipeId" />
+    </Key>
+    <Property Name="EquipeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="ResponsavelId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Equipe" ToRole="Pessoas" />
+    <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_1" FromRole="Equipe" ToRole="OrdemServico" />
   </EntityType>
   <EntityType Name="EspecificacaoEquipamento">
     <Key>
       <PropertyRef Name="EspecificacaoEquipamentoId" />
-      <PropertyRef Name="EspecificacaoId" />
-      <PropertyRef Name="EquipamentoId" />
     </Key>
     <Property Name="EspecificacaoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EspecificacaoId" Type="Int32" Nullable="false" />
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamento" FromRole="EspecificacaoEquipamento" ToRole="Equipamentos" />
+    <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_especificacao" FromRole="EspecificacaoEquipamento" ToRole="Especificacoes" />
   </EntityType>
   <EntityType Name="Especificacoes">
     <Key>
       <PropertyRef Name="EspecificacaoId" />
-      <PropertyRef Name="AtributoId" />
-      <PropertyRef Name="PessoaId" />
     </Key>
     <Property Name="EspecificacaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="AtributoId" Type="Int32" Nullable="false" />
     <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Atributos" Relationship="shield01Model.fk_especificacaoatributo" FromRole="Especificacoes" ToRole="Atributos" />
+    <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_especificacao" FromRole="Especificacoes" ToRole="EspecificacaoEquipamento" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Especificacoes" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="Licencas">
+    <Key>
+      <PropertyRef Name="LicencaId" />
+      <PropertyRef Name="SoftwareId" />
+    </Key>
+    <Property Name="LicencaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+    <Property Name="Quantidade" Type="Int32" Nullable="false" />
+    <Property Name="Preco" Type="Double" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Licencas" ToRole="Softwares" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -126,8 +289,6 @@
   <EntityType Name="Manutencao">
     <Key>
       <PropertyRef Name="ManutencaoId" />
-      <PropertyRef Name="EquipamentoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
@@ -135,37 +296,141 @@
     <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
     <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Manutencao" ToRole="Equipamentos" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusmanutencao" FromRole="Manutencao" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="OrdemServico">
+    <Key>
+      <PropertyRef Name="OrdemServicoId" />
+    </Key>
+    <Property Name="OrdemServicoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ClienteNome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ClienteEmail" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TipoSolicitacaoId" Type="Int32" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="PrioridadeId" Type="Int32" Nullable="false" />
+    <Property Name="EquipeId" Type="Int32" />
+    <Property Name="DataAbertura" Type="DateTime" Nullable="false" />
+    <Property Name="DataEncerramento" Type="DateTime" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipe" Relationship="shield01Model.OrdemServico_ibfk_1" FromRole="OrdemServico" ToRole="Equipe" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.OrdemServico_ibfk_2" FromRole="OrdemServico" ToRole="Status" />
+    <NavigationProperty Name="TipoSolicitacao" Relationship="shield01Model.OrdemServico_ibfk_3" FromRole="OrdemServico" ToRole="TipoSolicitacao" />
+    <NavigationProperty Name="Prioridade" Relationship="shield01Model.OrdemServico_ibfk_4" FromRole="OrdemServico" ToRole="Prioridade" />
+    <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_2" FromRole="OrdemServico" ToRole="Tarefa" />
   </EntityType>
   <EntityType Name="Pessoas">
     <Key>
       <PropertyRef Name="PessoaId" />
-      <PropertyRef Name="AcessoId" />
-      <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nome_Completo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="NomeCompleto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
     <Property Name="RG" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-    <Property Name="Telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Contato" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
     <Property Name="DataCadastro" Type="DateTime" Nullable="false" />
     <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="UltimoAcesso" Type="DateTime" />
     <Property Name="AcessoId" Type="Int32" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
     <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Pessoas" ToRole="Equipamentos" />
+    <NavigationProperty Name="Equipe" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Pessoas" ToRole="Equipe" />
+    <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Pessoas" ToRole="Especificacoes" />
     <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
+    <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_1" FromRole="Pessoas" ToRole="SoftwareEquipemento" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.Softwares_ibfk_1" FromRole="Pessoas" ToRole="Softwares" />
+    <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_1" FromRole="Pessoas" ToRole="Tarefa" />
+    <NavigationProperty Name="TipoSolicitacao" Relationship="shield01Model.TipoSolicitacao_ibfk_1" FromRole="Pessoas" ToRole="TipoSolicitacao" />
+    <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Pessoas" ToRole="Transferencia" />
+  </EntityType>
+  <EntityType Name="Prioridade">
+    <Key>
+      <PropertyRef Name="PrioridadeId" />
+    </Key>
+    <Property Name="PrioridadeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_4" FromRole="Prioridade" ToRole="OrdemServico" />
+    <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_5" FromRole="Prioridade" ToRole="Tarefa" />
+  </EntityType>
+  <EntityType Name="Sidebar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="icon" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="action" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="controller" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="tipo" Type="Boolean" Nullable="false" />
+    <Property Name="pai" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SoftwareEquipemento">
+    <Key>
+      <PropertyRef Name="SoftwareEquipementoId" />
+      <PropertyRef Name="SoftwareId" />
+      <PropertyRef Name="EquipamentoId" />
+    </Key>
+    <Property Name="SoftwareEquipementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Data" Type="DateTime" />
+    <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+    <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.SoftwareEquipemento_ibfk_3" FromRole="SoftwareEquipemento" ToRole="Equipamentos" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.SoftwareEquipemento_ibfk_1" FromRole="SoftwareEquipemento" ToRole="Pessoas" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.SoftwareEquipemento_ibfk_2" FromRole="SoftwareEquipemento" ToRole="Softwares" />
+  </EntityType>
+  <EntityType Name="Softwares">
+    <Key>
+      <PropertyRef Name="SoftwareId" />
+    </Key>
+    <Property Name="SoftwareId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="Observacao" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="DataAquisicao" Type="DateTime" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Licencas" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Softwares" ToRole="Licencas" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.Softwares_ibfk_1" FromRole="Softwares" ToRole="Pessoas" />
+    <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_2" FromRole="Softwares" ToRole="SoftwareEquipemento" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.Softwares_ibfk_2" FromRole="Softwares" ToRole="Status" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
       <PropertyRef Name="StatusId" />
     </Key>
     <Property Name="StatusId" Type="Int32" Nullable="false" />
-    <Property Name="Descrição" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_statusequipamento" FromRole="Status" ToRole="Equipamentos" />
     <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_statusmanutencao" FromRole="Status" ToRole="Manutencao" />
+    <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_2" FromRole="Status" ToRole="OrdemServico" />
     <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_acessostatus" FromRole="Status" ToRole="Pessoas" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.Softwares_ibfk_2" FromRole="Status" ToRole="Softwares" />
+    <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_3" FromRole="Status" ToRole="Tarefa" />
+  </EntityType>
+  <EntityType Name="Tarefa">
+    <Key>
+      <PropertyRef Name="TarefaId" />
+    </Key>
+    <Property Name="TarefaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrdemServicoId" Type="Int32" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <Property Name="PrioridadeId" Type="Int32" Nullable="false" />
+    <Property Name="TipoSolicitacaoId" Type="Int32" Nullable="false" />
+    <Property Name="Descricao" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="DataAbertura" Type="DateTime" />
+    <Property Name="DataEncerramento" Type="DateTime" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrdemServico" Relationship="shield01Model.Tarefa_ibfk_2" FromRole="Tarefa" ToRole="OrdemServico" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.Tarefa_ibfk_1" FromRole="Tarefa" ToRole="Pessoas" />
+    <NavigationProperty Name="Prioridade" Relationship="shield01Model.Tarefa_ibfk_5" FromRole="Tarefa" ToRole="Prioridade" />
+    <NavigationProperty Name="Status" Relationship="shield01Model.Tarefa_ibfk_3" FromRole="Tarefa" ToRole="Status" />
+    <NavigationProperty Name="TipoSolicitacao" Relationship="shield01Model.Tarefa_ibfk_4" FromRole="Tarefa" ToRole="TipoSolicitacao" />
   </EntityType>
   <EntityType Name="TipoEquipamento">
     <Key>
@@ -175,6 +440,93 @@
     <Property Name="Nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Atributos" Relationship="shield01Model.fk_atributotipoequipamento" FromRole="TipoEquipamento" ToRole="Atributos" />
     <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_tipoequipamento" FromRole="TipoEquipamento" ToRole="Equipamentos" />
+  </EntityType>
+  <EntityType Name="TipoSolicitacao">
+    <Key>
+      <PropertyRef Name="TipoSolicitacaoId" />
+    </Key>
+    <Property Name="TipoSolicitacaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_3" FromRole="TipoSolicitacao" ToRole="OrdemServico" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.TipoSolicitacao_ibfk_1" FromRole="TipoSolicitacao" ToRole="Pessoas" />
+    <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_4" FromRole="TipoSolicitacao" ToRole="Tarefa" />
+  </EntityType>
+  <EntityType Name="Transferencia">
+    <Key>
+      <PropertyRef Name="TransferenciaId" />
+    </Key>
+    <Property Name="TransferenciaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartamentoAtual" Type="Int32" Nullable="false" />
+    <Property Name="DepartamentoAntigo" Type="Int32" Nullable="false" />
+    <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+    <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <Property Name="DataTransferencia" Type="DateTime" Nullable="false" />
+    <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Departamentos" Relationship="shield01Model.Transferencia_ibfk_3" FromRole="Transferencia" ToRole="Departamentos" />
+    <NavigationProperty Name="Departamentos1" Relationship="shield01Model.Transferencia_ibfk_4" FromRole="Transferencia" ToRole="Departamentos" />
+    <NavigationProperty Name="Equipamentos" Relationship="shield01Model.Transferencia_ibfk_2" FromRole="Transferencia" ToRole="Equipamentos" />
+    <NavigationProperty Name="Pessoas" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Transferencia" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="vw_colaborador_OS_tarefas">
+    <Key>
+      <PropertyRef Name="Colaborador" />
+      <PropertyRef Name="TarefasEncerradas" />
+      <PropertyRef Name="TarefasAbertas" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
+    <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_equipe_ordemServico">
+    <Key>
+      <PropertyRef Name="Equipe" />
+      <PropertyRef Name="Responsavel" />
+      <PropertyRef Name="OSEncerrados" />
+      <PropertyRef Name="OSAbertos" />
+    </Key>
+    <Property Name="Equipe" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
+    <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_os_status_dados_produtividade">
+    <Key>
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
+    </Key>
+    <Property Name="Produtividade" Type="Decimal" />
+    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="Encerrado" Type="Int64" Nullable="false" />
+    <Property Name="Cancelado" Type="Int64" Nullable="false" />
+    <Property Name="Pausado" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_tarefas_status_dados">
+    <Key>
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
+    </Key>
+    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="Encerrado" Type="Int64" Nullable="false" />
+    <Property Name="Cancelado" Type="Int64" Nullable="false" />
+    <Property Name="Pausado" Type="Int64" Nullable="false" />
   </EntityType>
   <Association Name="fk_acessopessoa">
     <End Type="shield01Model.Acessos" Role="Acessos" Multiplicity="1" />
@@ -200,6 +552,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_especificacaoatributo">
+    <End Type="shield01Model.Atributos" Role="Atributos" Multiplicity="1" />
+    <End Type="shield01Model.Especificacoes" Role="Especificacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Atributos">
+        <PropertyRef Name="AtributoId" />
+      </Principal>
+      <Dependent Role="Especificacoes">
+        <PropertyRef Name="AtributoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_deparequipamento">
     <End Type="shield01Model.Departamentos" Role="Departamentos" Multiplicity="1" />
     <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
@@ -209,6 +573,66 @@
       </Principal>
       <Dependent Role="Equipamentos">
         <PropertyRef Name="DepartamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Transferencia_ibfk_3">
+    <End Type="shield01Model.Departamentos" Role="Departamentos" Multiplicity="1" />
+    <End Type="shield01Model.Transferencia" Role="Transferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Principal>
+      <Dependent Role="Transferencia">
+        <PropertyRef Name="DepartamentoAtual" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Transferencia_ibfk_4">
+    <End Type="shield01Model.Departamentos" Role="Departamentos" Multiplicity="1" />
+    <End Type="shield01Model.Transferencia" Role="Transferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departamentos">
+        <PropertyRef Name="DepartamentoId" />
+      </Principal>
+      <Dependent Role="Transferencia">
+        <PropertyRef Name="DepartamentoAntigo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cadastrouequipamento">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Equipamentos">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equipamento">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.EspecificacaoEquipamento" Role="EspecificacaoEquipamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="EspecificacaoEquipamento">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_equipamentomanutencao">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="Manutencao">
+        <PropertyRef Name="EquipamentoId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -236,6 +660,90 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="SoftwareEquipemento_ibfk_3">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.SoftwareEquipemento" Role="SoftwareEquipemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="SoftwareEquipemento">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Transferencia_ibfk_2">
+    <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+    <End Type="shield01Model.Transferencia" Role="Transferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipamentos">
+        <PropertyRef Name="EquipamentoId" />
+      </Principal>
+      <Dependent Role="Transferencia">
+        <PropertyRef Name="EquipamentoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Equipe_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Equipe" Role="Equipe" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Equipe">
+        <PropertyRef Name="ResponsavelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdemServico_ibfk_1">
+    <End Type="shield01Model.Equipe" Role="Equipe" Multiplicity="0..1" />
+    <End Type="shield01Model.OrdemServico" Role="OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipe">
+        <PropertyRef Name="EquipeId" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="EquipeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_especificacao">
+    <End Type="shield01Model.Especificacoes" Role="Especificacoes" Multiplicity="1" />
+    <End Type="shield01Model.EspecificacaoEquipamento" Role="EspecificacaoEquipamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Especificacoes">
+        <PropertyRef Name="EspecificacaoId" />
+      </Principal>
+      <Dependent Role="EspecificacaoEquipamento">
+        <PropertyRef Name="EspecificacaoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cadastrouespecificacao">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Especificacoes" Role="Especificacoes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Especificacoes">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Licencas_ibfk_1">
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
+    <End Type="shield01Model.Licencas" Role="Licencas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Softwares">
+        <PropertyRef Name="SoftwareId" />
+      </Principal>
+      <Dependent Role="Licencas">
+        <PropertyRef Name="SoftwareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_statusmanutencao">
     <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
     <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
@@ -248,6 +756,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="OrdemServico_ibfk_2">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.OrdemServico" Role="OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdemServico_ibfk_3">
+    <End Type="shield01Model.TipoSolicitacao" Role="TipoSolicitacao" Multiplicity="0..1" />
+    <End Type="shield01Model.OrdemServico" Role="OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoSolicitacao">
+        <PropertyRef Name="TipoSolicitacaoId" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="TipoSolicitacaoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdemServico_ibfk_4">
+    <End Type="shield01Model.Prioridade" Role="Prioridade" Multiplicity="1" />
+    <End Type="shield01Model.OrdemServico" Role="OrdemServico" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prioridade">
+        <PropertyRef Name="PrioridadeId" />
+      </Principal>
+      <Dependent Role="OrdemServico">
+        <PropertyRef Name="PrioridadeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tarefa_ibfk_2">
+    <End Type="shield01Model.OrdemServico" Role="OrdemServico" Multiplicity="0..1" />
+    <End Type="shield01Model.Tarefa" Role="Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrdemServico">
+        <PropertyRef Name="OrdemServicoId" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="OrdemServicoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_acessostatus">
     <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
     <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
@@ -257,6 +813,126 @@
       </Principal>
       <Dependent Role="Pessoas">
         <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoftwareEquipemento_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.SoftwareEquipemento" Role="SoftwareEquipemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="SoftwareEquipemento">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Softwares_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Softwares">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tarefa_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Tarefa" Role="Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TipoSolicitacao_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.TipoSolicitacao" Role="TipoSolicitacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="TipoSolicitacao">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Transferencia_ibfk_1">
+    <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="1" />
+    <End Type="shield01Model.Transferencia" Role="Transferencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pessoas">
+        <PropertyRef Name="PessoaId" />
+      </Principal>
+      <Dependent Role="Transferencia">
+        <PropertyRef Name="PessoaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tarefa_ibfk_5">
+    <End Type="shield01Model.Prioridade" Role="Prioridade" Multiplicity="1" />
+    <End Type="shield01Model.Tarefa" Role="Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prioridade">
+        <PropertyRef Name="PrioridadeId" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="PrioridadeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SoftwareEquipemento_ibfk_2">
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
+    <End Type="shield01Model.SoftwareEquipemento" Role="SoftwareEquipemento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Softwares">
+        <PropertyRef Name="SoftwareId" />
+      </Principal>
+      <Dependent Role="SoftwareEquipemento">
+        <PropertyRef Name="SoftwareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Softwares_ibfk_2">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Softwares">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tarefa_ibfk_3">
+    <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
+    <End Type="shield01Model.Tarefa" Role="Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="StatusId" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Tarefa_ibfk_4">
+    <End Type="shield01Model.TipoSolicitacao" Role="TipoSolicitacao" Multiplicity="1" />
+    <End Type="shield01Model.Tarefa" Role="Tarefa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoSolicitacao">
+        <PropertyRef Name="TipoSolicitacaoId" />
+      </Principal>
+      <Dependent Role="Tarefa">
+        <PropertyRef Name="TipoSolicitacaoId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

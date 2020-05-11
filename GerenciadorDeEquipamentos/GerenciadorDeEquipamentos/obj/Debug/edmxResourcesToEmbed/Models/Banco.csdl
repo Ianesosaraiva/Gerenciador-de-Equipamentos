@@ -4,10 +4,12 @@
     <EntitySet Name="Acessos" EntityType="shield01Model.Acessos" />
     <EntitySet Name="Atributos" EntityType="shield01Model.Atributos" />
     <EntitySet Name="Departamentos" EntityType="shield01Model.Departamentos" />
+    <EntitySet Name="EmailConfig" EntityType="shield01Model.EmailConfig" />
     <EntitySet Name="Equipamentos" EntityType="shield01Model.Equipamentos" />
     <EntitySet Name="Equipe" EntityType="shield01Model.Equipe" />
     <EntitySet Name="EspecificacaoEquipamento" EntityType="shield01Model.EspecificacaoEquipamento" />
     <EntitySet Name="Especificacoes" EntityType="shield01Model.Especificacoes" />
+    <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
     <EntitySet Name="Log" EntityType="shield01Model.Log" />
     <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
     <EntitySet Name="OrdemServico" EntityType="shield01Model.OrdemServico" />
@@ -23,6 +25,7 @@
     <EntitySet Name="Transferencia" EntityType="shield01Model.Transferencia" />
     <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="shield01Model.vw_colaborador_OS_tarefas" />
     <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
+    <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
     <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
       <End Role="Acessos" EntitySet="Acessos" />
       <End Role="Pessoas" EntitySet="Pessoas" />
@@ -91,6 +94,10 @@
       <End Role="Pessoas" EntitySet="Pessoas" />
       <End Role="Especificacoes" EntitySet="Especificacoes" />
     </AssociationSet>
+    <AssociationSet Name="Licencas_ibfk_1" Association="shield01Model.Licencas_ibfk_1">
+      <End Role="Softwares" EntitySet="Softwares" />
+      <End Role="Licencas" EntitySet="Licencas" />
+    </AssociationSet>
     <AssociationSet Name="fk_statusmanutencao" Association="shield01Model.fk_statusmanutencao">
       <End Role="Status" EntitySet="Status" />
       <End Role="Manutencao" EntitySet="Manutencao" />
@@ -155,13 +162,13 @@
       <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
       <End Role="Tarefa" EntitySet="Tarefa" />
     </AssociationSet>
-    <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
-    <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
-    <AssociationSet Name="Licencas_ibfk_1" Association="shield01Model.Licencas_ibfk_1">
-      <End Role="Softwares" EntitySet="Softwares" />
-      <End Role="Licencas" EntitySet="Licencas" />
-    </AssociationSet>
-    <EntitySet Name="vw_os_status_dados_produtividade" EntityType="shield01Model.vw_os_status_dados_produtividade" />
+    <EntitySet Name="vw_equipamentos_manutencao_por_mes" EntityType="shield01Model.vw_equipamentos_manutencao_por_mes" />
+    <EntitySet Name="vw_os_encerrados_por_mes" EntityType="shield01Model.vw_os_encerrados_por_mes" />
+    <EntitySet Name="vw_quantidade_equipamentos_por_departamento" EntityType="shield01Model.vw_quantidade_equipamentos_por_departamento" />
+    <EntitySet Name="vw_quantidade_equipamentos_por_tipo" EntityType="shield01Model.vw_quantidade_equipamentos_por_tipo" />
+    <EntitySet Name="vw_tarefas_encerradas_por_mes" EntityType="shield01Model.vw_tarefas_encerradas_por_mes" />
+    <EntitySet Name="vw_os_status_dados" EntityType="shield01Model.vw_os_status_dados" />
+    <EntitySet Name="vw_dados_index_os" EntityType="shield01Model.vw_dados_index_os" />
   </EntityContainer>
   <EntityType Name="Acessos">
     <Key>
@@ -192,6 +199,18 @@
     <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Departamentos" ToRole="Equipamentos" />
     <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_3" FromRole="Departamentos" ToRole="Transferencia" />
     <NavigationProperty Name="Transferencia1" Relationship="shield01Model.Transferencia_ibfk_4" FromRole="Departamentos" ToRole="Transferencia" />
+  </EntityType>
+  <EntityType Name="EmailConfig">
+    <Key>
+      <PropertyRef Name="ConfigId" />
+    </Key>
+    <Property Name="ConfigId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NomeServidor" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="NumeroPorta" Type="Int32" Nullable="false" />
+    <Property Name="EnderecoEmail" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="EmailUsuario" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="FlgSSL" Type="SByte" Nullable="false" />
+    <Property Name="EmailSenha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Equipamentos">
     <Key>
@@ -230,8 +249,6 @@
   <EntityType Name="EspecificacaoEquipamento">
     <Key>
       <PropertyRef Name="EspecificacaoEquipamentoId" />
-      <PropertyRef Name="EspecificacaoId" />
-      <PropertyRef Name="EquipamentoId" />
     </Key>
     <Property Name="EspecificacaoEquipamentoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="EspecificacaoId" Type="Int32" Nullable="false" />
@@ -250,6 +267,19 @@
     <NavigationProperty Name="Atributos" Relationship="shield01Model.fk_especificacaoatributo" FromRole="Especificacoes" ToRole="Atributos" />
     <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_especificacao" FromRole="Especificacoes" ToRole="EspecificacaoEquipamento" />
     <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Especificacoes" ToRole="Pessoas" />
+  </EntityType>
+  <EntityType Name="Licencas">
+    <Key>
+      <PropertyRef Name="LicencaId" />
+      <PropertyRef Name="SoftwareId" />
+    </Key>
+    <Property Name="LicencaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SoftwareId" Type="Int32" Nullable="false" />
+    <Property Name="Quantidade" Type="Int32" Nullable="false" />
+    <Property Name="Preco" Type="Double" />
+    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Softwares" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Licencas" ToRole="Softwares" />
   </EntityType>
   <EntityType Name="Log">
     <Key>
@@ -370,10 +400,10 @@
     <Property Name="DataAquisicao" Type="DateTime" Nullable="false" />
     <Property Name="StatusId" Type="Int32" Nullable="false" />
     <Property Name="PessoaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Licencas" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Softwares" ToRole="Licencas" />
     <NavigationProperty Name="Pessoas" Relationship="shield01Model.Softwares_ibfk_1" FromRole="Softwares" ToRole="Pessoas" />
     <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_2" FromRole="Softwares" ToRole="SoftwareEquipemento" />
     <NavigationProperty Name="Status" Relationship="shield01Model.Softwares_ibfk_2" FromRole="Softwares" ToRole="Status" />
-    <NavigationProperty Name="Licencas" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Softwares" ToRole="Licencas" />
   </EntityType>
   <EntityType Name="Status">
     <Key>
@@ -470,6 +500,22 @@
     <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
     <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_tarefas_status_dados">
+    <Key>
+      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="AguardandoAtendimento" />
+      <PropertyRef Name="EmAtendimento" />
+      <PropertyRef Name="Encerrado" />
+      <PropertyRef Name="Cancelado" />
+      <PropertyRef Name="Pausado" />
+    </Key>
+    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
+    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
+    <Property Name="Encerrado" Type="Int64" Nullable="false" />
+    <Property Name="Cancelado" Type="Int64" Nullable="false" />
+    <Property Name="Pausado" Type="Int64" Nullable="false" />
   </EntityType>
   <Association Name="fk_acessopessoa">
     <End Type="shield01Model.Acessos" Role="Acessos" Multiplicity="1" />
@@ -675,6 +721,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Licencas_ibfk_1">
+    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
+    <End Type="shield01Model.Licencas" Role="Licencas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Softwares">
+        <PropertyRef Name="SoftwareId" />
+      </Principal>
+      <Dependent Role="Licencas">
+        <PropertyRef Name="SoftwareId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="fk_statusmanutencao">
     <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
     <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
@@ -867,62 +925,57 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="vw_tarefas_status_dados">
+  <EntityType Name="vw_equipamentos_manutencao_por_mes">
     <Key>
-      <PropertyRef Name="AguardandoAtendente" />
-      <PropertyRef Name="AguardandoAtendimento" />
-      <PropertyRef Name="EmAtendimento" />
-      <PropertyRef Name="Encerrado" />
-      <PropertyRef Name="Cancelado" />
-      <PropertyRef Name="Pausado" />
+      <PropertyRef Name="Quantidade" />
     </Key>
-    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
-    <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
-    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
-    <Property Name="Encerrado" Type="Int64" Nullable="false" />
-    <Property Name="Cancelado" Type="Int64" Nullable="false" />
-    <Property Name="Pausado" Type="Int64" Nullable="false" />
+    <Property Name="Mes" Type="Int32" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
   </EntityType>
-  <EntityType Name="Licencas">
+  <EntityType Name="vw_os_encerrados_por_mes">
     <Key>
-      <PropertyRef Name="LicencaId" />
-      <PropertyRef Name="SoftwareId" />
+      <PropertyRef Name="Quantidade" />
     </Key>
-    <Property Name="LicencaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SoftwareId" Type="Int32" Nullable="false" />
-    <Property Name="Quantidade" Type="Int32" Nullable="false" />
-    <Property Name="Preco" Type="Double" />
-    <NavigationProperty Name="Softwares" Relationship="shield01Model.Licencas_ibfk_1" FromRole="Licencas" ToRole="Softwares" />
-    <Property Name="Nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="Mes" Type="Int32" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
   </EntityType>
-  <Association Name="Licencas_ibfk_1">
-    <End Type="shield01Model.Softwares" Role="Softwares" Multiplicity="1" />
-    <End Type="shield01Model.Licencas" Role="Licencas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Softwares">
-        <PropertyRef Name="SoftwareId" />
-      </Principal>
-      <Dependent Role="Licencas">
-        <PropertyRef Name="SoftwareId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="vw_os_status_dados_produtividade">
+  <EntityType Name="vw_quantidade_equipamentos_por_departamento">
     <Key>
-      <PropertyRef Name="AguardandoAtendente" />
+      <PropertyRef Name="Departamento" />
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_quantidade_equipamentos_por_tipo">
+    <Key>
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="TipoDeEquipamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_tarefas_encerradas_por_mes">
+    <Key>
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Mes" Type="Int32" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_os_status_dados">
+    <Key>
+      <PropertyRef Name="Status" />
+      <PropertyRef Name="Quantidade" />
+    </Key>
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <Property Name="Quantidade" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_dados_index_os">
+    <Key>
       <PropertyRef Name="AguardandoAtendimento" />
-      <PropertyRef Name="EmAtendimento" />
-      <PropertyRef Name="Encerrado" />
-      <PropertyRef Name="Cancelado" />
-      <PropertyRef Name="Pausado" />
+      <PropertyRef Name="Total" />
     </Key>
     <Property Name="Produtividade" Type="Decimal" />
-    <Property Name="AguardandoAtendente" Type="Int64" Nullable="false" />
     <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
-    <Property Name="EmAtendimento" Type="Int64" Nullable="false" />
-    <Property Name="Encerrado" Type="Int64" Nullable="false" />
-    <Property Name="Cancelado" Type="Int64" Nullable="false" />
-    <Property Name="Pausado" Type="Int64" Nullable="false" />
+    <Property Name="Total" Type="Int64" Nullable="false" />
   </EntityType>
 </Schema>

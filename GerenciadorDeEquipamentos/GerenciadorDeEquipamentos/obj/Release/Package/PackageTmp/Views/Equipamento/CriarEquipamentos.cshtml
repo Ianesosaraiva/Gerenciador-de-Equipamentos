@@ -1,0 +1,105 @@
+﻿@model GerenciadorDeEquipamentos.Models.Equipamentos
+
+@{
+    ViewBag.Title = "CriarEquipamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Cadastrar Equipamentos</h4>
+                                <p class="card-category">Preencha os campos corretamente! </p>
+                            </div>
+                            <div class="col-sm">
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Listar Equipamentos">list</i>
+                                </a>
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;">person</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Tipo de Equipamento</label>
+                                    @Html.DropDownList("TipoEquipamentoId", ViewBag.tipoEquipamento as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.TipoEquipamentoId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Departamento</label>
+                                    @Html.DropDownList("DepartamentoId", ViewBag.departamento as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.DepartamentoId, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Status</label>
+                                    @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data da Aquisição</label>
+                                    @Html.EditorFor(model => model.DataAquisicao, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.DataAquisicao, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data da Garantia</label>
+                                    @Html.EditorFor(model => model.DataGarantia, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.DataGarantia, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Número Patrimonial</label>
+                                    @Html.EditorFor(model => model.NumeroPatrimonial, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.NumeroPatrimonial, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Service TagSerial</label>
+                                    @Html.EditorFor(model => model.ServiceTagSerial, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ServiceTagSerial, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Descrição</label>
+                                    <textarea class="form-control" rows="2"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Observação</label>
+                                    @Html.EditorFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Criar" class="btn btn-primary" />
+                                <a href="@Url.Action("ListarEquipamentos", "Equipamento")" class="btn btn-primary">Voltar</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

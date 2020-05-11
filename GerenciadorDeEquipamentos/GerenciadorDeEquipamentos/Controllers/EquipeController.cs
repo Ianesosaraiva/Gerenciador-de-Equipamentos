@@ -22,7 +22,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult CriarEquipe()
         {
-            ViewBag.responsavel = new SelectList(bd.Pessoas.Where(x => x.StatusId == 2 && x.AcessoId != 2).ToList(), "PessoaId", "NomeCompleto");
+            ViewBag.responsavel = new SelectList(bd.Pessoas.Where(x => x.StatusId != 2 && x.AcessoId == 2).ToList(), "PessoaId", "NomeCompleto");
             return View();
         }
 
@@ -40,7 +40,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         public ActionResult EditarEquipe(int equipeId)
         {
-            ViewBag.responsavel = new SelectList(bd.Pessoas.Where(x => x.StatusId == 2).ToList(), "PessoaId", "NomeCompleto");
+            ViewBag.responsavel = new SelectList(bd.Pessoas.Where(x => x.StatusId != 2 && x.AcessoId == 2).ToList(), "PessoaId", "NomeCompleto");
             var equipe = bd.Equipe.FirstOrDefault(x => x.EquipeId == equipeId);
 
             return View(equipe);

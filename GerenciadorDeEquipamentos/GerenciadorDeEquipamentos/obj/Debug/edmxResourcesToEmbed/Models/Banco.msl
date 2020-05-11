@@ -28,6 +28,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmailConfig">
+      <EntityTypeMapping TypeName="shield01Model.EmailConfig">
+        <MappingFragment StoreEntitySet="EmailConfig">
+          <ScalarProperty Name="EmailSenha" ColumnName="EmailSenha" />
+          <ScalarProperty Name="FlgSSL" ColumnName="FlgSSL" />
+          <ScalarProperty Name="EmailUsuario" ColumnName="EmailUsuario" />
+          <ScalarProperty Name="EnderecoEmail" ColumnName="EnderecoEmail" />
+          <ScalarProperty Name="NumeroPorta" ColumnName="NumeroPorta" />
+          <ScalarProperty Name="NomeServidor" ColumnName="NomeServidor" />
+          <ScalarProperty Name="ConfigId" ColumnName="ConfigId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Equipamentos">
       <EntityTypeMapping TypeName="shield01Model.Equipamentos">
         <MappingFragment StoreEntitySet="Equipamentos">
@@ -70,6 +83,18 @@
           <ScalarProperty Name="AtributoId" ColumnName="AtributoId" />
           <ScalarProperty Name="Nome" ColumnName="Nome" />
           <ScalarProperty Name="EspecificacaoId" ColumnName="EspecificacaoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Licencas">
+      <EntityTypeMapping TypeName="shield01Model.Licencas">
+        <MappingFragment StoreEntitySet="Licencas">
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
+          <ScalarProperty Name="LicencaId" ColumnName="LicencaId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -265,27 +290,59 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Licencas">
-      <EntityTypeMapping TypeName="shield01Model.Licencas">
-        <MappingFragment StoreEntitySet="Licencas">
-          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="Nome" ColumnName="Nome" />
-          <ScalarProperty Name="Preco" ColumnName="Preco" />
+    <EntitySetMapping Name="vw_equipamentos_manutencao_por_mes">
+      <EntityTypeMapping TypeName="shield01Model.vw_equipamentos_manutencao_por_mes">
+        <MappingFragment StoreEntitySet="vw_equipamentos_manutencao_por_mes">
           <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-          <ScalarProperty Name="SoftwareId" ColumnName="SoftwareId" />
-          <ScalarProperty Name="LicencaId" ColumnName="LicencaId" />
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="vw_os_status_dados_produtividade">
-      <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados_produtividade">
-        <MappingFragment StoreEntitySet="vw_os_status_dados_produtividade">
-          <ScalarProperty Name="Pausado" ColumnName="Pausado" />
-          <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
-          <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
-          <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+    <EntitySetMapping Name="vw_os_encerrados_por_mes">
+      <EntityTypeMapping TypeName="shield01Model.vw_os_encerrados_por_mes">
+        <MappingFragment StoreEntitySet="vw_os_encerrados_por_mes">
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_quantidade_equipamentos_por_departamento">
+      <EntityTypeMapping TypeName="shield01Model.vw_quantidade_equipamentos_por_departamento">
+        <MappingFragment StoreEntitySet="vw_quantidade_equipamentos_por_departamento">
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Departamento" ColumnName="Departamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_quantidade_equipamentos_por_tipo">
+      <EntityTypeMapping TypeName="shield01Model.vw_quantidade_equipamentos_por_tipo">
+        <MappingFragment StoreEntitySet="vw_quantidade_equipamentos_por_tipo">
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="TipoDeEquipamento" ColumnName="TipoDeEquipamento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_tarefas_encerradas_por_mes">
+      <EntityTypeMapping TypeName="shield01Model.vw_tarefas_encerradas_por_mes">
+        <MappingFragment StoreEntitySet="vw_tarefas_encerradas_por_mes">
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Mes" ColumnName="Mes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_os_status_dados">
+      <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados">
+        <MappingFragment StoreEntitySet="vw_os_status_dados">
+          <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_dados_index_os">
+      <EntityTypeMapping TypeName="shield01Model.vw_dados_index_os">
+        <MappingFragment StoreEntitySet="vw_dados_index_os">
+          <ScalarProperty Name="Total" ColumnName="Total" />
           <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
-          <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
           <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
         </MappingFragment>
       </EntityTypeMapping>

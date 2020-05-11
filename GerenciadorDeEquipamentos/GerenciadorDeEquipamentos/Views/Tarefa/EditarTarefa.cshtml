@@ -44,17 +44,12 @@
                                     @Html.DropDownList("TipoSolicitacaoId", ViewBag.tipoSolicitacao as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
                                     @Html.ValidationMessageFor(model => model.TipoSolicitacaoId, "", new { @class = "text-danger" })
                                 </div>
+                            </div>
+                            <div class="row mt-3">
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Prioridade</label>
                                     @Html.DropDownList("PrioridadeId", ViewBag.prioridade as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
                                     @Html.ValidationMessageFor(model => model.PrioridadeId, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm">
-                                    <label class="bmd-label-static">Data da Encerramento</label>
-                                    @Html.EditorFor(model => model.DataEncerramento, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                                    @Html.ValidationMessageFor(model => model.DataEncerramento, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Status</label>

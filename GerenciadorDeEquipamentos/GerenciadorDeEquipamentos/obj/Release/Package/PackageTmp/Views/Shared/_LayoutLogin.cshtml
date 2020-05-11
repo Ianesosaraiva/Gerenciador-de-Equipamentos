@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/main.css">
+
+    <!--===============================================================================================-->
+
+    @Styles.Render("~/Content/main.css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+
+<body style="padding-top: 0%">
+    @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
+
+    @RenderBody()
+    @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - DEV-GTI</p>
+        </footer>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/tilt")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

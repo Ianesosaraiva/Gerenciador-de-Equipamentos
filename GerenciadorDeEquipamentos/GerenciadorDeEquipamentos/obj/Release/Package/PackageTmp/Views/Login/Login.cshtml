@@ -1,0 +1,60 @@
+﻿@model GerenciadorDeEquipamentos.Models.DataLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    string message = ViewBag.message as string;
+}
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="~/images/img-01.png" alt="IMG">
+            </div>
+            <form class="login100-form" method="post">
+                <span class="login100-form-title">
+                    LOGIN
+                </span>
+                @if (message != null)
+                {
+                    <p>@message</p>
+                }
+
+                <div class="wrap-input100 validate-input" data-validate="Digite o usuario">
+                    @*<input class="input100" type="text" name="email" placeholder="Usuario">*@
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "input100", placeholder = "Usuário" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Digite a senha">
+                    <span class="btn-show-pass">
+                        <i class="fa fa-eye"></i>
+                    </span>
+                    <input class="input100" type="password" name="Senha" placeholder="Senha">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        Entrar
+                    </button>
+                </div>
+
+                <div class="text-center p-t-136">
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
