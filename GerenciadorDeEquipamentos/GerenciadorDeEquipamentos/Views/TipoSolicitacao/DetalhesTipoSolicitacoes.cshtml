@@ -1,0 +1,49 @@
+﻿@model GerenciadorDeEquipamentos.Models.TipoSolicitacao
+
+@{
+    ViewBag.Title = "DetalhesTipoSolicitacoes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> Detalhes </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <dl class="table table-hover">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Titulo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Titulo)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Descricao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Pessoas.NomeCompleto)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Pessoas.NomeCompleto)
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

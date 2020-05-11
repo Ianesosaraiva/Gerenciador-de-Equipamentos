@@ -725,6 +725,16 @@
     <Content Include="Views\Equipe\EditarEquipe.cshtml" />
     <Content Include="Views\OrdemServico\View.cshtml" />
     <Content Include="Views\Equipamento\GerenciarEquipamento.cshtml" />
+    <Content Include="Views\Equipamento\AtributosEquipamentos.cshtml" />
+    <Content Include="Views\Equipamento\DetralhesEquipamentos.cshtml" />
+    <Content Include="Views\Departamento\DetalhesDepartamentos.cshtml" />
+    <Content Include="Views\Equipe\DetalhesEquipe.cshtml" />
+    <Content Include="Views\Especificacao\DetalhesEspecificacoes.cshtml" />
+    <Content Include="Views\Pessoa\DetalhesPessoas.cshtml" />
+    <Content Include="Views\Software\DetalhesSoftwares.cshtml" />
+    <Content Include="Views\Tarefa\DetalhesTarefa.cshtml" />
+    <Content Include="Views\TipoEquipamento\DetalhesTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoSolicitacao\DetalhesTipoSolicitacoes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

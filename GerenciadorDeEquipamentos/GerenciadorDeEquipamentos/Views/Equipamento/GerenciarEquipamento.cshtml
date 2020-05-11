@@ -10,40 +10,42 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-warning card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">desktop_windows</i>
+                    <a href="@Url.Action("CriarEquipamentos", "Equipamento")">
+                        <div class="card-header card-header-warning card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">desktop_windows</i>
+                            </div>
+                            <p class="card-category">Equipamentos</p>
+                            <h3 class="card-title">
+                            </h3>
                         </div>
-                        <p class="card-category">Equipamentos</p>
-                        <h3 class="card-title">
-                            
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("CriarEquipamentos", "Equipamento")">Cadastrar Equipamento</a>
+                        <div class="card-footer">
+                            <div class="stats">
+                                
+                            </div>
                         </div>
-                    </div>
+                    </a>                  
                 </div>
             </div>
 
 
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
-                    <div class="card-header card-header-success card-header-icon">
-                        <div class="card-icon">
-                            <i class="material-icons">desktop_windows</i>
+                    <a href="@Url.Action("ListarEquipamentos", "Equipamento")">
+                        <div class="card-header card-header-success card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">desktop_windows</i>
+                            </div>
+                            <p class="card-category">Equipamentos</p>
+                            <h3 class="card-title">
+                            </h3>
                         </div>
-                        <p class="card-category">Equipamentos</p>
-                        <h3 class="card-title">
-                            
-                        </h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <a href="@Url.Action("CriarEquipamentos", "Equipamento")">Listar Equipamento</a>
+                        <div class="card-footer">
+                            <div class="stats">
+                                
+                            </div>
                         </div>
-                    </div>
+                    </a>          
                 </div>
             </div>
 
@@ -53,7 +55,7 @@
                 <div class="card card-stats">
                     <div class="card-header card-header-danger card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">person</i>
+                            <i class="material-icons">build</i>
                         </div>
                         <p class="card-category">Eqipamentos em Manutenção</p>
                         <h3 class="card-title">
@@ -62,7 +64,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="stats">
-                            <i class="fa fa-user"></i> Manutenção
+                            <i class="fa fa-user"></i> Manutencao
                         </div>
                     </div>
                 </div>
@@ -177,7 +179,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <a href="@Url.Action("ListarAtributos","Atributo")" style="color:azure">
+                        <a href="#" style="color:azure">
                             <div class="card-header card-header-primary card-header-icon">
 
                                 <div class="card-icon">
@@ -210,90 +212,6 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons">assignment</i> Quantidade de RAN, de HD, etc...
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <a href="@Url.Action("ListarDepartamentos","Departamento")" style="color:azure">
-                            <div class="card-header card-header-primary card-header-icon">
-
-                                <div class="card-icon">
-                                    <i class="material-icons">layers</i>
-                                </div>
-                                <p class="card-category">Website Visits</p>
-                                <h3 class="card-title">Departamentos</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">assignment</i> Todos os departamentos
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <a href="@Url.Action("AbrirChamado","OrdemServico")" style="color:azure">
-                            <div class="card-header card-header-primary card-header-icon">
-
-                                <div class="card-icon">
-                                    <i class="material-icons">call</i>
-                                </div>
-                                <p class="card-category">Website Visits</p>
-                                <h3 class="card-title">Abrir um Chamado</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">assignment</i> Abrir chamado..
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <a href="@Url.Action("ListarTipoEquipamentos","TipoEquipamento")" style="color:azure">
-                            <div class="card-header card-header-primary card-header-icon">
-
-                                <div class="card-icon">
-                                    <i class="material-icons">devices</i>
-                                </div>
-                                <p class="card-category">Website Visits</p>
-                                <h3 class="card-title">Tipos de Equipamentos</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">assignment</i> Computador, impressora, etc...
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <a href="@Url.Action("ListarSoftwares","Software")" style="color:azure">
-                            <div class="card-header card-header-primary card-header-icon">
-
-                                <div class="card-icon">
-                                    <i class="material-icons">shop</i>
-                                </div>
-                                <p class="card-category">Website Visits</p>
-                                <h3 class="card-title">Softwares e Licenças</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">assignment</i> Softwares e licenças
                                 </div>
                             </div>
                         </a>
