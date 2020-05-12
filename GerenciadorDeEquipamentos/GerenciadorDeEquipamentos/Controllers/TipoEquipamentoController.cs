@@ -20,13 +20,13 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CriarTipoEquipamentos()
+        public ActionResult CriarTipoEquipamento()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarTipoEquipamentos(TipoEquipamento tipoEquipamento)
+        public ActionResult CriarTipoEquipamento(TipoEquipamento tipoEquipamento)
         {
             bd.TipoEquipamento.Add(tipoEquipamento);
             bd.SaveChanges();
@@ -37,7 +37,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarTipoEquipamentos(int TipoEquipamentoId)
+        public ActionResult EditarTipoEquipamento(int TipoEquipamentoId)
         {
             var tipoEquipamento = bd.TipoEquipamento.FirstOrDefault(x => x.TipoEquipamentoId == TipoEquipamentoId);
 
@@ -45,7 +45,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarTipoEquipamentos(TipoEquipamento tipoEquipamento)
+        public ActionResult EditarTipoEquipamento(TipoEquipamento tipoEquipamento)
         {
             var tipoEquipamentoBD = bd.TipoEquipamento.FirstOrDefault(x => x.TipoEquipamentoId == tipoEquipamento.TipoEquipamentoId);
 

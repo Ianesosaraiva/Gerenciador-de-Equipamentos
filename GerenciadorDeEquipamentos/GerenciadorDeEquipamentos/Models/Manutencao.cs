@@ -11,17 +11,22 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Manutencao
     {
         public int ManutencaoId { get; set; }
-        public System.DateTime DataEntrada { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
+        public DateTime? DataEntrada { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> DataSaida { get; set; }
         public string Observacao { get; set; }
         public int EquipamentoId { get; set; }
-        public int StatusId { get; set; }
+        public string ComoEntrou { get; set; }
+        public string ComoSaiu { get; set; }
     
         public virtual Equipamentos Equipamentos { get; set; }
-        public virtual Status Status { get; set; }
     }
 }

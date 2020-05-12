@@ -20,14 +20,14 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [Authorize]
-        public ActionResult CadastrarLicenca()
+        public ActionResult CriarLicenca()
         {
             ViewBag.SoftwareId = Session["SoftwareId"];
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarLicenca(Licencas licenca)
+        public ActionResult CriarLicenca(Licencas licenca)
         {
             licenca.SoftwareId = Convert.ToInt32(Session["SoftwareId"]);
             bd.Licencas.Add(licenca);

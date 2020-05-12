@@ -18,15 +18,15 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CadastrarSoftwares()
+        public ActionResult CriarSoftware()
         {
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarSoftwares(Softwares softwares)
+        public ActionResult CriarSoftware(Softwares softwares)
         {
             softwares.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
 
@@ -39,16 +39,16 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarSoftwares(int SoftwareId)
+        public ActionResult EditarSoftware(int SoftwareId)
         {
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
             var softwares = bd.Softwares.FirstOrDefault(x => x.SoftwareId == SoftwareId);
 
             return View(softwares);
         }
 
         [HttpPost]
-        public ActionResult EditarSoftwares(Softwares softwares)
+        public ActionResult EditarSoftware(Softwares softwares)
         {
             var softwaresBD = bd.Softwares.FirstOrDefault(x => x.SoftwareId == softwares.SoftwareId);
 
@@ -63,10 +63,20 @@ namespace GerenciadorDeEquipamentos.Controllers
             return RedirectToAction("ListarSoftwares");
         }
 
+        [HttpGet]
+        public ActionResult DetalhesSoftware(int SoftwareId)
+        {
+            var detalhes = bd.Softwares.FirstOrDefault(x => x.SoftwareId == SoftwareId);
+
+            return View(detalhes);
+        }
+
 
         public ActionResult GerenciarSoftwares()
         {
             return View();
         }
+
+
     }
 }

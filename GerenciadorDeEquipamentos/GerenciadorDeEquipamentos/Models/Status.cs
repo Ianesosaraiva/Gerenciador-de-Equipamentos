@@ -18,7 +18,6 @@ namespace GerenciadorDeEquipamentos.Models
         public Status()
         {
             this.Equipamentos = new HashSet<Equipamentos>();
-            this.Manutencao = new HashSet<Manutencao>();
             this.OrdemServico = new HashSet<OrdemServico>();
             this.Pessoas = new HashSet<Pessoas>();
             this.Softwares = new HashSet<Softwares>();
@@ -31,8 +30,6 @@ namespace GerenciadorDeEquipamentos.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipamentos> Equipamentos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manutencao> Manutencao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdemServico> OrdemServico { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

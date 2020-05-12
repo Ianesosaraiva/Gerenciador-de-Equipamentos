@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Especificacoes>
 
 @{
-    ViewBag.Title = "ListarEspecificacao";
+    ViewBag.Title = "Listar Especificação";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -26,15 +26,17 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table id="datatables" class="table table-hover">
                                 <thead class="text-primary">
-                                <th>
-                                    @Html.DisplayName("Nome da Especificação")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Atributo")
-                                </th>
-                                <th>Ações</th>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Nome da Especificação")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Atributo")
+                                        </th>
+                                        <th>Ações</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model)
@@ -57,9 +59,9 @@
                                                             </p>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                                            <a class="dropdown-item" href="#">Visualizar Mais</a>
-                                                            <a class="dropdown-item" href="@Url.Action("EditarEspecificacoes", "Especificacao", new { EspecificacaoId = item.EspecificacaoId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirEspecificacoes", "Especificacao")">Excluir</a>
+                                                            <a class="dropdown-item" href="@Url.Action("DetalhesEspecificacao", "Especificacao", new { EspecificacaoId = item.EspecificacaoId})">Visualizar Mais</a>
+                                                            <a class="dropdown-item" href="@Url.Action("EditarEspecificacao", "Especificacao", new { EspecificacaoId = item.EspecificacaoId})">Editar</a>
+                                                            <a class="dropdown-item" href="@Url.Action("DeletarEspecificacao", "Especificacao", new { EspecificacaoId = item.EspecificacaoId})">Excluir</a>
                                                         </div>
                                                     </li>
                                                 </ul>

@@ -109,7 +109,8 @@
     <Property Name="DataSaida" Type="date" />
     <Property Name="Observacao" Type="mediumtext" />
     <Property Name="EquipamentoId" Type="int" Nullable="false" />
-    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="ComoEntrou" Type="text" Nullable="false" />
+    <Property Name="ComoSaiu" Type="text" />
   </EntityType>
   <EntityType Name="OrdemServico">
     <Key>
@@ -238,20 +239,16 @@
     <Property Name="Observacao" Type="mediumtext" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'def.shield01.vw_colaborador_OS_tarefas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="vw_colaborador_OS_tarefas">
+warning 6002: The table/view 'def.shield01.vw_colaborador_tarefas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_colaborador_tarefas">
     <Key>
       <PropertyRef Name="Colaborador" />
       <PropertyRef Name="TarefasEncerradas" />
       <PropertyRef Name="TarefasAbertas" />
-      <PropertyRef Name="OSEncerrados" />
-      <PropertyRef Name="OSAbertos" />
     </Key>
     <Property Name="Colaborador" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="TarefasEncerradas" Type="bigint" Nullable="false" />
     <Property Name="TarefasAbertas" Type="bigint" Nullable="false" />
-    <Property Name="OSEncerrados" Type="bigint" Nullable="false" />
-    <Property Name="OSAbertos" Type="bigint" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'def.shield01.vw_dados_index_os' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -492,18 +489,6 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
         <PropertyRef Name="StatusId" />
       </Principal>
       <Dependent Role="Equipamentos">
-        <PropertyRef Name="StatusId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="fk_statusmanutencao">
-    <End Role="Status" Type="Self.Status" Multiplicity="1" />
-    <End Role="Manutencao" Type="Self.Manutencao" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Status">
-        <PropertyRef Name="StatusId" />
-      </Principal>
-      <Dependent Role="Manutencao">
         <PropertyRef Name="StatusId" />
       </Dependent>
     </ReferentialConstraint>
@@ -783,14 +768,12 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
     <EntitySet Name="TipoEquipamento" EntityType="Self.TipoEquipamento" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="TipoSolicitacao" EntityType="Self.TipoSolicitacao" Schema="shield01" store:Type="Tables" />
     <EntitySet Name="Transferencia" EntityType="Self.Transferencia" Schema="shield01" store:Type="Tables" />
-    <EntitySet Name="vw_colaborador_OS_tarefas" EntityType="Self.vw_colaborador_OS_tarefas" store:Type="Views" store:Schema="shield01">
+    <EntitySet Name="vw_colaborador_tarefas" EntityType="Self.vw_colaborador_tarefas" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT
-`vw_colaborador_OS_tarefas`.`Colaborador`, 
-`vw_colaborador_OS_tarefas`.`TarefasEncerradas`, 
-`vw_colaborador_OS_tarefas`.`TarefasAbertas`, 
-`vw_colaborador_OS_tarefas`.`OSEncerrados`, 
-`vw_colaborador_OS_tarefas`.`OSAbertos`
-FROM `vw_colaborador_OS_tarefas` AS `vw_colaborador_OS_tarefas`</DefiningQuery>
+`vw_colaborador_tarefas`.`Colaborador`, 
+`vw_colaborador_tarefas`.`TarefasEncerradas`, 
+`vw_colaborador_tarefas`.`TarefasAbertas`
+FROM `vw_colaborador_tarefas` AS `vw_colaborador_tarefas`</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vw_dados_index_os" EntityType="Self.vw_dados_index_os" store:Type="Views" store:Schema="shield01">
       <DefiningQuery>SELECT
@@ -900,10 +883,6 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
     <AssociationSet Name="fk_statusequipamento" Association="Self.fk_statusequipamento">
       <End Role="Status" EntitySet="Status" />
       <End Role="Equipamentos" EntitySet="Equipamentos" />
-    </AssociationSet>
-    <AssociationSet Name="fk_statusmanutencao" Association="Self.fk_statusmanutencao">
-      <End Role="Status" EntitySet="Status" />
-      <End Role="Manutencao" EntitySet="Manutencao" />
     </AssociationSet>
     <AssociationSet Name="fk_tipoequipamento" Association="Self.fk_tipoequipamento">
       <End Role="TipoEquipamento" EntitySet="TipoEquipamento" />

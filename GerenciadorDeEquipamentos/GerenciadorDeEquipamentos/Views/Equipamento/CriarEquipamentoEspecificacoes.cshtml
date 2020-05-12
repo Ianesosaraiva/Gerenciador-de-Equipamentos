@@ -1,0 +1,97 @@
+﻿@model GerenciadorDeEquipamentos.Models.Especificacoes
+
+@{
+    ViewBag.Title = "Especificações do Equipamento";
+    var especificacoes = ViewBag.especificacoes;
+    var atributos = ViewBag.atributos;
+    List<SelectListItem> pose = new List<SelectListItem>();
+    int index = 1;
+    ViewBag.item = pose;
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Especificações do Equipamento</h4>
+                                <p class="card-category">Preencha os campos corretamente!</p>
+                            </div>
+                            <div class="col-sm">
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;" title="Listar Equipamentos">list</i>
+                                </a>
+                                <a>
+                                    <i class="material-icons" style="padding-top: 12px;">person</i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("ListarEquipamentos", "Equipamento", FormMethod.Post, new { id = "form-especificacoes" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            foreach (var item in atributos)
+                            {
+                                pose.Clear();
+                                <div class="col-sm-6 mt-3">
+                                    <label class="bmd-label-static">@item.Nome</label>
+                                    @foreach (var item2 in especificacoes)
+                                    {
+                                        if (item.AtributoId == item2.AtributoId)
+                                        {
+                                            pose.Add(new SelectListItem { Text = item2.Nome, Value = item2.EspecificacaoId.ToString() });
+                                            ViewBag.item = pose;
+                                        }
+                                    }
+                                    @Html.DropDownList("pose" + index, ViewBag.item as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @*Html.ValidationMessageFor(model => model.TipoEquipamentoId, "", new { @class = "text-danger" })*@
+                                </div>
+                                {
+                                    index++;
+                                }
+                            }
+                            <div class="form-group ml-2 mt-3">
+                                <a href="@Url.Action("CriarEquipamento", "Equipamento")" class="btn btn-primary">Voltar</a>
+                                <input type="button" id="criar" value="Create" class="btn btn-primary" />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $("#criar").click(function () {
+        var index = @index;
+        var especificacaoId = 0;
+        var especificacacoesId = [];
+        var i = 0;
+
+        for (i = 0; i <= index; i++){
+            especificacaoId = $("#pose" + i).val();
+            if (especificacaoId != "") {
+                if (especificacaoId != undefined) {
+                    especificacacoesId.push(especificacaoId);
+                    console.log(especificacaoId);
+                }
+            }
+        }
+        console.log(especificacacoesId);
+        $.post("@Url.Action("CriarEquipamentoEspecificacoes", "Equipamento")", { especificacacoesId: especificacacoesId });
+
+        $("#form-especificacoes").submit();
+    });
+</script>

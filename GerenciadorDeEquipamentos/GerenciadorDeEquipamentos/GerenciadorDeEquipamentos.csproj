@@ -145,8 +145,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LicencaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManutencaoController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
-    <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\ColaboradorController.cs" />
     <Compile Include="Controllers\SoftwareController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TipoEquipamentoController.cs" />
@@ -178,7 +179,7 @@
     </Compile>
     <Compile Include="Models\DadosIndex.cs" />
     <Compile Include="Models\DataLogin.cs" />
-    <Compile Include="Models\DataPessoa.cs" />
+    <Compile Include="Models\DataColaborador.cs" />
     <Compile Include="Models\Departamentos.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -241,7 +242,7 @@
     <Compile Include="Models\Transferencia.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\vw_colaborador_OS_tarefas.cs">
+    <Compile Include="Models\vw_colaborador_tarefas.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_dados_index_os.cs">
@@ -732,32 +733,29 @@
     <Content Include="Scripts\scss\material-dashboard\_tooltip.scss" />
     <Content Include="Scripts\scss\material-dashboard\_type.scss" />
     <Content Include="Scripts\scss\material-dashboard\_variables.scss" />
-    <Content Include="Views\Equipamento\CriarEquipamentos.cshtml" />
-    <Content Include="Views\Equipamento\DeletarEquipamentos.cshtml" />
-    <Content Include="Views\Equipamento\EditarEquipamentos.cshtml" />
+    <Content Include="Views\Equipamento\CriarEquipamento.cshtml" />
+    <Content Include="Views\Equipamento\DeletarEquipamento.cshtml" />
+    <Content Include="Views\Equipamento\EditarEquipamento.cshtml" />
     <Content Include="Views\Equipamento\ListarEquipamentos.cshtml" />
-    <Content Include="Views\Pessoa\ListarPessoas.cshtml" />
-    <Content Include="Views\Pessoa\CadastrarPessoas.cshtml" />
-    <Content Include="Views\Pessoa\EditarPessoas.cshtml" />
+    <Content Include="Views\Colaborador\ListarColaboradores.cshtml" />
+    <Content Include="Views\Colaborador\CadastrarColaborador.cshtml" />
+    <Content Include="Views\Colaborador\EditarColaborador.cshtml" />
     <Content Include="Views\Relatorio\RelatorioEquipamentos.cshtml" />
-    <Content Include="Views\TipoEquipamento\CriarTipoEquipamentos.cshtml" />
+    <Content Include="Views\TipoEquipamento\CriarTipoEquipamento.cshtml" />
     <Content Include="Views\TipoEquipamento\ListarTipoEquipamentos.cshtml" />
-    <Content Include="Views\TipoEquipamento\EditarTipoEquipamentos.cshtml" />
-    <Content Include="Views\Atributo\CriarAtributos.cshtml" />
-    <Content Include="Views\Atributo\EditarAtributos.cshtml" />
+    <Content Include="Views\TipoEquipamento\EditarTipoEquipamento.cshtml" />
+    <Content Include="Views\Atributo\CriarAtributo.cshtml" />
+    <Content Include="Views\Atributo\EditarAtributo.cshtml" />
     <Content Include="Views\Atributo\ListarAtributos.cshtml" />
-    <Content Include="Views\Departamento\CriarDepartamentos.cshtml" />
-    <Content Include="Views\Departamento\EditarDepartamentos.cshtml" />
+    <Content Include="Views\Departamento\CriarDepartamento.cshtml" />
+    <Content Include="Views\Departamento\EditarDepartamento.cshtml" />
     <Content Include="Views\Departamento\ListarDepartamentos.cshtml" />
-    <Content Include="Views\Perifericos\CriarPerifericos.cshtml" />
-    <Content Include="Views\Perifericos\EditarPerifericos.cshtml" />
-    <Content Include="Views\Perifericos\ListarPerifericos.cshtml" />
-    <Content Include="Views\Software\CadastrarSoftwares.cshtml" />
-    <Content Include="Views\Software\EditarSoftwares.cshtml" />
+    <Content Include="Views\Software\CriarSoftware.cshtml" />
+    <Content Include="Views\Software\EditarSoftware.cshtml" />
     <Content Include="Views\Software\ListarSoftwares.cshtml" />
-    <Content Include="Views\Atributo\DetalhesAtributos.cshtml" />
-    <Content Include="Views\Especificacao\CriarEspecificacoes.cshtml" />
-    <Content Include="Views\Especificacao\EditarEspecificacoes.cshtml" />
+    <Content Include="Views\Atributo\DetalhesAtributo.cshtml" />
+    <Content Include="Views\Especificacao\CriarEspecificacao.cshtml" />
+    <Content Include="Views\Especificacao\EditarEspecificacao.cshtml" />
     <Content Include="Views\Especificacao\ListarEspecificacoes.cshtml" />
     <Content Include="Views\Tarefa\CriarTarefa.cshtml" />
     <Content Include="Views\Tarefa\EditarTarefa.cshtml" />
@@ -777,10 +775,25 @@
     <Content Include="Views\Equipe\EditarEquipe.cshtml" />
     <Content Include="Views\OrdemServico\View.cshtml" />
     <Content Include="Views\Licenca\ListarLicencas.cshtml" />
-    <Content Include="Views\Licenca\CadastrarLicenca.cshtml" />
+    <Content Include="Views\Licenca\CriarLicenca.cshtml" />
     <Content Include="Views\Licenca\EditarLicenca.cshtml" />
     <Content Include="Views\Software\GerenciarSoftwares.cshtml" />
-    <Content Include="Views\OrdemServico\GetLineChartData.cshtml" />
+    <Content Include="Views\Equipamento\CriarEquipamentoEspecificacoes.cshtml" />
+    <Content Include="Views\Equipamento\DetalhesEquipamento.cshtml" />
+    <Content Include="Views\Equipamento\GerenciarEquipamentos.cshtml" />
+    <Content Include="Views\Equipe\DetalhesEquipe.cshtml" />
+    <Content Include="Views\Especificacao\DetalhesEspecificacao.cshtml" />
+    <Content Include="Views\Colaborador\DetalhesColaborador.cshtml" />
+    <Content Include="Views\Software\DetalhesSoftware.cshtml" />
+    <Content Include="Views\Tarefa\DetalhesTarefa.cshtml" />
+    <Content Include="Views\TipoSolicitacao\DetalhesTipoSolicitacao.cshtml" />
+    <Content Include="Views\Departamento\DetalhesDepartamento.cshtml" />
+    <Content Include="Views\Equipamento\ListarEquipamentoEspecificacao.cshtml" />
+    <Content Include="Views\Equipamento\EditarEquipamentoEspecificacoes.cshtml" />
+    <Content Include="Views\Manutencao\ListarManutencoesEquipamento.cshtml" />
+    <Content Include="Views\Manutencao\AdicionarEquipamentoManutencao.cshtml" />
+    <Content Include="Views\Manutencao\EditarManutencaoEquipamento.cshtml" />
+    <Content Include="Views\Colaborador\TrocarSenhaColaborador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

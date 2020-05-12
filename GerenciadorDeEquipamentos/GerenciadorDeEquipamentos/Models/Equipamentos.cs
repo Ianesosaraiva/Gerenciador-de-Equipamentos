@@ -18,9 +18,9 @@ namespace GerenciadorDeEquipamentos.Models
         public Equipamentos()
         {
             this.EspecificacaoEquipamento = new HashSet<EspecificacaoEquipamento>();
-            this.Manutencao = new HashSet<Manutencao>();
             this.SoftwareEquipemento = new HashSet<SoftwareEquipemento>();
             this.Transferencia = new HashSet<Transferencia>();
+            this.Manutencao = new HashSet<Manutencao>();
         }
     
         public int EquipamentoId { get; set; }
@@ -38,13 +38,13 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EspecificacaoEquipamento> EspecificacaoEquipamento { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manutencao> Manutencao { get; set; }
         public virtual Status Status { get; set; }
         public virtual TipoEquipamento TipoEquipamento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SoftwareEquipemento> SoftwareEquipemento { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transferencia> Transferencia { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Manutencao> Manutencao { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿@model GerenciadorDeEquipamentos.Models.Equipe
 
 @{
-    ViewBag.Title = "DetalhesEquipe";
+    ViewBag.Title = "Detalhes Equipe";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,29 +17,30 @@
                         <div class="table-responsive">
                             <dl class="table table-hover">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Nome)
+                                    @Html.DisplayName("Nome da Equipe")
                                 </dt>
 
                                 <dd>
                                     @Html.DisplayFor(model => model.Nome)
                                 </dd>
-
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Descricao)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Descricao)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Pessoas.NomeCompleto)
+                                    @Html.DisplayName("Responsável")
                                 </dt>
 
                                 <dd>
                                     @Html.DisplayFor(model => model.Pessoas.NomeCompleto)
                                 </dd>
+                                <dt>
+                                    @Html.DisplayName("Descrição")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
                             </dl>
+                        </div>
+                        <div class="form-group">
+                            <a href="@Url.Action("ListarEquipes", "Equipe")" class="btn btn-primary">Voltar</a>
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.EspecificacaoEquipamento>
+
+@{
+    ViewBag.Title = "Listar Equipamento Especificações";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary ">
+                        <h4 class="card-title">Lista de Especificações do Equipamento</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatables" class="table table-hover">
+                                <thead class="">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Atributo")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Especificação")
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Especificacoes.Atributos.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Especificacoes.Nome)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,77 @@
+﻿@model GerenciadorDeEquipamentos.Models.Manutencao
+
+@{
+    ViewBag.Title = "Editar a Manutenção do Equipamento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Editar a Manutenção do Equipamento</h4>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Como Entrou</label>
+                                    @Html.EditorFor(model => model.ComoEntrou, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ComoEntrou, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Como Saiu</label>
+                                    @Html.EditorFor(model => model.ComoSaiu, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ComoSaiu, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data Entrada</label>
+                                    @*<input type="date" value="@Model.DataEntrada" name="DataEntrada" class="form-control" />*@
+                                    @Html.EditorFor(model => model.DataEntrada, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DataSaida, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Data Saída</label>
+                                    @*<input type="date" value="@Model.DataSaida" name="DataSaida" class="form-control" />*@
+                                    @Html.EditorFor(model => model.DataSaida, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DataSaida, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Status</label>
+                                    @Html.DropDownList("Equipamentos.StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @*@Html.ValidationMessageFor(model => model.Equipamentos.StatusId, "", new { @class = "text-danger" })*@
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">Observações</label>
+                                    @Html.EditorFor(model => model.Observacao, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Editar" class="btn btn-primary" />
+                                    <a href="@Url.Action("ListarManutencaoEquipamento", "Manutencao")" class="btn btn-primary">Voltar</a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@model GerenciadorDeEquipamentos.Models.Softwares
+
+@{
+    ViewBag.Title = "Detalhes Softwares";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> Detalhes Softwares </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <dl class="table table-hover">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Data Aquisição")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.DataAquisicao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Cadastrou")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Pessoas.NomeCompleto)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Status")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Status.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Descriçao")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Observação")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Observacao)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="form-group">
+                            <a href="@Url.Action("ListarSoftwares", "Software")" class="btn btn-primary">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

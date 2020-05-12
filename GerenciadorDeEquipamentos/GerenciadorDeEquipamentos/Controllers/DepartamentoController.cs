@@ -20,13 +20,13 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CriarDepartamentos()
+        public ActionResult CriarDepartamento()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarDepartamentos(Departamentos departamento)
+        public ActionResult CriarDepartamento(Departamentos departamento)
         {
             bd.Departamentos.Add(departamento);
             bd.SaveChanges();
@@ -37,7 +37,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarDepartamentos(int DepartamentoId)
+        public ActionResult EditarDepartamento(int DepartamentoId)
         {
             var departamento = bd.Departamentos.FirstOrDefault(x => x.DepartamentoId == DepartamentoId);
 
@@ -45,7 +45,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarDepartamentos(Departamentos departamento)
+        public ActionResult EditarDepartamento(Departamentos departamento)
         {
             var departamentoBD = bd.Departamentos.FirstOrDefault(x => x.DepartamentoId == departamento.DepartamentoId);
 
@@ -59,6 +59,12 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         //===============================================================================================
+        [HttpGet]
+        public ActionResult DetalhesDepartamento(int DepartamentoId)
+        {
+            var detalhes = bd.Departamentos.FirstOrDefault(x => x.DepartamentoId == DepartamentoId);
 
+            return View(detalhes);
+        }
     }
 }

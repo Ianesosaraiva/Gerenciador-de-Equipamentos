@@ -49,12 +49,11 @@ namespace GerenciadorDeEquipamentos.Controllers
             ViewBag.NaoAtribuidos = bd.OrdemServico.Where(x => x.EquipeId == null).Count();
 
             ViewBag.osEquipe = bd.vw_equipe_ordemServico.ToList();
-            ViewBag.osColaborador = bd.vw_colaborador_OS_tarefas.ToList();
+            ViewBag.osColaborador = bd.vw_colaborador_tarefas.ToList();
 
             return View();
         }
 
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public ActionResult GetLineChartData()
         {
             List<vw_tarefas_encerradas_por_mes> data = new List<vw_tarefas_encerradas_por_mes>();
@@ -81,7 +80,6 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         }
 
-        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public ActionResult GetPieChartData()
         {
             List<vw_os_status_dados> data = new List<vw_os_status_dados>();
@@ -134,7 +132,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
             ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
             ViewBag.tipo = Session["tipo"];
@@ -161,7 +159,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
             ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
             return View();
@@ -198,7 +196,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
             ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
             var ordemServico = bd.OrdemServico.FirstOrDefault(x => x.OrdemServicoId == OrdemServicoId);
 

@@ -3,7 +3,7 @@
     ViewBag.Title = "Gerenciar OS";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    IEnumerable<vw_colaborador_OS_tarefas> colaboradores = ViewBag.osColaborador;
+    IEnumerable<vw_colaborador_tarefas> colaboradores = ViewBag.osColaborador;
     IEnumerable<vw_equipe_ordemServico> equipes = ViewBag.osEquipe;
 
     var dadosIndex = ViewBag.dadosIndex;
@@ -194,7 +194,7 @@
     <div class="col-md-3">
         <div class="card">
             <div class="card-body text-center">
-                <a href="@Url.Action("ListarPessoas","Pessoa")" style="color:azure">
+                <a href="@Url.Action("ListarColaboradores","Colaborador")" style="color:azure">
                     <div class="card-header card-header-primary card-header-icon">
 
                         <div class="card-icon">
@@ -279,18 +279,12 @@
                                 <th>
                                     @Html.DisplayName("Tarefas Abertas")
                                 </th>
-                                <th>
-                                    @Html.DisplayName("OS Finalizados")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Abertos")
-                                </th>
                                 @*<th>
                                         @Html.DisplayName("Tempo de Atendimento")
                                     </th>*@
                             </tr>
 
-                            @foreach (var item in colaboradores)
+                            @foreach (var item in colaboradores.OrderByDescending(x=>x.TarefasEncerradas))
                             {
                                 <tr>
                                     <td>
@@ -301,12 +295,6 @@
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.TarefasAbertas)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OSEncerrados)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OSAbertos)
                                     </td>
                                     @*<td>
                                             @Html.DisplayFor(modelItem => item.Tempo)
@@ -332,7 +320,7 @@
                                     @Html.DisplayName("OS Abertos")
                                 </th>
                             </tr>
-                            @foreach (var item in equipes)
+                            @foreach (var item in equipes.OrderByDescending(x => x.OSEncerrados))
                             {
                                 <tr>
                                     <td>
@@ -390,21 +378,9 @@
 
         var data = google.visualization.arrayToDataTable(chartDataPie);
         
-        @*var data = google.visualization.arrayToDataTable([
-            ['Tarefas', 'Total por Status'],
-            ['Encerradas', @graficoTarefas.Encerrado],
-            ['Em Atendimento', @graficoTarefas.EmAtendimento],
-            ['Aguardando Atendimento', @graficoTarefas.AguardandoAtendimento],
-            ['Aguardando Atendente', @graficoTarefas.AguardandoAtendente],
-            ['Canceladas', @graficoTarefas.Cancelado],
-            ['Pausada', @graficoTarefas.Pausado]
-        ]);*@
-
         var options = {
             chartArea: {
                 height: 500}
-            //width: 480,
-            //height: 300
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chartP'));
@@ -413,8 +389,6 @@
 </script>
 
 <script>
-
-    google.charts.load('current', { 'packages': ['line'] });
     google.charts.setOnLoadCallback(drawChartLine);
 
    // google.load("visualization", "1", { packages: ["corechart"] });

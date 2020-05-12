@@ -60,6 +60,12 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         //===============================================================================================
+        [HttpGet]
+        public ActionResult DetalhesTipoSolicitacao(int TipoSolicitacaoId)
+        {
+            var detalhes = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == TipoSolicitacaoId);
 
+            return View(detalhes);
+        }
     }
 }

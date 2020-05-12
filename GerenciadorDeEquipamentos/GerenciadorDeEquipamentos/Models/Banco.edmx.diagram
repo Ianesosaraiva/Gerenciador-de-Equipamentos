@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="shield01Model.Especificacoes" Width="1.5" PointX="13.25" PointY="16.375" />
         <EntityTypeShape EntityType="shield01Model.Licencas" Width="1.5" PointX="13.5" PointY="21.375" />
         <EntityTypeShape EntityType="shield01Model.Log" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="5.25" PointY="21.25" />
         <EntityTypeShape EntityType="shield01Model.OrdemServico" Width="1.5" PointX="3" PointY="9.5" />
         <EntityTypeShape EntityType="shield01Model.Pessoas" Width="1.5" PointX="6" PointY="14.875" />
         <EntityTypeShape EntityType="shield01Model.Prioridade" Width="1.5" PointX="0.75" PointY="9.5" />
@@ -27,7 +26,6 @@
         <EntityTypeShape EntityType="shield01Model.TipoEquipamento" Width="1.5" PointX="0.75" PointY="20.125" />
         <EntityTypeShape EntityType="shield01Model.TipoSolicitacao" Width="1.5" PointX="8.25" PointY="24.75" />
         <EntityTypeShape EntityType="shield01Model.Transferencia" Width="1.5" PointX="8.25" PointY="14" />
-        <EntityTypeShape EntityType="shield01Model.vw_colaborador_OS_tarefas" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="shield01Model.vw_equipe_ordemServico" Width="1.5" PointX="4.75" PointY="3.75" />
         <EntityTypeShape EntityType="shield01Model.vw_tarefas_status_dados" Width="1.5" PointX="6.75" PointY="4.75" />
         <AssociationConnector Association="shield01Model.fk_acessopessoa" />
@@ -38,7 +36,6 @@
         <AssociationConnector Association="shield01Model.Transferencia_ibfk_4" />
         <AssociationConnector Association="shield01Model.fk_cadastrouequipamento" />
         <AssociationConnector Association="shield01Model.fk_equipamento" />
-        <AssociationConnector Association="shield01Model.fk_equipamentomanutencao" />
         <AssociationConnector Association="shield01Model.fk_statusequipamento" />
         <AssociationConnector Association="shield01Model.fk_tipoequipamento" />
         <AssociationConnector Association="shield01Model.SoftwareEquipemento_ibfk_3" />
@@ -48,7 +45,6 @@
         <AssociationConnector Association="shield01Model.fk_especificacao" />
         <AssociationConnector Association="shield01Model.fk_cadastrouespecificacao" />
         <AssociationConnector Association="shield01Model.Licencas_ibfk_1" />
-        <AssociationConnector Association="shield01Model.fk_statusmanutencao" />
         <AssociationConnector Association="shield01Model.OrdemServico_ibfk_2" />
         <AssociationConnector Association="shield01Model.OrdemServico_ibfk_3" />
         <AssociationConnector Association="shield01Model.OrdemServico_ibfk_4" />
@@ -71,6 +67,9 @@
         <EntityTypeShape EntityType="shield01Model.vw_tarefas_encerradas_por_mes" Width="1.5" PointX="7.375" PointY="10.75" />
         <EntityTypeShape EntityType="shield01Model.vw_os_status_dados" Width="1.5" PointX="11.375" PointY="0.75" />
         <EntityTypeShape EntityType="shield01Model.vw_dados_index_os" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="shield01Model.vw_colaborador_tarefas" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="5.25" PointY="21.375" />
+        <AssociationConnector Association="shield01Model.fk_equipamentomanutencao" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -62,6 +62,12 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         //===============================================================================================
+        [HttpGet]
+        public ActionResult DetalhesEquipe(int EquipeId)
+        {
+            var detalhes = bd.Equipe.FirstOrDefault(x => x.EquipeId == EquipeId);
 
+            return View(detalhes);
+        }
     }
 }

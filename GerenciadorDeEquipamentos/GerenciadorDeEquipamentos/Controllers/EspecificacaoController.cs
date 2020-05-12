@@ -20,7 +20,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         [Authorize]
-        public ActionResult CriarEspecificacoes()
+        public ActionResult CriarEspecificacao()
         {
             ViewBag.atributos = new SelectList(bd.Atributos.ToList(), "AtributoId", "Nome");
 
@@ -28,7 +28,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult CriarEspecificacoes(Especificacoes especificao)
+        public ActionResult CriarEspecificacao(Especificacoes especificao)
         {
             especificao.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
 
@@ -41,7 +41,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarEspecificacoes(int EspecificacaoId)
+        public ActionResult EditarEspecificacao(int EspecificacaoId)
         {
             var especificao = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == EspecificacaoId);
 
@@ -51,7 +51,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarEspecificacoes(Especificacoes especificao)
+        public ActionResult EditarEspecificacao(Especificacoes especificao)
         {
             var especificacaoBD = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == especificao.EspecificacaoId);
 
@@ -66,5 +66,13 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
+
+        [HttpGet]
+        public ActionResult DetalhesEspecificacao(int EspecificacaoId)
+        {
+            var detalhes = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == EspecificacaoId);
+
+            return View(detalhes);
+        }
     }
 }

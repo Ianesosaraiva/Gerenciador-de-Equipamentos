@@ -22,10 +22,10 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult CriarTarefa()
         {
-            ViewBag.ordemServico = new SelectList(bd.OrdemServico.ToList(), "OrdemServicoId", "Titulo");
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6), "OrdemServicoId", "Titulo");
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x=>x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x=>x.Tipo == 2).ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -36,6 +36,10 @@ namespace GerenciadorDeEquipamentos.Controllers
             tarefa.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
             tarefa.DataAbertura = DateTime.Now;
 
+            if (tarefa.StatusId == 6)
+            {
+                tarefa.DataEncerramento = DateTime.Now;
+            }
             bd.Tarefa.Add(tarefa);
             bd.SaveChanges();
             return RedirectToAction("ListarTarefas");
@@ -47,10 +51,10 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         public ActionResult EditarTarefa(int TarefaId)
         {
-            ViewBag.ordemServico = new SelectList(bd.OrdemServico.ToList(), "OrdemServicoId", "Titulo");
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x=>x.StatusId != 6), "OrdemServicoId", "Titulo");
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
 
             var tarefa = bd.Tarefa.FirstOrDefault(x => x.TarefaId == TarefaId);
 
@@ -85,6 +89,12 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         //===============================================================================================
+        [HttpGet]
+        public ActionResult DetalhesTarefa(int TarefaId)
+        {
+            var detalhes = bd.Tarefa.FirstOrDefault(x => x.TarefaId == TarefaId);
 
+            return View(detalhes);
+        }
     }
 }

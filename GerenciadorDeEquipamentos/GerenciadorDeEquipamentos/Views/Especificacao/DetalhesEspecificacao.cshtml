@@ -1,0 +1,52 @@
+﻿@model GerenciadorDeEquipamentos.Models.Especificacoes
+
+@{
+    ViewBag.Title = "Detalhes Especificações";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title mt-0"> Detalhes </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <dl class="table table-hover">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Nome)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Nome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Atributo")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Atributos.Nome)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayName("Cadastrou")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Pessoas.NomeCompleto)
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="form-group">
+                            <a href="@Url.Action("ListarEspecificacoes", "Especificacao")" class="btn btn-primary">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

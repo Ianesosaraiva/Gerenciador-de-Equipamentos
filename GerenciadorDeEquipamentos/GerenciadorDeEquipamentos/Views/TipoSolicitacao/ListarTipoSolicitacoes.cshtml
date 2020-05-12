@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.TipoSolicitacao>
 
 @{
-    ViewBag.Title = "ListarTipoSolicitação";
+    ViewBag.Title = "Listar Tipos de Solicitação";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -59,9 +59,9 @@
                                                             </p>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                                            <a class="dropdown-item" href="#">Visualizar Mais</a>
+                                                            <a class="dropdown-item" href="@Url.Action("DetalhesTipoSolicitacao", "TipoSolicitacao", new { TipoSolicitacaoId = item.TipoSolicitacaoId})">Visualizar Mais</a>
                                                             <a class="dropdown-item" href="@Url.Action("EditarTipoSolicitacao", "TipoSolicitacao", new { TipoSolicitacaoId = item.TipoSolicitacaoId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirTipoSolicitacao", "TipoSolicitacao")">Excluir</a>
+                                                            <a class="dropdown-item" href="@Url.Action("DeletarTipoSolicitacao", "TipoSolicitacao", new { TipoSolicitacaoId = item.TipoSolicitacaoId})">Excluir</a>
                                                         </div>
                                                     </li>
                                                 </ul>

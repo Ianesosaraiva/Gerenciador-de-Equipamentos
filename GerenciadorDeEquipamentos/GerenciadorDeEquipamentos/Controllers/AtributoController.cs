@@ -21,14 +21,14 @@ namespace GerenciadorDeEquipamentos.Controllers
         //===============================================================================================
 
         [Authorize]
-        public ActionResult CriarAtributos()
+        public ActionResult CriarAtributo()
         {
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
             return View();
         }
 
         [HttpPost]
-        public ActionResult CriarAtributos(Atributos atributo)
+        public ActionResult CriarAtributo(Atributos atributo)
         {
             bd.Atributos.Add(atributo);
             bd.SaveChanges();
@@ -39,7 +39,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult EditarAtributos(int AtributoId)
+        public ActionResult EditarAtributo(int AtributoId)
         {
             var atributo = bd.Atributos.FirstOrDefault(x => x.AtributoId == AtributoId);
 
@@ -49,7 +49,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditarAtributos(Atributos atributo)
+        public ActionResult EditarAtributo(Atributos atributo)
         {
             var atributoBD = bd.Atributos.FirstOrDefault(x => x.AtributoId == atributo.AtributoId);
 
@@ -65,9 +65,12 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        public ActionResult DetalhesAtributos(Atributos atributo)
+        [HttpGet]
+        public ActionResult DetalhesAtributo(int AtributoId)
         {
-            return View(atributo);
+            var detalhes = bd.Atributos.FirstOrDefault(x => x.AtributoId == AtributoId);
+
+            return View(detalhes);
         }
     }
 }

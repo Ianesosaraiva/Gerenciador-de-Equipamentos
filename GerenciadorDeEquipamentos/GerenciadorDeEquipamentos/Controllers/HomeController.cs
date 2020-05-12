@@ -29,5 +29,31 @@ namespace GerenciadorDeEquipamentos.Controllers
             return View(dados);
         }
 
+        public ActionResult GetLineChartData()
+        {
+            List<vw_os_encerrados_por_mes> data = new List<vw_os_encerrados_por_mes>();
+
+
+            data = bd.vw_os_encerrados_por_mes.ToList();
+
+            var chartData = new object[data.Count + 1];
+            chartData[0] = new object[]
+            {
+                "Mês",
+                "Quantidade"
+            };
+
+            int i = 0;
+
+            foreach (var item in data)
+            {
+                i++;
+                chartData[i] = new object[] { item.Mes.ToString(), item.Quantidade };
+            }
+
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+
+        }
+
     }
 }

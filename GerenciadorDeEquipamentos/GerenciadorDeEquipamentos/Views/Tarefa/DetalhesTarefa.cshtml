@@ -1,7 +1,7 @@
 ﻿@model GerenciadorDeEquipamentos.Models.Tarefa
 
 @{
-    ViewBag.Title = "DetalhesTarefa";
+    ViewBag.Title = "Detalhes Tarefa";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,21 +11,13 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary">
-                        <h4 class="card-title mt-0"> Detalhes </h4>
+                        <h4 class="card-title mt-0"> Detalhes Tarefa</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <dl class="table table-hover">
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Descricao)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Descricao)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.DataAbertura)
+                                    @Html.DisplayName("Data Abertura")
                                 </dt>
 
                                 <dd>
@@ -33,7 +25,7 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.DataEncerramento)
+                                    @Html.DisplayName("Data Encerramento")
                                 </dt>
 
                                 <dd>
@@ -41,7 +33,7 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.OrdemServico.Titulo)
+                                    @Html.DisplayName("Ordem de Serviço")
                                 </dt>
 
                                 <dd>
@@ -49,7 +41,7 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Pessoas.NomeCompleto)
+                                    @Html.DisplayName("Responsável")
                                 </dt>
 
                                 <dd>
@@ -57,7 +49,7 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Prioridade.Descricao)
+                                    @Html.DisplayName("Prioridade")
                                 </dt>
 
                                 <dd>
@@ -65,7 +57,7 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.Status.Descricao)
+                                    @Html.DisplayName("Status")
                                 </dt>
 
                                 <dd>
@@ -73,13 +65,23 @@
                                 </dd>
 
                                 <dt>
-                                    @Html.DisplayNameFor(model => model.TipoSolicitacao.Titulo)
+                                    @Html.DisplayName("Tipo de Solicitação")
                                 </dt>
 
                                 <dd>
                                     @Html.DisplayFor(model => model.TipoSolicitacao.Titulo)
                                 </dd>
+                                <dt>
+                                    @Html.DisplayName("Descrição")
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Descricao)
+                                </dd>
                             </dl>
+                        </div>
+                        <div class="form-group">
+                            <a href="@Url.Action("ListarTarefas", "Tarefa")" class="btn btn-primary">Voltar</a>
                         </div>
                     </div>
                 </div>

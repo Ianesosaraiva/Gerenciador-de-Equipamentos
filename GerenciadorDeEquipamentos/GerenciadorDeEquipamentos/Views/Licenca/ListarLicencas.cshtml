@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.Licencas>
 @{
-    ViewBag.Title = "Listar Licencas";
+    ViewBag.Title = "Listar Licenças";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,7 +16,7 @@
                                 <p></p>
                             </div>
                             <div class="col-sm">
-                                <a href="@Url.Action("CadastrarLicenca")">
+                                <a href="@Url.Action("CriarLicenca")">
                                     <i class="material-icons" style="padding-top: 12px;" title="Criar Licenças">add</i>
                                 </a>
                             </div>
@@ -68,7 +68,6 @@
                                                             </p>
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                                                            <a class="dropdown-item" href="#">Visualizar Mais</a>
                                                             <a class="dropdown-item" href="@Url.Action("EditarLicenca", "Licenca", new { SoftwareId = item.SoftwareId})">Editar</a>
                                                             <a class="dropdown-item" href="@Url.Action("DeletarLicenca", "Licenca", new { LicencaId = item.LicencaId})">Excluir</a>
                                                         </div>
