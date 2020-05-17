@@ -17,7 +17,8 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult ListarOrdemServico(int? tipo)
         {
             Session["tipo"] = tipo;
@@ -42,7 +43,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult GerenciarOS()
         {
             ViewBag.dadosIndex = bd.vw_dados_index_os.FirstOrDefault();
@@ -50,6 +51,23 @@ namespace GerenciadorDeEquipamentos.Controllers
 
             ViewBag.osEquipe = bd.vw_equipe_ordemServico.ToList();
             ViewBag.osColaborador = bd.vw_colaborador_tarefas.ToList();
+
+            int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+
+            //if (HttpContext.User.IsInRole("Funcionário")){
+
+            //    var EquipeId = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).EquipeId;
+            //    var colaboradores = bd.Pessoas.Where(x => x.EquipeId == EquipeId).ToList();
+
+            //    List<vw_colaborador_tarefas> dadosColaboradores = new List<vw_colaborador_tarefas>();
+
+            //    foreach(var item in colaboradores)
+            //    {
+            //        dadosColaboradores.Add(bd.vw_colaborador_tarefas.FirstOrDefault(x => x.Colaborador == item.NomeCompleto));
+            //    }
+
+            //    ViewBag.osColaborador = dadosColaboradores;
+            //}
 
             return View();
         }
@@ -104,24 +122,6 @@ namespace GerenciadorDeEquipamentos.Controllers
                 i++;
                 chartData[i] = new object[] { item.Status.ToString(), item.Quantidade };
             }
-
-            //var chartData = new object[data.Count + 1];
-            //chartData[0] = new object[]
-            //{
-            //    "Tarefas",
-            //    "Total por Status"
-            //};
-
-            //int i = 0;
-
-            //foreach (var item in data)
-            //{
-            //    i++;
-            //    chartData[i] = new object[] {"Aguardando Atendente", "Aguardando Atendimento", "Cancelado", 
-            //        "Em Atendimento", "Encerrado", "Pausado", item.AguardandoAtendente, item.AguardandoAtendimento,
-            //         item.Cancelado,  item.EmAtendimento,
-            //         item.Encerrado,  item.Pausado};
-            //}
 
             return Json(chartData, JsonRequestBehavior.AllowGet);
 

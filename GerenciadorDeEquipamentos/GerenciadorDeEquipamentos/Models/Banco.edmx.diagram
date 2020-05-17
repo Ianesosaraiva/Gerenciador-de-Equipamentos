@@ -70,6 +70,7 @@
         <EntityTypeShape EntityType="shield01Model.vw_colaborador_tarefas" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="shield01Model.Manutencao" Width="1.5" PointX="5.25" PointY="21.375" />
         <AssociationConnector Association="shield01Model.fk_equipamentomanutencao" />
+        <AssociationConnector Association="shield01Model.fk_equipepessoa" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

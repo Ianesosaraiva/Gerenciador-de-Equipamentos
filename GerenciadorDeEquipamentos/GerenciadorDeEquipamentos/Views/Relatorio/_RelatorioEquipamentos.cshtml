@@ -1,0 +1,54 @@
+﻿@model List<GerenciadorDeEquipamentos.Models.Equipamentos>
+
+@{
+    Layout = "";
+}
+
+<div class="table-responsive">
+    @if (Model != null)
+    {
+        <table id="datatables" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Tipo de equipamento")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Status")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Departamento")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Data de aquisição")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Data da garantia")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoEquipamento.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status.Descricao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Departamentos.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataAquisicao)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DataGarantia)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

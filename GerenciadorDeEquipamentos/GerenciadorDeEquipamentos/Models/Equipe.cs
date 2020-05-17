@@ -18,6 +18,7 @@ namespace GerenciadorDeEquipamentos.Models
         public Equipe()
         {
             this.OrdemServico = new HashSet<OrdemServico>();
+            this.Pessoas1 = new HashSet<Pessoas>();
         }
     
         public int EquipeId { get; set; }
@@ -28,5 +29,7 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdemServico> OrdemServico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pessoas> Pessoas1 { get; set; }
     }
 }

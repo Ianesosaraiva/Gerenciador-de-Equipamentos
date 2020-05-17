@@ -11,8 +11,7 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Pessoas
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,38 +28,18 @@ namespace GerenciadorDeEquipamentos.Models
         }
     
         public int PessoaId { get; set; }
-        [Required(ErrorMessage = "O compo Nome é obrigatório")]
         public string NomeCompleto { get; set; }
-
-        [Required]
         public string Senha { get; set; }
-
-        [Required]
-        [StringLength(11, ErrorMessage = "Tamanho maximo de 11 caracteres")]
         public string CPF { get; set; }
-
         public string RG { get; set; }
-
         public string Contato { get; set; }
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.Date)]
         public System.DateTime DataCadastro { get; set; }
-
-
-        [Required]
         public string Email { get; set; }
-
-
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
-        [DataType(DataType.Date)]
-        public System.DateTime DataNascimento { get; set; }
-
         public Nullable<System.DateTime> UltimoAcesso { get; set; }
-
         public int AcessoId { get; set; }
         public int StatusId { get; set; }
-
+        public System.DateTime DataNascimento { get; set; }
+        public int EquipeId { get; set; }
     
         public virtual Acessos Acessos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -80,10 +59,6 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual ICollection<TipoSolicitacao> TipoSolicitacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transferencia> Transferencia { get; set; }
-
-        public static implicit operator Pessoas(DataColaborador v)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual Equipe Equipe1 { get; set; }
     }
 }

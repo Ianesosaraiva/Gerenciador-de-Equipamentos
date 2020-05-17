@@ -12,14 +12,14 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <div class="row">
-                            <div class="col-sm-10">
+                            <div class="col-sm-9">
                                 <h4 class="card-title">Listar Ordens de Serviço</h4>
                                 <p></p>
                             </div>
                             <div class="col-sm">
-                                <a href="@Url.Action("CriarOrdemServico")">
-                                    <span>Criar Ordem Serviço</span>
-                                    <i class="material-icons" style="padding-top: 12px;" title="Criar Ordem Serviço">add</i>
+                                <a class="btn" style="background-color: white" href="@Url.Action("CriarOrdemServico")">
+                                    <span style="color: #042956">Criar Ordem Serviço</span>
+                                    <i class="material-icons" style="color: #042956" title="Criar Ordem Serviço">add</i>
                                 </a>
                             </div>
                         </div>
@@ -84,7 +84,10 @@
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                                             <a class="dropdown-item" href="#">Visualizar Mais</a>
                                                             <a class="dropdown-item" href="@Url.Action("EditarOrdemServico", "OrdemServico", new { OrdemServicoId = item.OrdemServicoId})">Editar</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ExcluirOrdemServico", "OrdemServico", new { OrdemServicoId = item.OrdemServicoId})">Excluir</a>
+                                                            @if (!HttpContext.Current.User.IsInRole("Estagiário"))
+                                                            {
+                                                                <a class="dropdown-item" href="@Url.Action("ExcluirOrdemServico", "OrdemServico", new { OrdemServicoId = item.OrdemServicoId })">Excluir</a>
+                                                            }
                                                         </div>
                                                     </li>
                                                 </ul>

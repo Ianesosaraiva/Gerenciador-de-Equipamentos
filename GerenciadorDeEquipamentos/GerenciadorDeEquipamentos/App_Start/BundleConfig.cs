@@ -11,6 +11,9 @@ namespace GerenciadorDeEquipamentos
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/inputmask").Include(
+                        "~/Scripts/inputmask/jquery.inputmask.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/tilt").Include(
                         "~/Scripts/tilt/tilt.jquery.min.js",
                         "~/Scripts/main.js"

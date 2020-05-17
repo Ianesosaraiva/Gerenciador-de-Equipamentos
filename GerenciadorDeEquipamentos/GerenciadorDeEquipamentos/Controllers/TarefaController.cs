@@ -13,9 +13,19 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarTarefas()
+        public ActionResult ListarTarefas(int? status)
         {
             var tarefas = bd.Tarefa.ToList();
+
+            if (HttpContext.User.IsInRole("Funcionário"))
+            {
+                int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+
+                var EquipeId = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).EquipeId;
+
+                tarefas = bd.Tarefa.Where(x => x.Pessoas.EquipeId == EquipeId).ToList();
+            }
+
             return View(tarefas);
         }
         //===============================================================================================

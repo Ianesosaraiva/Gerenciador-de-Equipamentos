@@ -96,260 +96,266 @@
                 </div>
             </div>
         </div>
-    </div>
 
-
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header card-header-icon card-header-primary">
-                    <div class="card-icon">
-                        <i class="material-icons">timeline</i>
-                    </div>
-                    <h4 class="card-title">
-                        Gráfico Tarefas
-                        @*Equipamentos e OS *@
-                        <small> - Encerradas</small>
-                    </h4>
-                </div>
-                <div class="card-body">
-                    <div id="colouredRoundedLineChart" class="ct-chart">
-                        <div id="roundedLineChart" class="ct-chart">
-                            <div id="lineChart" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
-                                 width="100%" height="360px" style="width: 100%; height: 100%;"></div>
+        @if (HttpContext.Current.User.IsInRole("Administrador"))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-primary">
+                            <div class="card-icon">
+                                <i class="material-icons">timeline</i>
+                            </div>
+                            <h4 class="card-title">
+                                Gráfico Tarefas
+                                @*Equipamentos e OS *@
+                                <small> - Encerradas</small>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="colouredRoundedLineChart" class="ct-chart">
+                                <div id="roundedLineChart" class="ct-chart">
+                                    <div id="lineChart" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
+                                         width="100%" height="360px" style="width: 100%; height: 100%;"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header card-header-icon card-header-primary">
-                    <div class="card-icon">
-                        <i class="material-icons">pie_chart</i>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-primary">
+                            <div class="card-icon">
+                                <i class="material-icons">pie_chart</i>
+                            </div>
+                            <h4 class="card-title">
+                                Gráfico de Ordem de Serviços
+                                @*Equipamentos e OS *@
+                                <small> - Status</small>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="colouredRoundedLineChart" class="ct-chart">
+                                <div id="chartP" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
+                                     width="100%" height="100%" style="width: 100%; height: 100%;"></div>
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="card-title">
-                        Gráfico de Ordem de Serviços
-                        @*Equipamentos e OS *@
-                        <small> - Status</small>
-                    </h4>
                 </div>
-                <div class="card-body">
-                    <div id="colouredRoundedLineChart" class="ct-chart">
-                        <div id="chartP" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
-                             width="100%" height="100%" style="width: 100%; height: 100%;"></div>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarTarefas","Tarefa")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
+
+                                <div class="card-icon">
+                                    <i class="material-icons">filter_list</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title mt-4">Tarefas</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Atividades exercidas
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col-md">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <a href="@Url.Action("ListarColaboradores","Colaborador")" style="color:azure">
+                            <div class="card-header card-header-primary card-header-icon">
 
-
-
-
-<div class="row">
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <a href="@Url.Action("ListarTarefas","Tarefa")" style="color:azure">
-                    <div class="card-header card-header-primary card-header-icon">
-
-                        <div class="card-icon">
-                            <i class="material-icons">filter_list</i>
-                        </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title mt-4">Tarefas</h3>
+                                <div class="card-icon">
+                                    <i class="material-icons">person</i>
+                                </div>
+                                <p class="card-category">Website Visits</p>
+                                <h3 class="card-title mt-4">Colaboradores</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">assignment</i> Gerenciar Colaboradores
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">assignment</i> Atividades exercidas
-                        </div>
-                    </div>
-                </a>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <a href="@Url.Action("ListarEquipes","Equipe")" style="color:azure">
-                    <div class="card-header card-header-primary card-header-icon">
 
-                        <div class="card-icon">
-                            <i class="material-icons">group</i>
-                        </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title mt-4">Equipes</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">assignment</i> Desenvolvimento, Redes...
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <a href="@Url.Action("ListarColaboradores","Colaborador")" style="color:azure">
-                    <div class="card-header card-header-primary card-header-icon">
 
-                        <div class="card-icon">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title mt-4">Colaboradores</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">assignment</i> Gerenciar Colaboradores
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <a href="@Url.Action("ListarTipoSolicitacoes","TipoSolicitacao")" style="color:azure">
-                    <div class="card-header card-header-primary card-header-icon">
+            @if (HttpContext.Current.User.IsInRole("Administrador"))
+            {
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <a href="@Url.Action("ListarEquipes", "Equipe")" style="color:azure">
+                                <div class="card-header card-header-primary card-header-icon">
 
-                        <div class="card-icon">
-                            <i class="material-icons">list_alt</i>
-                        </div>
-                        <p class="card-category">Website Visits</p>
-                        <h3 class="card-title mt-4">Solicitações</h3>
-                    </div>
-                    <div class="card-footer">
-                        <div class="stats">
-                            <i class="material-icons">assignment</i> Tipo de Solicitações
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header card-header-primary">
-                <div class="row">
-                    <div class="col-sm-10">
-                        <h4 class="card-title">Desempenho</h4>
-                        <p></p>
-                    </div>
-                    @*<div class="col-sm">
-                            <a href="@Url.Action("CriarOrdemServico")">
-                                <span>Criar Ordem Serviço</span>
-                                <i class="material-icons" style="padding-top: 12px;" title="Criar Ordem Serviço">add</i>
+                                    <div class="card-icon">
+                                        <i class="material-icons">group</i>
+                                    </div>
+                                    <p class="card-category">Website Visits</p>
+                                    <h3 class="card-title mt-4">Equipes</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">assignment</i> Desenvolvimento, Redes...
+                                    </div>
+                                </div>
                             </a>
-                        </div>*@
-                </div>
-            </div>
-
-
-            <div class="card-body">
-                <ul class="nav nav-pills nav-pills-warning" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
-                            Colaborador
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
-                            Equipe
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content tab-space">
-                    <div class="table-responsive tab-pane active" id="link1">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>
-                                    @Html.DisplayName("Colaborador")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Finalizadas")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Tarefas Abertas")
-                                </th>
-                                @*<th>
-                                        @Html.DisplayName("Tempo de Atendimento")
-                                    </th>*@
-                            </tr>
-
-                            @foreach (var item in colaboradores.OrderByDescending(x=>x.TarefasEncerradas))
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Colaborador)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TarefasEncerradas)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.TarefasAbertas)
-                                    </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.Tempo)
-                                        </td>*@
-                                </tr>
-                            }
-
-                        </table>
+                        </div>
                     </div>
-                    <div class="table-responsive tab-pane" id="link2">
-                        <table class="table table-hover">
-                            <tr>
-                                <th>
-                                    @Html.DisplayName("Equipe")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("Responsável")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Encerrados")
-                                </th>
-                                <th>
-                                    @Html.DisplayName("OS Abertos")
-                                </th>
-                            </tr>
-                            @foreach (var item in equipes.OrderByDescending(x => x.OSEncerrados))
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Equipe)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Responsavel)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OSEncerrados)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.OSAbertos)
-                                    </td>
+                </div>
+                <div class="col-md">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <a href="@Url.Action("ListarTipoSolicitacoes", "TipoSolicitacao")" style="color:azure">
+                                <div class="card-header card-header-primary card-header-icon">
 
-                                </tr>
-                            }
-                        </table>
+                                    <div class="card-icon">
+                                        <i class="material-icons">list_alt</i>
+                                    </div>
+                                    <p class="card-category">Website Visits</p>
+                                    <h3 class="card-title mt-4">Solicitações</h3>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="stats">
+                                        <i class="material-icons">assignment</i> Tipo de Solicitações
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Desempenho</h4>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <ul class="nav nav-pills nav-pills-warning" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist">
+                                    Colaborador
+                                </a>
+                            </li>
+                            @*@if (HttpContext.Current.User.IsInRole("Administrador"))
+                                {*@
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#link2" role="tablist">
+                                    Equipe
+                                </a>
+                            </li>
+                            @* } *@
+                        </ul>
+                        <div class="tab-content tab-space">
+                            <div class="table-responsive tab-pane active" id="link1">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Colaborador")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Tarefas Finalizadas")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Tarefas Abertas")
+                                        </th>
+                                        @*<th>
+                                                @Html.DisplayName("Tempo de Atendimento")
+                                            </th>*@
+                                    </tr>
+
+                                    @foreach (var item in colaboradores.OrderByDescending(x => x.TarefasEncerradas))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Colaborador)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TarefasEncerradas)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TarefasAbertas)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.Tempo)
+                                                </td>*@
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+
+
+                            @*@if (HttpContext.Current.User.IsInRole("Administrador"))
+                                {*@
+                            <div class="table-responsive tab-pane" id="link2">
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Equipe")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Responsável")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("OS Encerrados")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("OS Abertos")
+                                        </th>
+                                    </tr>
+                                    @foreach (var item in equipes.OrderByDescending(x => x.OSEncerrados))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Equipe)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Responsavel)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.OSEncerrados)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.OSAbertos)
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </table>
+
+                            </div>
+                            @*  }*@
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <script>
     google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChartPie);
+    google.charts.setOnLoadCallback(drawChartPie);
 
     var chartDataPie;
 
@@ -377,10 +383,11 @@
     function drawChartPie() {
 
         var data = google.visualization.arrayToDataTable(chartDataPie);
-        
+
         var options = {
             chartArea: {
-                height: 500}
+                height: 500
+            }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('chartP'));
@@ -391,7 +398,7 @@
 <script>
     google.charts.setOnLoadCallback(drawChartLine);
 
-   // google.load("visualization", "1", { packages: ["corechart"] });
+    // google.load("visualization", "1", { packages: ["corechart"] });
 
     var chartDataLine;
 

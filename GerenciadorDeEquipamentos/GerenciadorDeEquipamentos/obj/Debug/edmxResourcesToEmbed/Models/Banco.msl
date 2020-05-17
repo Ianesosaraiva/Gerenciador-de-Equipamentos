@@ -130,6 +130,7 @@
     <EntitySetMapping Name="Pessoas">
       <EntityTypeMapping TypeName="shield01Model.Pessoas">
         <MappingFragment StoreEntitySet="Pessoas">
+          <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
           <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
           <ScalarProperty Name="StatusId" ColumnName="StatusId" />
           <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />

@@ -12,14 +12,15 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult ListarDepartamentos()
         {
             var departamento = bd.Departamentos.ToList();
             return View(departamento);
         }
         //===============================================================================================
-        [Authorize]
+
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult CriarDepartamento()
         {
             return View();
@@ -35,7 +36,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         [HttpGet]
         public ActionResult EditarDepartamento(int DepartamentoId)
         {
@@ -60,6 +61,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
         [HttpGet]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult DetalhesDepartamento(int DepartamentoId)
         {
             var detalhes = bd.Departamentos.FirstOrDefault(x => x.DepartamentoId == DepartamentoId);

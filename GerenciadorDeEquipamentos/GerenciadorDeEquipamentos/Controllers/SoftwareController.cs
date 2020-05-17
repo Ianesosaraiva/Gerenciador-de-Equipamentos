@@ -72,11 +72,33 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
 
 
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult GerenciarSoftwares()
         {
             return View();
         }
 
+
+        [Authorize(Roles = ("Administrador, Funcionário"))]
+        [HttpPost]
+        public ActionResult DeletarSoftware(int SoftwareId)
+        {
+            try
+            {
+                Softwares software = bd.Softwares.FirstOrDefault(x => x.SoftwareId == SoftwareId);
+
+                software.StatusId = 2;
+                bd.Entry(software).State = EntityState.Modified;
+
+                bd.SaveChanges();
+
+                return RedirectToAction("ListarSoftwares");
+            }
+            catch
+            {
+                return RedirectToAction("ListarSoftwares", new { status = 1 });
+            }
+        }
 
     }
 }

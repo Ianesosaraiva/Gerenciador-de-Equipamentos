@@ -5,16 +5,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<p>
-        @Html.ActionLink("Cadastrar Equipamento", "CriarEquipamentos")
-    </p>*@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-primary ">
-                        <h4 class="card-title">Lista de Equipamentos</h4>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <h4 class="card-title">Lista de Equipamentos</h4>
+                            </div>
+                            <div class="col-sm">
+                                <a class="btn" style="background-color: white" href="@Url.Action("CriarEquipamento")">
+                                    <span style="color: #042956">Criar Equipamento</span>
+                                    <i class="material-icons" style="color: #042956" title="Criar Equipamento">add</i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -84,7 +91,10 @@
                                                             <a class="dropdown-item" href="@Url.Action("ListarEquipamentoEspecificacao", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Especificações</a>
                                                             <a class="dropdown-item" href="@Url.Action("EditarEquipamento", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Editar Equipamento</a>
                                                             <a class="dropdown-item" href="@Url.Action("ListarManutencoesEquipamento", "Manutencao", new { EquipamentoId = item.EquipamentoId})">Manutenção</a>
-                                                            <a class="dropdown-item" href="@Url.Action("DeletarEquipamento", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Excluir</a>
+                                                            @if (!HttpContext.Current.User.IsInRole("Estagiário"))
+                                                            {
+                                                                <a class="dropdown-item" href="@Url.Action("DeletarEquipamento", "Equipamento", new { EquipamentoId = item.EquipamentoId })">Excluir</a>
+                                                            }
                                                         </div>
                                                     </li>
                                                 </ul>

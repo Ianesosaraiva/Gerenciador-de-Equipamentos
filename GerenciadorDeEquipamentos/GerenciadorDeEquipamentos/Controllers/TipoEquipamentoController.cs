@@ -12,14 +12,15 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult ListarTipoEquipamentos()
         {
             var tipoEquipamentos = bd.TipoEquipamento.ToList();
             return View(tipoEquipamentos);
         }
         //===============================================================================================
-        [Authorize]
+
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult CriarTipoEquipamento()
         {
             return View();
@@ -35,7 +36,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         [HttpGet]
         public ActionResult EditarTipoEquipamento(int TipoEquipamentoId)
         {

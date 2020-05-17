@@ -1,5 +1,5 @@
 ﻿@using GerenciadorDeEquipamentos.Models
-
+@using System.Globalization;
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +22,20 @@
     @* Aqui vai todo o meu layout que desejo padronizar em toda a aplicação.*@
     @{
         shield01Entities bd = new shield01Entities();
+        var acesso = true;
 
+        if (HttpContext.Current.User.IsInRole("Estagiário"))
+        {
+            acesso = false;
+        }
         var sidbar = bd.Sidebar.ToList();
+
+
+        if (acesso == false)
+        {
+            sidbar = bd.Sidebar.Where(x => x.Id == 1).ToList();
+        }
+
     }
 
     <div class="wrapper">
@@ -84,6 +96,12 @@
             </div>
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
+                    <div class="container mt-2" style="color: #555555; font-weight:300">
+                        @{
+                            DateTime data = DateTime.Now;
+                        }
+                        @data.ToString("dddd", new CultureInfo("pt-BR")).ToUpperInvariant(), @data.Day de @data.ToString("MMMM")
+                    </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="navbar-toggler-icon icon-bar"></span>
@@ -203,6 +221,10 @@
 
     <script>
         $(document).ready(function () {
+
+            $("#mask-cpf").inputmask("mask", { "mask": "999.999.999-99" });
+            $("#mask-contato").inputmask("mask", { "mask": "(99) 9 9999-9999" });
+
             var item = $('a[href*="' + window.location.pathname + '"]');
             item.parent().addClass("active");
             item.parent().parent().parent().addClass("active menu-open");
@@ -478,6 +500,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/tilt")
+    @Scripts.Render("~/bundles/inputmask")
     @RenderSection("scripts", required: false)
 
 </body>

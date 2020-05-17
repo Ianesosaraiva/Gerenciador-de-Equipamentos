@@ -12,14 +12,15 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ActionResult ListarTipoSolicitacoes()
         {
             var tipoSolicitacoes = bd.TipoSolicitacao.ToList();
             return View(tipoSolicitacoes);
         }
         //===============================================================================================
-        [Authorize]
+
+        [Authorize(Roles = "Administrador")]
         public ActionResult CriarTipoSolicitacao()
         {
             return View();
@@ -36,7 +37,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public ActionResult EditarTipoSolicitacao(int TipoSolicitacaoId)
         {
@@ -61,6 +62,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public ActionResult DetalhesTipoSolicitacao(int TipoSolicitacaoId)
         {
             var detalhes = bd.TipoSolicitacao.FirstOrDefault(x => x.TipoSolicitacaoId == TipoSolicitacaoId);

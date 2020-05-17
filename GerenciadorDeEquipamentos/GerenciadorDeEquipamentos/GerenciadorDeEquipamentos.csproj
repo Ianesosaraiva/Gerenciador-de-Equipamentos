@@ -148,11 +148,13 @@
     <Compile Include="Controllers\ManutencaoController.cs" />
     <Compile Include="Controllers\OrdemServicoController.cs" />
     <Compile Include="Controllers\ColaboradorController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="Controllers\SoftwareController.cs" />
     <Compile Include="Controllers\TarefaController.cs" />
     <Compile Include="Controllers\TipoEquipamentoController.cs" />
     <Compile Include="Controllers\TipoSolicitacaoController.cs" />
     <Compile Include="Funcoes\Funcoes.cs" />
+    <Compile Include="Funcoes\Security\ProvedorDeSeguranca.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +220,7 @@
     <Compile Include="Models\Prioridade.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RelatorioEquipamentos.cs" />
     <Compile Include="Models\Sidebar.cs">
       <DependentUpon>Banco.tt</DependentUpon>
     </Compile>
@@ -501,10 +504,16 @@
     </Content>
     <Content Include="Datatables\Buttons-1.6.1\css\common.scss" />
     <Content Include="Datatables\Buttons-1.6.1\css\mixins.scss" />
+    <Content Include="Models\ClassDiagram.cd" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Dados.js" />
     <Content Include="Scripts\demo.js" />
+    <Content Include="Scripts\inputmask\bindings\inputmask.binding.js" />
+    <Content Include="Scripts\inputmask\inputmask.js" />
+    <Content Include="Scripts\inputmask\inputmask.min.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.js" />
+    <Content Include="Scripts\inputmask\jquery.inputmask.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -794,6 +803,8 @@
     <Content Include="Views\Manutencao\AdicionarEquipamentoManutencao.cshtml" />
     <Content Include="Views\Manutencao\EditarManutencaoEquipamento.cshtml" />
     <Content Include="Views\Colaborador\TrocarSenhaColaborador.cshtml" />
+    <Content Include="Views\Relatorio\RelatoriosIndex.cshtml" />
+    <Content Include="Views\Relatorio\_RelatorioEquipamentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

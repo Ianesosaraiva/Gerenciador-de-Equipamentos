@@ -12,14 +12,15 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ActionResult ListarEquipes()
         {
             var equipes = bd.Equipe.ToList();
             return View(equipes);
         }
         //===============================================================================================
-        [Authorize]
+        
+        [Authorize(Roles = "Administrador")]
         public ActionResult CriarEquipe()
         {
             ViewBag.responsavel = new SelectList(bd.Pessoas.Where(x => x.StatusId != 2 && x.AcessoId == 2).ToList(), "PessoaId", "NomeCompleto");
@@ -36,7 +37,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public ActionResult EditarEquipe(int equipeId)
         {
@@ -63,6 +64,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
         [HttpGet]
+        [Authorize(Roles = "Administrador")]
         public ActionResult DetalhesEquipe(int EquipeId)
         {
             var detalhes = bd.Equipe.FirstOrDefault(x => x.EquipeId == EquipeId);

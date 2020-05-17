@@ -12,14 +12,15 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult ListarEspecificacoes()
         {
             var especificao = bd.Especificacoes.ToList();
             return View(especificao);
         }
         //===============================================================================================
-        [Authorize]
+
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult CriarEspecificacao()
         {
             ViewBag.atributos = new SelectList(bd.Atributos.ToList(), "AtributoId", "Nome");
@@ -39,7 +40,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         [HttpGet]
         public ActionResult EditarEspecificacao(int EspecificacaoId)
         {
@@ -68,6 +69,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult DetalhesEspecificacao(int EspecificacaoId)
         {
             var detalhes = bd.Especificacoes.FirstOrDefault(x => x.EspecificacaoId == EspecificacaoId);

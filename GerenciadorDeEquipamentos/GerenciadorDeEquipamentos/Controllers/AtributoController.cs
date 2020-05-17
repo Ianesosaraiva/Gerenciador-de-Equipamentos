@@ -12,7 +12,7 @@ namespace GerenciadorDeEquipamentos.Controllers
     {
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult ListarAtributos()
         {
             var atributos = bd.Atributos.ToList();
@@ -20,7 +20,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult CriarAtributo()
         {
             ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
@@ -37,7 +37,7 @@ namespace GerenciadorDeEquipamentos.Controllers
 
         //===============================================================================================
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         [HttpGet]
         public ActionResult EditarAtributo(int AtributoId)
         {
@@ -66,6 +66,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         //===============================================================================================
 
         [HttpGet]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult DetalhesAtributo(int AtributoId)
         {
             var detalhes = bd.Atributos.FirstOrDefault(x => x.AtributoId == AtributoId);

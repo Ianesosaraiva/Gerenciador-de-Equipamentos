@@ -139,16 +139,17 @@
           </Key>
           <Property Name="PessoaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NomeCompleto" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CPF" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="RG" Type="varchar" MaxLength="45" />
+          <Property Name="DataNascimento" Type="date" Nullable="false" />
           <Property Name="Contato" Type="varchar" MaxLength="45" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DataCadastro" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="UltimoAcesso" Type="datetime" Precision="0" />
           <Property Name="AcessoId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
-          <Property Name="DataNascimento" Type="date" Nullable="false" />
+          <Property Name="EquipeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Prioridade">
           <Key>
@@ -459,6 +460,18 @@ warning 6002: The table/view 'def.shield01.vw_tarefas_status_dados' does not hav
             </Principal>
             <Dependent Role="Manutencao">
               <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipepessoa">
+          <End Role="Equipe" Type="Self.Equipe" Multiplicity="1" />
+          <End Role="Pessoas" Type="Self.Pessoas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="EquipeId" />
+            </Principal>
+            <Dependent Role="Pessoas">
+              <PropertyRef Name="EquipeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -877,6 +890,10 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <End Role="Equipamentos" EntitySet="Equipamentos" />
             <End Role="Manutencao" EntitySet="Manutencao" />
           </AssociationSet>
+          <AssociationSet Name="fk_equipepessoa" Association="Self.fk_equipepessoa">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
           <AssociationSet Name="fk_especificacao" Association="Self.fk_especificacao">
             <End Role="Especificacoes" EntitySet="Especificacoes" />
             <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
@@ -1143,6 +1160,10 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <End Role="Equipamentos" EntitySet="Equipamentos" />
             <End Role="Manutencao" EntitySet="Manutencao" />
           </AssociationSet>
+          <AssociationSet Name="fk_equipepessoa" Association="shield01Model.fk_equipepessoa">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
@@ -1219,6 +1240,7 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <Property Name="ResponsavelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Equipe" ToRole="Pessoas" />
           <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_1" FromRole="Equipe" ToRole="OrdemServico" />
+          <NavigationProperty Name="Pessoas1" Relationship="shield01Model.fk_equipepessoa" FromRole="Equipe" ToRole="Pessoas" />
         </EntityType>
         <EntityType Name="EspecificacaoEquipamento">
           <Key>
@@ -1313,6 +1335,8 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_1" FromRole="Pessoas" ToRole="Tarefa" />
           <NavigationProperty Name="TipoSolicitacao" Relationship="shield01Model.TipoSolicitacao_ibfk_1" FromRole="Pessoas" ToRole="TipoSolicitacao" />
           <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Pessoas" ToRole="Transferencia" />
+          <Property Name="EquipeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Equipe1" Relationship="shield01Model.fk_equipepessoa" FromRole="Pessoas" ToRole="Equipe" />
         </EntityType>
         <EntityType Name="Prioridade">
           <Key>
@@ -1935,6 +1959,18 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_equipepessoa">
+          <End Type="shield01Model.Equipe" Role="Equipe" Multiplicity="1" />
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="EquipeId" />
+            </Principal>
+            <Dependent Role="Pessoas">
+              <PropertyRef Name="EquipeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2070,6 +2106,7 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <EntitySetMapping Name="Pessoas">
             <EntityTypeMapping TypeName="shield01Model.Pessoas">
               <MappingFragment StoreEntitySet="Pessoas">
+                <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
                 <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />

@@ -1,9 +1,87 @@
-﻿@model GerenciadorDeEquipamentos.Models.Equipamentos
+﻿@model GerenciadorDeEquipamentos.Models.RelatorioEquipamentos
+@using GerenciadorDeEquipamentos.Models
 
 @{
-    ViewBag.Title = "RelatorioEquipamentos";
+    ViewBag.Title = "Relatorio de Equipamentos";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Equipamentos> relatorioEquipamentos = ViewBag.relatorioEquipamentos;
 }
 
-<h2>RelatorioEquipamentos</h2>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <h4 class="card-title">Relatório de Equipamentos</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @using (Html.BeginForm("_RelatorioEquipamentos", "Relatorio", FormMethod.Post, new { id = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
 
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="container ">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <label class="bmd-label-static">Tipo de Equipamentos</label>
+                                        @Html.DropDownList("TipoEquipamentoId", ViewBag.tipoEquipamento as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                        @Html.ValidationMessageFor(model => model.TipoEquipamentoId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-sm">
+                                        <label class="bmd-label-static">Departamento</label>
+                                        @Html.DropDownList("DepartamentoId", ViewBag.departamento as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                        @Html.ValidationMessageFor(model => model.DepartamentoId, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-sm">
+                                        <label class="bmd-label-static">Status</label>
+                                        @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                        @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    @*<div class="col-sm">
+                                            <label class="bmd-label-static">Período Inicial</label>
+                                            @Html.DropDownList("DataGarantia", ViewBag.garantia as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                            @Html.ValidationMessageFor(model => model.DataGarantia, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-sm">
+                                            <label class="bmd-label-static">Período Inicial</label>
+                                            @Html.DropDownList("DataAquisicao", ViewBag.aquisicao as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                            @Html.ValidationMessageFor(model => model.DataAquisicao, "", new { @class = "text-danger" })
+                                        </div>*@
+                                    <div class="col-sm">
+                                        <label class="bmd-label-static">Agrupar por:</label>
+                                        @Html.DropDownList("Agrupar", ViewBag.agrupar as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+                            <button type="button" id="gerar" class="mt-3 btn btn-primary pull-right">Gerar Relatório</button>
+                            <div class="clearfix"></div>
+                        }
+                    </div>
+                    <div class="card-body" id="partial" hidden="true">
+                        @{
+                            @Html.Partial("_RelatorioEquipamentos", new { equipamento = relatorioEquipamentos });
+                        }
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#gerar").click(function () {
+        document.getElementById('partial').hidden = false;
+        $("#form").submit();
+    });
+</script>

@@ -11,7 +11,7 @@ namespace GerenciadorDeEquipamentos.Controllers
     public class ColaboradorController : Controller
     {
         shield01Entities bd = new shield01Entities();
-        
+
         [HttpGet]
         [Authorize]
         // GET: Pessoa
@@ -19,18 +19,19 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             if (status == 1)
             {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação, por favor tente novamente";
+                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
             }
 
             var lista = bd.Pessoas.ToList();
             return View(lista);
         }
 
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         // GET: Pessoa/Create
         public ActionResult CadastrarColaborador()
         {
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -42,11 +43,24 @@ namespace GerenciadorDeEquipamentos.Controllers
             try
             {
                 colaborador.DataCadastro = DateTime.Now;
-                Pessoas pessoa = colaborador;
+
+                Pessoas pessoa = new Pessoas
+                {
+                    AcessoId = colaborador.AcessoId,
+                    Contato = colaborador.Contato,
+                    CPF = colaborador.CPF.Replace("-", "").Replace(".", ""),
+                    DataCadastro = colaborador.DataCadastro,
+                    DataNascimento = colaborador.DataNascimento,
+                    Email = colaborador.Email,
+                    NomeCompleto = colaborador.NomeCompleto,
+                    RG = colaborador.RG,
+                    Senha = colaborador.Senha,
+                    StatusId = colaborador.StatusId
+                };
 
                 bd.Pessoas.Add(pessoa);
                 bd.SaveChanges();
-                return RedirectToAction("ListarPessoas");
+                return RedirectToAction("ListarColaboradores");
             }
             catch
             {
@@ -62,19 +76,20 @@ namespace GerenciadorDeEquipamentos.Controllers
         }
         //===============================================================================================
         // GET: Pessoa/Edit/5
+        [Authorize]
         [HttpGet]
         public ActionResult EditarColaborador(int PessoaId)
         {
             Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 0).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
 
             return View(pessoas);
         }
 
         // POST: Pessoa/Edit/5
         [HttpPost]
-        public ActionResult EditarColaborador(Pessoas pessoas )
+        public ActionResult EditarColaborador(Pessoas pessoas)
         {
             try
             {
@@ -86,7 +101,7 @@ namespace GerenciadorDeEquipamentos.Controllers
                 pessoa.DataNascimento = pessoas.DataNascimento;
                 pessoa.Contato = pessoas.Contato;
                 pessoa.AcessoId = pessoas.AcessoId;
-                pessoa.CPF = pessoas.CPF;
+                pessoa.CPF = pessoas.CPF.Replace("-", "").Replace(".", "");
                 pessoa.Email = pessoas.Email;
 
                 bd.Entry(pessoa).State = EntityState.Modified;
@@ -109,6 +124,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         //===============================================================================================
 
         // POST: Pessoa/Delete/5
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         [HttpPost]
         public ActionResult DeletarColaborador(int PessoaId)
         {
@@ -136,14 +152,18 @@ namespace GerenciadorDeEquipamentos.Controllers
         //===============================================================================================
 
 
-        [Authorize]
+        [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult TrocarSenhaColaborador(int PessoaId)
         {
             try
             {
-                var usuario = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId);
-                ViewBag.nome = usuario.NomeCompleto;
-                return View(usuario);
+                var pessoa = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId);
+                DataColaborador colaborador = new DataColaborador()
+                {
+                    PessoaId = pessoa.PessoaId,
+                    NomeCompleto = pessoa.NomeCompleto
+                };
+                return View(colaborador);
             }
             catch
             {
@@ -163,9 +183,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             try
             {
-                Pessoas pessoa = colaborador;
-
-                var pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == pessoa.PessoaId);
+                var pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == colaborador.StatusId);
 
                 //Log log = new Log
                 //{
@@ -178,9 +196,9 @@ namespace GerenciadorDeEquipamentos.Controllers
 
                 //bd.Log.Add(log);
 
-                pessoas.Senha = pessoa.Senha;
+                pessoas.Senha = colaborador.Senha;
 
-                bd.Entry(pessoas).State = EntityState.Modified;                
+                bd.Entry(pessoas).State = EntityState.Modified;
 
                 bd.SaveChanges();
 

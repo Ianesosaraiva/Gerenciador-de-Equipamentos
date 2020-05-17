@@ -23,10 +23,11 @@ namespace GerenciadorDeEquipamentos.Models
         }
 
         public int PessoaId { get; set; }
-        [Required(ErrorMessage = "O compo Nome é obrigatório")]
+        [Required(ErrorMessage = "O campo Nome é obrigatório.")]
         public string NomeCompleto { get; set; }
 
         [Required]
+        [MinLength(8)]
         public string Senha { get; set; }
 
         [Required]
@@ -35,24 +36,42 @@ namespace GerenciadorDeEquipamentos.Models
 
 
         [Required]
-        [StringLength(11, ErrorMessage = "Tamanho maximo de 11 caracteres")]
+        [StringLength(14, ErrorMessage = "Tamanho maximo de 11 caracteres.")]
         public string CPF { get; set; }
+
+
         public string RG { get; set; }
+
+
         public string Contato { get; set; }
+
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
         public System.DateTime DataCadastro { get; set; }
+
+
         [Required]
         public string Email { get; set; }
+
+
         public Nullable<System.DateTime> UltimoAcesso { get; set; }
+
+
+        [Required]
         public int AcessoId { get; set; }
+
+
+        [Required]
         public int StatusId { get; set; }
 
+        [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
         public System.DateTime DataNascimento { get; set; }
 
+        [Required]
+        public int EquipeId { get; set; }
 
         public virtual Acessos Acessos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -72,5 +91,10 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual ICollection<TipoSolicitacao> TipoSolicitacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transferencia> Transferencia { get; set; }
+
+        public static implicit operator DataColaborador(Pessoas v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

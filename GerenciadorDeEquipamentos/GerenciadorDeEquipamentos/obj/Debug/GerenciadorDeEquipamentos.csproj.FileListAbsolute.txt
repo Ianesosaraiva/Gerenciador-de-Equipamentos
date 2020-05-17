@@ -561,3 +561,4 @@ C:\Users\ianes\source\repos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\
 C:\Users\ianes\source\repos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csproj.CopyComplete
 C:\Users\ianes\source\repos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.dll
 C:\Users\ianes\source\repos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.pdb
+C:\Users\ianes\source\repos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\GerenciadorDeEquipamentos\obj\Debug\GerenciadorDeEquipamentos.csprojAssemblyReference.cache
