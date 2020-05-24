@@ -32,10 +32,23 @@ namespace GerenciadorDeEquipamentos.Controllers
         [Authorize]
         public ActionResult CriarTarefa()
         {
-            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6), "OrdemServicoId", "Titulo");
+            //Mostrar por equipe para F e E
+
+            if (!HttpContext.User.IsInRole("Administrador"))
+            {
+                int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                var EquipeId = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).EquipeId;
+
+                ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6
+                && x.EquipeId == EquipeId), "OrdemServicoId", "Titulo");
+            }
+
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6
+            && x.EquipeId != null), "OrdemServicoId", "Titulo");
+
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
-            ViewBag.status = new SelectList(bd.Status.Where(x=>x.Tipo == 2).ToList(), "StatusId", "Descricao");
+            ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
 
             return View();
         }
@@ -61,7 +74,17 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         public ActionResult EditarTarefa(int TarefaId)
         {
-            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x=>x.StatusId != 6), "OrdemServicoId", "Titulo");
+            if (!HttpContext.User.IsInRole("Administrador"))
+            {
+                int PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                var EquipeId = bd.Pessoas.FirstOrDefault(x => x.PessoaId == PessoaId).EquipeId;
+
+                ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6
+                && x.EquipeId == EquipeId), "OrdemServicoId", "Titulo");
+            }
+
+            ViewBag.ordemServico = new SelectList(bd.OrdemServico.Where(x => x.StatusId != 6
+            && x.EquipeId != null), "OrdemServicoId", "Titulo");
             ViewBag.tipoSolicitacao = new SelectList(bd.TipoSolicitacao.ToList(), "TipoSolicitacaoId", "Titulo");
             ViewBag.prioridade = new SelectList(bd.Prioridade.ToList(), "PrioridadeId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 2).ToList(), "StatusId", "Descricao");
@@ -76,7 +99,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             var tarefaBD = bd.Tarefa.FirstOrDefault(x => x.TarefaId == tarefa.TarefaId);
 
-            if(tarefa.StatusId != 6 && tarefaBD.StatusId == 6)
+            if (tarefa.StatusId != 6 && tarefaBD.StatusId == 6)
             {
                 tarefaBD.DataEncerramento = null;
             }
@@ -87,7 +110,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             tarefaBD.Descricao = tarefa.Descricao;
             tarefaBD.StatusId = tarefa.StatusId;
 
-            if(tarefa.StatusId == 6)
+            if (tarefa.StatusId == 6)
             {
                 tarefaBD.DataEncerramento = DateTime.Now;
             }

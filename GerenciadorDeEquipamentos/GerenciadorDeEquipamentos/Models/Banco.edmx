@@ -173,8 +173,6 @@
         <EntityType Name="SoftwareEquipemento">
           <Key>
             <PropertyRef Name="SoftwareEquipementoId" />
-            <PropertyRef Name="SoftwareId" />
-            <PropertyRef Name="EquipamentoId" />
           </Key>
           <Property Name="SoftwareEquipementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Data" Type="date" />
@@ -1006,6 +1004,7 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <EntitySet Name="Especificacoes" EntityType="shield01Model.Especificacoes" />
           <EntitySet Name="Licencas" EntityType="shield01Model.Licencas" />
           <EntitySet Name="Log" EntityType="shield01Model.Log" />
+          <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
           <EntitySet Name="OrdemServico" EntityType="shield01Model.OrdemServico" />
           <EntitySet Name="Pessoas" EntityType="shield01Model.Pessoas" />
           <EntitySet Name="Prioridade" EntityType="shield01Model.Prioridade" />
@@ -1017,7 +1016,15 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <EntitySet Name="TipoEquipamento" EntityType="shield01Model.TipoEquipamento" />
           <EntitySet Name="TipoSolicitacao" EntityType="shield01Model.TipoSolicitacao" />
           <EntitySet Name="Transferencia" EntityType="shield01Model.Transferencia" />
+          <EntitySet Name="vw_colaborador_tarefas" EntityType="shield01Model.vw_colaborador_tarefas" />
+          <EntitySet Name="vw_dados_index_os" EntityType="shield01Model.vw_dados_index_os" />
+          <EntitySet Name="vw_equipamentos_manutencao_por_mes" EntityType="shield01Model.vw_equipamentos_manutencao_por_mes" />
           <EntitySet Name="vw_equipe_ordemServico" EntityType="shield01Model.vw_equipe_ordemServico" />
+          <EntitySet Name="vw_os_encerrados_por_mes" EntityType="shield01Model.vw_os_encerrados_por_mes" />
+          <EntitySet Name="vw_os_status_dados" EntityType="shield01Model.vw_os_status_dados" />
+          <EntitySet Name="vw_quantidade_equipamentos_por_departamento" EntityType="shield01Model.vw_quantidade_equipamentos_por_departamento" />
+          <EntitySet Name="vw_quantidade_equipamentos_por_tipo" EntityType="shield01Model.vw_quantidade_equipamentos_por_tipo" />
+          <EntitySet Name="vw_tarefas_encerradas_por_mes" EntityType="shield01Model.vw_tarefas_encerradas_por_mes" />
           <EntitySet Name="vw_tarefas_status_dados" EntityType="shield01Model.vw_tarefas_status_dados" />
           <AssociationSet Name="fk_acessopessoa" Association="shield01Model.fk_acessopessoa">
             <End Role="Acessos" EntitySet="Acessos" />
@@ -1051,6 +1058,10 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <End Role="Equipamentos" EntitySet="Equipamentos" />
             <End Role="EspecificacaoEquipamento" EntitySet="EspecificacaoEquipamento" />
           </AssociationSet>
+          <AssociationSet Name="fk_equipamentomanutencao" Association="shield01Model.fk_equipamentomanutencao">
+            <End Role="Equipamentos" EntitySet="Equipamentos" />
+            <End Role="Manutencao" EntitySet="Manutencao" />
+          </AssociationSet>
           <AssociationSet Name="fk_statusequipamento" Association="shield01Model.fk_statusequipamento">
             <End Role="Status" EntitySet="Status" />
             <End Role="Equipamentos" EntitySet="Equipamentos" />
@@ -1070,6 +1081,10 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <AssociationSet Name="Equipe_ibfk_1" Association="shield01Model.Equipe_ibfk_1">
             <End Role="Pessoas" EntitySet="Pessoas" />
             <End Role="Equipe" EntitySet="Equipe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_equipepessoa" Association="shield01Model.fk_equipepessoa">
+            <End Role="Equipe" EntitySet="Equipe" />
+            <End Role="Pessoas" EntitySet="Pessoas" />
           </AssociationSet>
           <AssociationSet Name="OrdemServico_ibfk_1" Association="shield01Model.OrdemServico_ibfk_1">
             <End Role="Equipe" EntitySet="Equipe" />
@@ -1147,23 +1162,6 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <End Role="TipoSolicitacao" EntitySet="TipoSolicitacao" />
             <End Role="Tarefa" EntitySet="Tarefa" />
           </AssociationSet>
-          <EntitySet Name="vw_equipamentos_manutencao_por_mes" EntityType="shield01Model.vw_equipamentos_manutencao_por_mes" />
-          <EntitySet Name="vw_os_encerrados_por_mes" EntityType="shield01Model.vw_os_encerrados_por_mes" />
-          <EntitySet Name="vw_quantidade_equipamentos_por_departamento" EntityType="shield01Model.vw_quantidade_equipamentos_por_departamento" />
-          <EntitySet Name="vw_quantidade_equipamentos_por_tipo" EntityType="shield01Model.vw_quantidade_equipamentos_por_tipo" />
-          <EntitySet Name="vw_tarefas_encerradas_por_mes" EntityType="shield01Model.vw_tarefas_encerradas_por_mes" />
-          <EntitySet Name="vw_os_status_dados" EntityType="shield01Model.vw_os_status_dados" />
-          <EntitySet Name="vw_dados_index_os" EntityType="shield01Model.vw_dados_index_os" />
-          <EntitySet Name="vw_colaborador_tarefas" EntityType="shield01Model.vw_colaborador_tarefas" />
-          <EntitySet Name="Manutencao" EntityType="shield01Model.Manutencao" />
-          <AssociationSet Name="fk_equipamentomanutencao" Association="shield01Model.fk_equipamentomanutencao">
-            <End Role="Equipamentos" EntitySet="Equipamentos" />
-            <End Role="Manutencao" EntitySet="Manutencao" />
-          </AssociationSet>
-          <AssociationSet Name="fk_equipepessoa" Association="shield01Model.fk_equipepessoa">
-            <End Role="Equipe" EntitySet="Equipe" />
-            <End Role="Pessoas" EntitySet="Pessoas" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Acessos">
           <Key>
@@ -1224,11 +1222,11 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <NavigationProperty Name="Departamentos" Relationship="shield01Model.fk_deparequipamento" FromRole="Equipamentos" ToRole="Departamentos" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Equipamentos" ToRole="Pessoas" />
           <NavigationProperty Name="EspecificacaoEquipamento" Relationship="shield01Model.fk_equipamento" FromRole="Equipamentos" ToRole="EspecificacaoEquipamento" />
+          <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Equipamentos" ToRole="Manutencao" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_statusequipamento" FromRole="Equipamentos" ToRole="Status" />
           <NavigationProperty Name="TipoEquipamento" Relationship="shield01Model.fk_tipoequipamento" FromRole="Equipamentos" ToRole="TipoEquipamento" />
           <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_3" FromRole="Equipamentos" ToRole="SoftwareEquipemento" />
           <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_2" FromRole="Equipamentos" ToRole="Transferencia" />
-          <NavigationProperty Name="Manutencao" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Equipamentos" ToRole="Manutencao" />
         </EntityType>
         <EntityType Name="Equipe">
           <Key>
@@ -1239,8 +1237,8 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <Property Name="Descricao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
           <Property Name="ResponsavelId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Equipe" ToRole="Pessoas" />
-          <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_1" FromRole="Equipe" ToRole="OrdemServico" />
           <NavigationProperty Name="Pessoas1" Relationship="shield01Model.fk_equipepessoa" FromRole="Equipe" ToRole="Pessoas" />
+          <NavigationProperty Name="OrdemServico" Relationship="shield01Model.OrdemServico_ibfk_1" FromRole="Equipe" ToRole="OrdemServico" />
         </EntityType>
         <EntityType Name="EspecificacaoEquipamento">
           <Key>
@@ -1288,6 +1286,19 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <Property Name="NomeTabela" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="PessoaId" Type="Int32" />
         </EntityType>
+        <EntityType Name="Manutencao">
+          <Key>
+            <PropertyRef Name="ManutencaoId" />
+          </Key>
+          <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
+          <Property Name="DataSaida" Type="DateTime" />
+          <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
+          <Property Name="ComoEntrou" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="ComoSaiu" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Manutencao" ToRole="Equipamentos" />
+        </EntityType>
         <EntityType Name="OrdemServico">
           <Key>
             <PropertyRef Name="OrdemServicoId" />
@@ -1315,19 +1326,21 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           </Key>
           <Property Name="PessoaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NomeCompleto" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CPF" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="RG" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
           <Property Name="Contato" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DataCadastro" Type="DateTime" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UltimoAcesso" Type="DateTime" />
           <Property Name="AcessoId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="DataNascimento" Type="DateTime" Nullable="false" />
+          <Property Name="EquipeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Acessos" Relationship="shield01Model.fk_acessopessoa" FromRole="Pessoas" ToRole="Acessos" />
           <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_cadastrouequipamento" FromRole="Pessoas" ToRole="Equipamentos" />
           <NavigationProperty Name="Equipe" Relationship="shield01Model.Equipe_ibfk_1" FromRole="Pessoas" ToRole="Equipe" />
+          <NavigationProperty Name="Equipe1" Relationship="shield01Model.fk_equipepessoa" FromRole="Pessoas" ToRole="Equipe" />
           <NavigationProperty Name="Especificacoes" Relationship="shield01Model.fk_cadastrouespecificacao" FromRole="Pessoas" ToRole="Especificacoes" />
           <NavigationProperty Name="Status" Relationship="shield01Model.fk_acessostatus" FromRole="Pessoas" ToRole="Status" />
           <NavigationProperty Name="SoftwareEquipemento" Relationship="shield01Model.SoftwareEquipemento_ibfk_1" FromRole="Pessoas" ToRole="SoftwareEquipemento" />
@@ -1335,8 +1348,6 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <NavigationProperty Name="Tarefa" Relationship="shield01Model.Tarefa_ibfk_1" FromRole="Pessoas" ToRole="Tarefa" />
           <NavigationProperty Name="TipoSolicitacao" Relationship="shield01Model.TipoSolicitacao_ibfk_1" FromRole="Pessoas" ToRole="TipoSolicitacao" />
           <NavigationProperty Name="Transferencia" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Pessoas" ToRole="Transferencia" />
-          <Property Name="EquipeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Equipe1" Relationship="shield01Model.fk_equipepessoa" FromRole="Pessoas" ToRole="Equipe" />
         </EntityType>
         <EntityType Name="Prioridade">
           <Key>
@@ -1362,8 +1373,6 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
         <EntityType Name="SoftwareEquipemento">
           <Key>
             <PropertyRef Name="SoftwareEquipementoId" />
-            <PropertyRef Name="SoftwareId" />
-            <PropertyRef Name="EquipamentoId" />
           </Key>
           <Property Name="SoftwareEquipementoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Data" Type="DateTime" />
@@ -1459,6 +1468,32 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <NavigationProperty Name="Equipamentos" Relationship="shield01Model.Transferencia_ibfk_2" FromRole="Transferencia" ToRole="Equipamentos" />
           <NavigationProperty Name="Pessoas" Relationship="shield01Model.Transferencia_ibfk_1" FromRole="Transferencia" ToRole="Pessoas" />
         </EntityType>
+        <EntityType Name="vw_colaborador_tarefas">
+          <Key>
+            <PropertyRef Name="Colaborador" />
+            <PropertyRef Name="TarefasEncerradas" />
+            <PropertyRef Name="TarefasAbertas" />
+          </Key>
+          <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
+          <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_dados_index_os">
+          <Key>
+            <PropertyRef Name="AguardandoAtendimento" />
+            <PropertyRef Name="Total" />
+          </Key>
+          <Property Name="Produtividade" Type="Decimal" />
+          <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
+          <Property Name="Total" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_equipamentos_manutencao_por_mes">
+          <Key>
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="Mes" Type="Int32" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
+        </EntityType>
         <EntityType Name="vw_equipe_ordemServico">
           <Key>
             <PropertyRef Name="Equipe" />
@@ -1470,6 +1505,43 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
           <Property Name="Responsavel" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="OSEncerrados" Type="Int64" Nullable="false" />
           <Property Name="OSAbertos" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_os_encerrados_por_mes">
+          <Key>
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="Mes" Type="Int32" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_os_status_dados">
+          <Key>
+            <PropertyRef Name="Status" />
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_quantidade_equipamentos_por_departamento">
+          <Key>
+            <PropertyRef Name="Departamento" />
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_quantidade_equipamentos_por_tipo">
+          <Key>
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="TipoDeEquipamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vw_tarefas_encerradas_por_mes">
+          <Key>
+            <PropertyRef Name="Quantidade" />
+          </Key>
+          <Property Name="Mes" Type="Int32" />
+          <Property Name="Quantidade" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="vw_tarefas_status_dados">
           <Key>
@@ -1583,6 +1655,18 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_equipamentomanutencao">
+          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
+          <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipamentos">
+              <PropertyRef Name="EquipamentoId" />
+            </Principal>
+            <Dependent Role="Manutencao">
+              <PropertyRef Name="EquipamentoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_statusequipamento">
           <End Type="shield01Model.Status" Role="Status" Multiplicity="1" />
           <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="*" />
@@ -1640,6 +1724,18 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             </Principal>
             <Dependent Role="Equipe">
               <PropertyRef Name="ResponsavelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_equipepessoa">
+          <End Type="shield01Model.Equipe" Role="Equipe" Multiplicity="1" />
+          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipe">
+              <PropertyRef Name="EquipeId" />
+            </Principal>
+            <Dependent Role="Pessoas">
+              <PropertyRef Name="EquipeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1871,106 +1967,6 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="vw_equipamentos_manutencao_por_mes">
-          <Key>
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="Mes" Type="Int32" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_os_encerrados_por_mes">
-          <Key>
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="Mes" Type="Int32" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_quantidade_equipamentos_por_departamento">
-          <Key>
-            <PropertyRef Name="Departamento" />
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="Departamento" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_quantidade_equipamentos_por_tipo">
-          <Key>
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="TipoDeEquipamento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_tarefas_encerradas_por_mes">
-          <Key>
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="Mes" Type="Int32" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_os_status_dados">
-          <Key>
-            <PropertyRef Name="Status" />
-            <PropertyRef Name="Quantidade" />
-          </Key>
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="16777215" FixedLength="false" Unicode="false" />
-          <Property Name="Quantidade" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_dados_index_os">
-          <Key>
-            <PropertyRef Name="AguardandoAtendimento" />
-            <PropertyRef Name="Total" />
-          </Key>
-          <Property Name="Produtividade" Type="Decimal" />
-          <Property Name="AguardandoAtendimento" Type="Int64" Nullable="false" />
-          <Property Name="Total" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="vw_colaborador_tarefas">
-          <Key>
-            <PropertyRef Name="Colaborador" />
-            <PropertyRef Name="TarefasEncerradas" />
-            <PropertyRef Name="TarefasAbertas" />
-          </Key>
-          <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="TarefasEncerradas" Type="Int64" Nullable="false" />
-          <Property Name="TarefasAbertas" Type="Int64" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Manutencao">
-          <Key>
-            <PropertyRef Name="ManutencaoId" />
-          </Key>
-          <Property Name="ManutencaoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DataEntrada" Type="DateTime" Nullable="false" />
-          <Property Name="DataSaida" Type="DateTime" />
-          <Property Name="Observacao" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
-          <Property Name="EquipamentoId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Equipamentos" Relationship="shield01Model.fk_equipamentomanutencao" FromRole="Manutencao" ToRole="Equipamentos" />
-          <Property Name="ComoEntrou" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
-          <Property Name="ComoSaiu" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="fk_equipamentomanutencao">
-          <End Type="shield01Model.Equipamentos" Role="Equipamentos" Multiplicity="1" />
-          <End Type="shield01Model.Manutencao" Role="Manutencao" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipamentos">
-              <PropertyRef Name="EquipamentoId" />
-            </Principal>
-            <Dependent Role="Manutencao">
-              <PropertyRef Name="EquipamentoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_equipepessoa">
-          <End Type="shield01Model.Equipe" Role="Equipe" Multiplicity="1" />
-          <End Type="shield01Model.Pessoas" Role="Pessoas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipe">
-              <PropertyRef Name="EquipeId" />
-            </Principal>
-            <Dependent Role="Pessoas">
-              <PropertyRef Name="EquipeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2086,6 +2082,19 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Manutencao">
+            <EntityTypeMapping TypeName="shield01Model.Manutencao">
+              <MappingFragment StoreEntitySet="Manutencao">
+                <ScalarProperty Name="ComoSaiu" ColumnName="ComoSaiu" />
+                <ScalarProperty Name="ComoEntrou" ColumnName="ComoEntrou" />
+                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
+                <ScalarProperty Name="DataEntrada" ColumnName="DataEntrada" />
+                <ScalarProperty Name="ManutencaoId" ColumnName="ManutencaoId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrdemServico">
             <EntityTypeMapping TypeName="shield01Model.OrdemServico">
               <MappingFragment StoreEntitySet="OrdemServico">
@@ -2107,16 +2116,16 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
             <EntityTypeMapping TypeName="shield01Model.Pessoas">
               <MappingFragment StoreEntitySet="Pessoas">
                 <ScalarProperty Name="EquipeId" ColumnName="EquipeId" />
-                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="AcessoId" ColumnName="AcessoId" />
                 <ScalarProperty Name="UltimoAcesso" ColumnName="UltimoAcesso" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="DataCadastro" ColumnName="DataCadastro" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
                 <ScalarProperty Name="Contato" ColumnName="Contato" />
+                <ScalarProperty Name="DataNascimento" ColumnName="DataNascimento" />
                 <ScalarProperty Name="RG" ColumnName="RG" />
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
-                <ScalarProperty Name="Senha" ColumnName="Senha" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="NomeCompleto" ColumnName="NomeCompleto" />
                 <ScalarProperty Name="PessoaId" ColumnName="PessoaId" />
               </MappingFragment>
@@ -2222,25 +2231,21 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_equipe_ordemServico">
-            <EntityTypeMapping TypeName="shield01Model.vw_equipe_ordemServico">
-              <MappingFragment StoreEntitySet="vw_equipe_ordemServico">
-                <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
-                <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
-                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
-                <ScalarProperty Name="Equipe" ColumnName="Equipe" />
+          <EntitySetMapping Name="vw_colaborador_tarefas">
+            <EntityTypeMapping TypeName="shield01Model.vw_colaborador_tarefas">
+              <MappingFragment StoreEntitySet="vw_colaborador_tarefas">
+                <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
+                <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
+                <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_tarefas_status_dados">
-            <EntityTypeMapping TypeName="shield01Model.vw_tarefas_status_dados">
-              <MappingFragment StoreEntitySet="vw_tarefas_status_dados">
-                <ScalarProperty Name="Pausado" ColumnName="Pausado" />
-                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
-                <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
-                <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
+          <EntitySetMapping Name="vw_dados_index_os">
+            <EntityTypeMapping TypeName="shield01Model.vw_dados_index_os">
+              <MappingFragment StoreEntitySet="vw_dados_index_os">
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
-                <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
+                <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2252,11 +2257,29 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="vw_equipe_ordemServico">
+            <EntityTypeMapping TypeName="shield01Model.vw_equipe_ordemServico">
+              <MappingFragment StoreEntitySet="vw_equipe_ordemServico">
+                <ScalarProperty Name="OSAbertos" ColumnName="OSAbertos" />
+                <ScalarProperty Name="OSEncerrados" ColumnName="OSEncerrados" />
+                <ScalarProperty Name="Responsavel" ColumnName="Responsavel" />
+                <ScalarProperty Name="Equipe" ColumnName="Equipe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="vw_os_encerrados_por_mes">
             <EntityTypeMapping TypeName="shield01Model.vw_os_encerrados_por_mes">
               <MappingFragment StoreEntitySet="vw_os_encerrados_por_mes">
                 <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
                 <ScalarProperty Name="Mes" ColumnName="Mes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_os_status_dados">
+            <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados">
+              <MappingFragment StoreEntitySet="vw_os_status_dados">
+                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2284,42 +2307,15 @@ FROM `vw_tarefas_status_dados` AS `vw_tarefas_status_dados`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_os_status_dados">
-            <EntityTypeMapping TypeName="shield01Model.vw_os_status_dados">
-              <MappingFragment StoreEntitySet="vw_os_status_dados">
-                <ScalarProperty Name="Quantidade" ColumnName="Quantidade" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_dados_index_os">
-            <EntityTypeMapping TypeName="shield01Model.vw_dados_index_os">
-              <MappingFragment StoreEntitySet="vw_dados_index_os">
-                <ScalarProperty Name="Total" ColumnName="Total" />
+          <EntitySetMapping Name="vw_tarefas_status_dados">
+            <EntityTypeMapping TypeName="shield01Model.vw_tarefas_status_dados">
+              <MappingFragment StoreEntitySet="vw_tarefas_status_dados">
+                <ScalarProperty Name="Pausado" ColumnName="Pausado" />
+                <ScalarProperty Name="Cancelado" ColumnName="Cancelado" />
+                <ScalarProperty Name="Encerrado" ColumnName="Encerrado" />
+                <ScalarProperty Name="EmAtendimento" ColumnName="EmAtendimento" />
                 <ScalarProperty Name="AguardandoAtendimento" ColumnName="AguardandoAtendimento" />
-                <ScalarProperty Name="Produtividade" ColumnName="Produtividade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_colaborador_tarefas">
-            <EntityTypeMapping TypeName="shield01Model.vw_colaborador_tarefas">
-              <MappingFragment StoreEntitySet="vw_colaborador_tarefas">
-                <ScalarProperty Name="TarefasAbertas" ColumnName="TarefasAbertas" />
-                <ScalarProperty Name="TarefasEncerradas" ColumnName="TarefasEncerradas" />
-                <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Manutencao">
-            <EntityTypeMapping TypeName="shield01Model.Manutencao">
-              <MappingFragment StoreEntitySet="Manutencao">
-                <ScalarProperty Name="ComoSaiu" ColumnName="ComoSaiu" />
-                <ScalarProperty Name="ComoEntrou" ColumnName="ComoEntrou" />
-                <ScalarProperty Name="EquipamentoId" ColumnName="EquipamentoId" />
-                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
-                <ScalarProperty Name="DataSaida" ColumnName="DataSaida" />
-                <ScalarProperty Name="DataEntrada" ColumnName="DataEntrada" />
-                <ScalarProperty Name="ManutencaoId" ColumnName="ManutencaoId" />
+                <ScalarProperty Name="AguardandoAtendente" ColumnName="AguardandoAtendente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

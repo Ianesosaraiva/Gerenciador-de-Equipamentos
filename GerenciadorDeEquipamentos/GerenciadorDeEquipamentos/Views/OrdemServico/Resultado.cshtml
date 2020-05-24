@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Resultado";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    var message = ViewBag.message as string;
+}
+
+@*<div class="content content-center">
+        <div class="container-fluid">
+            <div class="row text-center">
+                <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-body">
+                            @if (@message != null)
+                            {
+                                <p>@message</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+<div class="limiter">
+    <div class="container-login100">
+        @if (message != "")
+        {
+            <p>@message</p>
+        }
+    </div>
+</div>

@@ -13,23 +13,59 @@ namespace GerenciadorDeEquipamentos.Controllers
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
         [Authorize]
-        public ActionResult ListarEquipamentos(int? status)
+        public ActionResult ListarEquipamentos(int? status, int? tipo)
         {
-            if (status == 1)
+            try
             {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
+                if (status == 1)
+                {
+                    ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
+                }
+
+                Session["tipo"] = tipo;
+                if (tipo == 1)
+                {
+                    //Em manutenção
+                    var equipamento = bd.Equipamentos.Where(x => x.StatusId == 9).ToList();
+                    return View(equipamento);
+                }
+                else if (tipo == 2)
+                {
+                    //Ativos
+                    var equipamento = bd.Equipamentos.Where(x => x.StatusId == 1).ToList();
+                    return View(equipamento);
+                }
+                else if (tipo == 3)
+                {
+                    //Desativos
+                    var equipamento = bd.Equipamentos.Where(x => x.StatusId == 2).ToList();
+                    return View(equipamento);
+                }
+                else
+                {
+                    //Todos
+                    var equipamento = bd.Equipamentos.ToList();
+                    return View(equipamento);
+                }
             }
-            var equipamento = bd.Equipamentos.ToList();
-            return View(equipamento);
+            catch
+            {
+                return RedirectToAction("Login", "Login", new { status = 2 });
+            }
+
         }
         //===============================================================================================
-
 
         [Authorize(Roles = ("Administrador, Funcionário"))]
         public ActionResult GerenciarEquipamentos()
         {
             try
             {
+                ViewBag.total = bd.Equipamentos.Count();
+                ViewBag.emManutencao = bd.Equipamentos.Where(x => x.StatusId == 9).Count();
+                ViewBag.ativos = bd.Equipamentos.Where(x => x.StatusId == 1).Count();
+                ViewBag.desativos = bd.Equipamentos.Where(x => x.StatusId == 2).Count();
+
                 return View();
             }
             catch
@@ -42,16 +78,21 @@ namespace GerenciadorDeEquipamentos.Controllers
         public ActionResult CriarEquipamento(int? equipamentoId, int? status)
         {
 
-            if (status == 1)
-            {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
-            }
             try
             {
-                ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1 && x.Tipo == 3).ToList(), "StatusId", "Descricao");
+                if (status == 1)
+                {
+                    ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
+                }
+                else if (status == 2)
+                {
+                    ViewBag.message = "Equipamento já cadastrado no sistema!";
+                }
+                ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1 || x.Tipo == 3).ToList(), "StatusId", "Descricao");
                 ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
                 ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
 
+                ViewBag.tipo = Session["tipo"];
                 return View();
             }
             catch
@@ -66,64 +107,26 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             try
             {
-                equipamento.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
-                bd.Equipamentos.Add(equipamento);
-                bd.SaveChanges();
-                Session["EquipamentoId"] = equipamento.EquipamentoId;
-
-                return RedirectToAction("CriarEquipamentoEspecificacoes", "Equipamento", new { tipoEquipamentoId = equipamento.TipoEquipamentoId });
-            }
-            catch
-            {
-                return RedirectToAction("CriarEquipamento", new { status = 1 });
-            }
-        }
-
-        [HttpGet]
-        public ActionResult CriarEquipamentoEspecificacoes(int? tipoEquipamentoId, int? status)
-        {
-            if (status == 1)
-            {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
-            }
-            try
-            {
-                ViewBag.atributos = bd.Atributos.Where(x => x.TipoEquipamentoId == tipoEquipamentoId);
-                var atributos = bd.Atributos.Where(x => x.TipoEquipamentoId == tipoEquipamentoId);
-                ViewBag.especificacoes = bd.Especificacoes.ToList();
-
-                return View();
-            }
-            catch
-            {
-                return RedirectToAction("CriarEquipamento", new { status = 1 });
-            }
-        }
-
-        [HttpPost]
-        public ActionResult CriarEquipamentoEspecificacoes(int[] especificacacoesId)
-        {
-            try
-            {
-                int equipamentoId = Convert.ToInt32(Session["EquipamentoId"]);
-                EspecificacaoEquipamento especificacaoEquipamento = new EspecificacaoEquipamento();
-
-                foreach (var item in especificacacoesId)
+                if (bd.Equipamentos.Any(x => x.ServiceTagSerial == equipamento.ServiceTagSerial
+                || x.NumeroPatrimonial == equipamento.NumeroPatrimonial))
                 {
-                    especificacaoEquipamento.EspecificacaoId = item;
-                    especificacaoEquipamento.EquipamentoId = equipamentoId;
-
-                    bd.EspecificacaoEquipamento.Add(especificacaoEquipamento);
-                    bd.SaveChanges();
+                    return RedirectToAction("CriarEquipamento", new { status = 2 });
                 }
-                return RedirectToAction("ListarEquipamentos", "Equipamento");
+                else
+                {
+                    equipamento.PessoaId = Convert.ToInt32(HttpContext.User.Identity.Name);
+                    bd.Equipamentos.Add(equipamento);
+                    bd.SaveChanges();
 
+                    return RedirectToAction("CriarEquipamentoEspecificacoes", "EquipamentoEspecificacao", new { tipoEquipamentoId = equipamento.TipoEquipamentoId, EquipamentoId = equipamento.EquipamentoId });
+                }
             }
             catch
             {
-                return RedirectToAction("CriarEquipamentoEspecificacoes", new { status = 1 });
+                return RedirectToAction("CriarEquipamento", new { status = 1 });
             }
         }
+
 
 
         //===============================================================================================
@@ -132,17 +135,19 @@ namespace GerenciadorDeEquipamentos.Controllers
         [HttpGet]
         public ActionResult EditarEquipamento(int EquipamentoId, int? status)
         {
-            if (status == 1)
-            {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
-            }
             try
             {
+                if (status == 1)
+                {
+                    ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
+                }
                 var equipamento = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == EquipamentoId);
 
-                ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1 && x.Tipo == 3).ToList(), "StatusId", "Descricao");
+                ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1 || x.Tipo == 3).ToList(), "StatusId", "Descricao");
                 ViewBag.tipoEquipamento = new SelectList(bd.TipoEquipamento.ToList(), "TipoEquipamentoId", "Nome");
                 ViewBag.departamento = new SelectList(bd.Departamentos.ToList(), "DepartamentoId", "Nome");
+
+                ViewBag.tipo = Session["tipo"];
 
                 return View(equipamento);
 
@@ -171,77 +176,14 @@ namespace GerenciadorDeEquipamentos.Controllers
                 bd.Entry(equipamentoBD).State = EntityState.Modified;
                 bd.SaveChanges();
 
-                return RedirectToAction("ListarEquipamentos", "Equipamento");
+                int tipo = Convert.ToInt32(Session["tipo"]);
+                return RedirectToAction("ListarEquipamentos", "Equipamento", new { tipo = tipo});
 
             }
             catch
             {
                 return RedirectToAction("EditarEquipamento", new { EquipamentoId = equipamento.EquipamentoId, status = 1 });
             }
-        }
-
-        [HttpGet]
-        public ActionResult EditarEquipamentoEspecificacoes(int tipoEquipamentoId, int equipamentoId, int? status)
-        {
-            if (status == 1)
-            {
-                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
-            }
-            try
-            {
-                ViewBag.atributos = bd.Atributos.Where(x => x.TipoEquipamentoId == tipoEquipamentoId);
-                ViewBag.especificacoes = bd.Especificacoes.ToList();
-
-                var equipamentoEspecificacoes = bd.EspecificacaoEquipamento.FirstOrDefault(x => x.EquipamentoId == equipamentoId);
-
-                return View(equipamentoEspecificacoes);
-            }
-            catch
-            {
-                return RedirectToAction("ListarEquipamentos", new { status = 1 });
-            }
-        }
-
-        [HttpPost]
-        public ActionResult EditarEquipamentoEspecificacoes(int[] especificacacoesId)
-        {
-            try
-            {
-                int equipamentoId = Convert.ToInt32(Session["EquipamentoId"]);
-                EspecificacaoEquipamento especificacaoEquipamento = new EspecificacaoEquipamento();
-
-                foreach (var item in especificacacoesId)
-                {
-                    especificacaoEquipamento.EspecificacaoId = item;
-                    especificacaoEquipamento.EquipamentoId = equipamentoId;
-
-                    bd.EspecificacaoEquipamento.Add(especificacaoEquipamento);
-                }
-                bd.SaveChanges();
-                return RedirectToAction("ListarEquipamentos", "Equipamento");
-            }
-            catch
-            {
-                return RedirectToAction("ListarEquipamentos", new { status = 1 });
-            }
-
-        }
-
-        //===============================================================================================
-        [Authorize]
-        public ActionResult ListarEquipamentoEspecificacao(int EquipamentoId)
-        {
-            try
-            {
-                var especificacaoEquipamento = bd.EspecificacaoEquipamento.Where(x => x.EquipamentoId == EquipamentoId).ToList();
-
-                return View(especificacaoEquipamento);
-            }
-            catch
-            {
-                return RedirectToAction("ListarEquipamentos", new { status = 1 });
-            }
-
         }
 
         //===============================================================================================
@@ -252,6 +194,8 @@ namespace GerenciadorDeEquipamentos.Controllers
             try
             {
                 var detalhes = bd.Equipamentos.FirstOrDefault(x => x.EquipamentoId == EquipamentoId);
+
+                ViewBag.tipo = Session["tipo"];
 
                 return View(detalhes);
 
@@ -275,7 +219,8 @@ namespace GerenciadorDeEquipamentos.Controllers
                 bd.Entry(equipamento).State = EntityState.Modified;
                 bd.SaveChanges();
 
-                return RedirectToAction("ListarEquipamentos");
+                int tipo = Convert.ToInt32(Session["tipo"]);
+                return RedirectToAction("ListarEquipamentos", new { tipo = tipo});
             }
             catch
             {

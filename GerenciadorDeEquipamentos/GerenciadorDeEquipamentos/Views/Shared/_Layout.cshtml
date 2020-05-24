@@ -13,6 +13,14 @@
     <link rel="stylesheet" href="~/Content/dashboard/material-dashboard.min.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
 
+    @*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>*@
+
+
+
     <title>@ViewBag.Title - Gerenciador de Equipamentos</title>
 
     @Styles.Render("~/Content/dashboard/material-dashboard.css")
@@ -87,7 +95,7 @@
                 </ul>
                 <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div>
             </div>
-            <div class="sidebar-background" style="background-image: url(~/images/img/sidebar-1.jpg)"></div>
+            <div class="sidebar-background"></div>
         </div>
         <div class="main-panel ps-container ps-theme-default" data-ps-id="d17659e5-6062-43d4-9906-4f9ef0456696">
 
@@ -166,6 +174,7 @@
                 <script src="~/Scripts/jquery-3.4.1.js"></script>
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
                 @RenderBody()
             </div>
             @*<hr />

@@ -32,6 +32,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
             return View();
         }
@@ -83,6 +84,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             Pessoas pessoas = bd.Pessoas.FirstOrDefault(pes => pes.PessoaId == PessoaId);
             ViewBag.acesso = new SelectList(bd.Acessos.ToList(), "AcessoId", "Descricao");
             ViewBag.status = new SelectList(bd.Status.Where(x => x.Tipo == 1).ToList(), "StatusId", "Descricao");
+            ViewBag.equipe = new SelectList(bd.Equipe.ToList(), "EquipeId", "Nome");
 
             return View(pessoas);
         }

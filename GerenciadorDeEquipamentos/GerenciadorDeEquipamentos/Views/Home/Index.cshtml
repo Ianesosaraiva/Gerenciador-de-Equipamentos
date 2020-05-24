@@ -132,14 +132,23 @@
                     </div>
 
                 </div>*@
+            <div class="col-md-2 pull-right">
+                <a class="btn btn-primary pull-right" href="@Url.Action("ListarTarefas", "Tarefa")">Minhas Tarefas</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-primary">
                             <div class="row">
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <h4 class="card-title">Minhas Ordens de Serviço</h4>
                                     <p></p>
+                                </div>
+                                <div class="col-sm">
+                                    <a class="btn" style="background-color: white" href="@Url.Action("CriarOrdemServico", "OrdemServico")">
+                                        <span style="color: #042956">Nova Ordem Serviço</span>
+                                        <i class="material-icons" style="color: #042956" title="Nova Ordem Serviço">add</i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

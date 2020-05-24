@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GerenciadorDeEquipamentos.Controllers.AtributoController">
+    <Position X="11.25" Y="23" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAIAAAAAAAEAEAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Controllers\AtributoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.DepartamentoController">
+    <Position X="26" Y="23" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAQAAA=</HashCode>
+      <FileName>Controllers\DepartamentoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.EquipamentoController">
+    <Position X="33.25" Y="23" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQgIAAAAAgQACAAAAAAAAAAAABAAECAAAAgAQAgA=</HashCode>
+      <FileName>Controllers\EquipamentoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.ColaboradorController">
+    <Position X="29.5" Y="23" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAIAAAABAAAAAAAAAAAgAEQAAE=</HashCode>
+      <FileName>Controllers\ColaboradorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.EspecificacaoController">
+    <Position X="14.5" Y="23" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAgAACAAAAAAAAAAAAAAAAAAAAQQAAA=</HashCode>
+      <FileName>Controllers\EspecificacaoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.HomeController">
+    <Position X="6" Y="23" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAQAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.LicencaController">
+    <Position X="37.5" Y="23" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAQAAAACAAAAAAAAAAAQAAI=</HashCode>
+      <FileName>Controllers\LicencaController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.LoginController">
+    <Position X="8.5" Y="23" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAQAAA=</HashCode>
+      <FileName>Controllers\LoginController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.ManutencaoController">
+    <Position X="21.75" Y="23" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAIQAAA=</HashCode>
+      <FileName>Controllers\ManutencaoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.RelatorioController">
+    <Position X="43.75" Y="23" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAgAAAgAAAAAAAAACAQAAAAAAAAAQAAA=</HashCode>
+      <FileName>Controllers\RelatorioController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.SoftwareController">
+    <Position X="40.5" Y="23" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAEAAAAAAcBQA=</HashCode>
+      <FileName>Controllers\SoftwareController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Controllers.TipoEquipamentoController">
+    <Position X="18" Y="23" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAACQAAA=</HashCode>
+      <FileName>Controllers\TipoEquipamentoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Security.ProvedorDeSeguranca">
+    <Position X="15" Y="12.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>QAAEEAAwAAAEAAAAAAAABAAAAAAAAAIAAAAEAAEQAAA=</HashCode>
+      <FileName>Funcoes\Security\ProvedorDeSeguranca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Models.DataColaborador">
+    <Position X="46.25" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAYMACEAEAAkAAAQAgCAACIBAABgAAQIAIAQAIA=</HashCode>
+      <FileName>Models\DataColaborador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Models.RelatorioEquipamentos">
+    <Position X="43.5" Y="14" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAIAGAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\RelatorioEquipamentos.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Models.DadosIndex">
+    <Position X="38.5" Y="14" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAgAAAAAAAAAAAAAAIAAgAAAgA=</HashCode>
+      <FileName>Models\DadosIndex.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Models.DataLogin">
+    <Position X="41.25" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataLogin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.Mvc.Controller">
+    <Position X="30" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Web.Security.RoleProvider">
+    <Position X="11.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Object">
+    <Position X="35" Y="10.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GerenciadorDeEquipamentos.Models.shield01Entities">
+    <Position X="22" Y="12" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AICAAAQEAAEAAAggIACAAgAAEYogAghiQBQIgAMAAAA=</HashCode>
+      <FileName>Models\Banco.Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Data.Entity.DbContext" Collapsed="true">
+    <Position X="23" Y="10.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

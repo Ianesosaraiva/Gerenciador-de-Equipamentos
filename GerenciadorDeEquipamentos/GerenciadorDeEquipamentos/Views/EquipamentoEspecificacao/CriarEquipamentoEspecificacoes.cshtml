@@ -4,6 +4,8 @@
     ViewBag.Title = "Especificações do Equipamento";
     var especificacoes = ViewBag.especificacoes;
     var atributos = ViewBag.atributos;
+    var equipamentoId = ViewBag.EquipamentoId;
+
     List<SelectListItem> pose = new List<SelectListItem>();
     int index = 1;
     ViewBag.item = pose;
@@ -32,7 +34,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @using (Html.BeginForm("ListarEquipamentos", "Equipamento", FormMethod.Post, new { id = "form-especificacoes" }))
+                        @using (Html.BeginForm())
                         {
                             @Html.AntiForgeryToken()
 
@@ -60,7 +62,8 @@
                             }
                             <div class="form-group ml-2 mt-3">
                                 <a href="@Url.Action("CriarEquipamento", "Equipamento")" class="btn btn-primary">Voltar</a>
-                                <input type="button" id="criar" value="Create" class="btn btn-primary" />
+                                <input type="button"  id="criar" value="Create" class="btn btn-primary" />
+                                <input type="hidden" id="myModel" data-toggle="modal" data-target="#exampleModal" />
                             </div>
                         }
 
@@ -68,6 +71,25 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Especificações salvas!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja cadastrar Softwares?</p>
+            </div>
+            <div class="modal-footer">
+                <a type="button" class="btn btn-secondary" href="@Url.Action("ListarEquipamentos", "Equipamento")">Não</a>
+                <a type="button" class="btn btn-primary" href="@Url.Action("CriarEquipamentoSoftwares", "EquipamentoSoftware", new { EquipamentoId = equipamentoId })">Sim</a>
+            </div>
         </div>
     </div>
 </div>
@@ -90,10 +112,16 @@
             }
         }
         console.log(especificacacoesId);
-        $.post("@Url.Action("CriarEquipamentoEspecificacoes", "Equipamento")", { especificacacoesId: especificacacoesId });
+        $.post("@Url.Action("CriarEquipamentoEspecificacoes", "EquipamentoEspecificacao")", { especificacacoesId: especificacacoesId });
 
-        $("#form-especificacoes").submit();
+        document.getElementById('myModel').click();
+
+        // $("#form-especificacoes").submit();
     });
+
+    //$('#myModal').on('shown.bs.modal', function () {
+    //    $('#myInput').trigger('focus')
+    //})
 </script>
 
 

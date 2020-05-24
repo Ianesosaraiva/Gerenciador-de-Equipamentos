@@ -168,8 +168,6 @@
   <EntityType Name="SoftwareEquipemento">
     <Key>
       <PropertyRef Name="SoftwareEquipementoId" />
-      <PropertyRef Name="SoftwareId" />
-      <PropertyRef Name="EquipamentoId" />
     </Key>
     <Property Name="SoftwareEquipementoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Data" Type="date" />

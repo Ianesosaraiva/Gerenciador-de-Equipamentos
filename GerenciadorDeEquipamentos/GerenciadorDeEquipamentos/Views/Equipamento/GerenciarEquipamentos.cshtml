@@ -3,11 +3,38 @@
 @{
     ViewBag.Title = "Gerenciar Equipamentos";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var total = ViewBag.total;
+    var emManutencao = ViewBag.emManutencao;
+    var ativos = ViewBag.ativos;
+    var desativos = ViewBag.desativos;
 }
 
 <div class="content">
     <div class="container-fluid">
         <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <a href="@Url.Action("ListarEquipamentos","Equipamento")" style="color:azure">
+
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">desktop_windows</i>
+                            </div>
+                            <p class="card-category">Total de Equipamentos</p>
+                            <h3 class="card-title">
+                                @total
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">desktop_windows</i>
+                                Total geral
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
                     <a href="@Url.Action("ListarEquipamentos","Equipamento", new { tipo = 1})" style="color:azure">
@@ -16,9 +43,9 @@
                             <div class="card-icon">
                                 <i class="material-icons">desktop_windows</i>
                             </div>
-                            <p class="card-category">Total de Equipamentos</p>
+                            <p class="card-category">Equipamentos em Manutenção</p>
                             <h3 class="card-title">
-                                @*@dadosIndex.Total*@
+                                @emManutencao
                             </h3>
                         </div>
                         <div class="card-footer">
@@ -35,60 +62,36 @@
                 <div class="card card-stats">
                     <a href="@Url.Action("ListarEquipamentos","Equipamento", new { tipo = 2})" style="color:azure">
 
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">desktop_windows</i>
-                            </div>
-                            <p class="card-category">Equipamentos em Manutenção</p>
-                            <h3 class="card-title">
-                                @*@dadosIndex.Total*@
-                            </h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">desktop_windows</i>
-                                Total geral
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <a href="@Url.Action("ListarEquipamentos","Equipamento", new { tipo = 3})" style="color:azure">
-
-                        <div class="card-header card-header-warning card-header-icon">
-                            <div class="card-icon">
-                                <i class="material-icons">desktop_windows</i>
-                            </div>
-                            <p class="card-category">Equipamentos Desativos</p>
-                            <h3 class="card-title">
-                                @*@dadosIndex.Total*@
-                            </h3>
-                        </div>
-                        <div class="card-footer">
-                            <div class="stats">
-                                <i class="material-icons">desktop_windows</i>
-                                Total geral
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="card card-stats">
-                    <a href="@Url.Action("ListarEquipamentos","Equipamento", new { tipo = 4})" style="color:azure">
-
-                        <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
                                 <i class="material-icons">desktop_windows</i>
                             </div>
                             <p class="card-category">Equipamentos Ativos</p>
                             <h3 class="card-title">
-                                @*@dadosIndex.Total*@
+                                @ativos
+                            </h3>
+                        </div>
+                        <div class="card-footer">
+                            <div class="stats">
+                                <i class="material-icons">desktop_windows</i>
+                                Total geral
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <a href="@Url.Action("ListarEquipamentos","Equipamento", new { tipo = 3})" style="color:azure">
+
+                        <div class="card-header card-header-danger card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">desktop_windows</i>
+                            </div>
+                            <p class="card-category">Equipamentos Desativos</p>
+                            <h3 class="card-title">
+                                @desativos
                             </h3>
                         </div>
                         <div class="card-footer">
@@ -110,7 +113,7 @@
                             <i class="material-icons">timeline</i>
                         </div>
                         <h4 class="card-title">
-                            Gráfico Ativos
+                            Gráfico Equipamentos
                             @*Equipamentos e OS *@
                             <small> - Por Depatamento</small>
                         </h4>
@@ -132,7 +135,7 @@
                             <i class="material-icons">timeline</i>
                         </div>
                         <h4 class="card-title">
-                            Gráfico Quantidade Ativos
+                            Gráfico Quantidade Equipamentos
                             @*Equipamentos e OS *@
                             <small> - Por Tipo</small>
                         </h4>

@@ -17,8 +17,8 @@ namespace GerenciadorDeEquipamentos.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipe()
         {
-            this.OrdemServico = new HashSet<OrdemServico>();
             this.Pessoas1 = new HashSet<Pessoas>();
+            this.OrdemServico = new HashSet<OrdemServico>();
         }
     
         public int EquipeId { get; set; }
@@ -28,8 +28,8 @@ namespace GerenciadorDeEquipamentos.Models
     
         public virtual Pessoas Pessoas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrdemServico> OrdemServico { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pessoas> Pessoas1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdemServico> OrdemServico { get; set; }
     }
 }

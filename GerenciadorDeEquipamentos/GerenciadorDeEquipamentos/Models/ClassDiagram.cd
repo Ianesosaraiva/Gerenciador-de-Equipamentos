@@ -6,6 +6,8 @@
       <Path>
         <Point X="66.625" Y="20.742" />
         <Point X="66.625" Y="21.117" />
+        <Point X="36.333" Y="21.117" Type="JumpStart" />
+        <Point X="36.167" Y="21.117" Type="JumpEnd" />
         <Point X="35.875" Y="21.117" />
         <Point X="35.875" Y="15.011" />
       </Path>
@@ -36,22 +38,6 @@
   </Class>
   <Class Name="GerenciadorDeEquipamentos.Controllers.DepartamentoController">
     <Position X="8" Y="12.75" Width="3.75" />
-    <InheritanceLine Type="System.Web.Mvc.Controller" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="66.625" Y="9.25" />
-        <Point X="66.625" Y="8.875" />
-        <Point X="66.51" Y="8.875" Type="JumpStart" />
-        <Point X="66.323" Y="8.875" Type="JumpEnd" />
-        <Point X="66.312" Y="8.875" Type="JumpStart" />
-        <Point X="66.146" Y="8.875" Type="JumpEnd" />
-        <Point X="36.302" Y="8.875" Type="JumpStart" />
-        <Point X="36.135" Y="8.875" Type="JumpEnd" />
-        <Point X="33.501" Y="8.875" />
-        <Point X="33.501" Y="11.415" />
-        <Point X="9.25" Y="11.415" />
-        <Point X="9.25" Y="12.875" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AQAAAAEAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAQAAA=</HashCode>
       <FileName>Controllers\DepartamentoController.cs</FileName>
@@ -69,6 +55,8 @@
         <Point X="66.146" Y="8.875" Type="JumpEnd" />
         <Point X="63.875" Y="8.875" />
         <Point X="63.875" Y="16.733" />
+        <Point X="36.333" Y="16.733" Type="JumpStart" />
+        <Point X="36.167" Y="16.733" Type="JumpEnd" />
         <Point X="35.958" Y="16.733" Type="JumpStart" />
         <Point X="35.792" Y="16.733" Type="JumpEnd" />
         <Point X="31.958" Y="16.733" Type="JumpStart" />
@@ -107,6 +95,8 @@
       <Path>
         <Point X="66.625" Y="20.742" />
         <Point X="66.625" Y="21.117" />
+        <Point X="36.333" Y="21.117" Type="JumpStart" />
+        <Point X="36.167" Y="21.117" Type="JumpEnd" />
         <Point X="19" Y="21.117" />
         <Point X="19" Y="15.011" />
       </Path>
@@ -139,6 +129,8 @@
       <Path>
         <Point X="66.625" Y="20.742" />
         <Point X="66.625" Y="21.117" />
+        <Point X="36.333" Y="21.117" Type="JumpStart" />
+        <Point X="36.167" Y="21.117" Type="JumpEnd" />
         <Point X="31.875" Y="21.117" />
         <Point X="31.875" Y="15.011" />
       </Path>
@@ -169,6 +161,8 @@
       <Path>
         <Point X="66.625" Y="20.742" />
         <Point X="66.625" Y="21.117" />
+        <Point X="36.333" Y="21.117" Type="JumpStart" />
+        <Point X="36.167" Y="21.117" Type="JumpEnd" />
         <Point X="14.5" Y="21.117" />
         <Point X="14.5" Y="14.819" />
       </Path>
@@ -216,6 +210,8 @@
       <Path>
         <Point X="66.625" Y="20.742" />
         <Point X="66.625" Y="21.117" />
+        <Point X="36.333" Y="21.117" Type="JumpStart" />
+        <Point X="36.167" Y="21.117" Type="JumpEnd" />
         <Point X="28.125" Y="21.117" />
         <Point X="28.125" Y="15.396" />
       </Path>

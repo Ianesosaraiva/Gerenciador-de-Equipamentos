@@ -11,35 +11,44 @@ namespace GerenciadorDeEquipamentos.Controllers
 {
     public class OrdemServicoController : Controller
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            GetLineChartData();
-        }
         // GET: Equipamento
         shield01Entities bd = new shield01Entities();
 
         [Authorize(Roles = ("Administrador, Funcionário"))]
-        public ActionResult ListarOrdemServico(int? tipo)
+        public ActionResult ListarOrdemServico(int? tipo, int? status)
         {
-            Session["tipo"] = tipo;
-            if (tipo == 1)
+            try
             {
-                //Ordens de Serviço aguardando atendimento
-                var ordensServicos = bd.OrdemServico.Where(x => x.StatusId == 3).ToList();
-                return View(ordensServicos);
+                if (status == 1)
+                {
+                    ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
+                }
+
+                Session["tipo"] = tipo;
+                if (tipo == 1)
+                {
+                    //Ordens de Serviço aguardando atendimento
+                    var ordensServicos = bd.OrdemServico.Where(x => x.StatusId == 3).ToList();
+                    return View(ordensServicos);
+                }
+                else if (tipo == 2)
+                {
+                    //Ordens de Serviço não atribuidas
+                    var ordensServicos = bd.OrdemServico.Where(x => x.EquipeId == null).ToList();
+                    return View(ordensServicos);
+                }
+                else
+                {
+                    //Todas as Ordens de Serviço
+                    var ordensServicos = bd.OrdemServico.ToList();
+                    return View(ordensServicos);
+                }
             }
-            else if (tipo == 2)
+            catch
             {
-                //Ordens de Serviço não atribuidas
-                var ordensServicos = bd.OrdemServico.Where(x => x.EquipeId == null).ToList();
-                return View(ordensServicos);
+                return RedirectToAction("ListarOrdemServico", new { status = 1 });
             }
-            else
-            {
-                //Todas as Ordens de Serviço
-                var ordensServicos = bd.OrdemServico.ToList();
-                return View(ordensServicos);
-            }
+
         }
 
 
@@ -181,7 +190,7 @@ namespace GerenciadorDeEquipamentos.Controllers
             }
             catch
             {
-                return RedirectToAction("Falha", new { status = 2 });
+                return RedirectToAction("Sucesso", new { status = 2 });
             }
         }
 
@@ -272,19 +281,17 @@ namespace GerenciadorDeEquipamentos.Controllers
             }
         }
 
-        public ActionResult Sucesso(int? status)
+        public ActionResult Resultado(int? status)
         {
-            string message;
             if (status == 1)
             {
-                message = "Seu chamado foi aberto, está aguardando atendimento. Acompanhe o chamado pelo email";
+                ViewBag.message = "Seu chamado foi aberto! " +
+                    "Está aguardando atendimento. Acompanhe o chamado por e-mail.";
             }
-            else
+            else if (status == 2)
             {
-                message = "Ocorreu um erro";
+                ViewBag.message = "Ocorreu um erro ao processar a solicitação! Por favor tente novamente.";
             }
-
-            ViewBag.message = message;
             return View();
         }
 

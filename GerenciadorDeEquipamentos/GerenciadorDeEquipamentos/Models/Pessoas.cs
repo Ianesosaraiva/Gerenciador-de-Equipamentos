@@ -29,16 +29,16 @@ namespace GerenciadorDeEquipamentos.Models
     
         public int PessoaId { get; set; }
         public string NomeCompleto { get; set; }
-        public string Senha { get; set; }
+        public string Email { get; set; }
         public string CPF { get; set; }
         public string RG { get; set; }
+        public System.DateTime DataNascimento { get; set; }
         public string Contato { get; set; }
+        public string Senha { get; set; }
         public System.DateTime DataCadastro { get; set; }
-        public string Email { get; set; }
         public Nullable<System.DateTime> UltimoAcesso { get; set; }
         public int AcessoId { get; set; }
         public int StatusId { get; set; }
-        public System.DateTime DataNascimento { get; set; }
         public int EquipeId { get; set; }
     
         public virtual Acessos Acessos { get; set; }
@@ -46,6 +46,7 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual ICollection<Equipamentos> Equipamentos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipe> Equipe { get; set; }
+        public virtual Equipe Equipe1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Especificacoes> Especificacoes { get; set; }
         public virtual Status Status { get; set; }
@@ -59,6 +60,5 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual ICollection<TipoSolicitacao> TipoSolicitacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transferencia> Transferencia { get; set; }
-        public virtual Equipe Equipe1 { get; set; }
     }
 }

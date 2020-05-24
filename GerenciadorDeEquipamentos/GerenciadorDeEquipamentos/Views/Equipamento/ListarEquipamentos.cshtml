@@ -38,16 +38,10 @@
                                             @Html.DisplayName("Departamentos")
                                         </th>
                                         <th>
-                                            @Html.DisplayName("Data de aquisição")
-                                        </th>
-                                        <th>
                                             @Html.DisplayName("Data da garantia")
                                         </th>
                                         <th>
                                             @Html.DisplayName("Número patrimonial")
-                                        </th>
-                                        <th>
-                                            @Html.DisplayName("Service Tag Serial")
                                         </th>
                                         <th>Ações</th>
                                     </tr>
@@ -66,16 +60,10 @@
                                                 @Html.DisplayFor(modelItem => item.Departamentos.Nome)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.DataAquisicao)
-                                            </td>
-                                            <td>
                                                 @Html.DisplayFor(modelItem => item.DataGarantia)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.NumeroPatrimonial)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ServiceTagSerial)
                                             </td>
                                             <td>
                                                 <ul class="navbar-nav">
@@ -88,7 +76,8 @@
                                                         </a>
                                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                                                             <a class="dropdown-item" href="@Url.Action("DetalhesEquipamento", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Visualizar Mais</a>
-                                                            <a class="dropdown-item" href="@Url.Action("ListarEquipamentoEspecificacao", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Especificações</a>
+                                                            <a class="dropdown-item" href="@Url.Action("ListarEquipamentoEspecificacao", "EquipamentoEspecificacao", new { EquipamentoId = item.EquipamentoId})">Especificações</a>
+                                                            <a class="dropdown-item" href="@Url.Action("ListarEquipamentoSoftwares", "EquipamentoSoftware", new { EquipamentoId = item.EquipamentoId})">Softwares</a>
                                                             <a class="dropdown-item" href="@Url.Action("EditarEquipamento", "Equipamento", new { EquipamentoId = item.EquipamentoId})">Editar Equipamento</a>
                                                             <a class="dropdown-item" href="@Url.Action("ListarManutencoesEquipamento", "Manutencao", new { EquipamentoId = item.EquipamentoId})">Manutenção</a>
                                                             @if (!HttpContext.Current.User.IsInRole("Estagiário"))

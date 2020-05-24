@@ -82,6 +82,11 @@
                                     @Html.DropDownList("StatusId", ViewBag.status as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
                                     @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
                                 </div>
+                                <div class="col-sm">
+                                    <label class="bmd-label-static">*Equipe</label>
+                                    @Html.DropDownList("EquipeId", ViewBag.equipe as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
+                                    @Html.ValidationMessageFor(model => model.EquipeId, "", new { @class = "text-danger" })
+                                </div>
                             </div>
 
                             <div class="form-group mt-3">

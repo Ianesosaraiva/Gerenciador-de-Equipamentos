@@ -368,11 +368,9 @@
             type: "POST",
             contentType: "application/json; chartset=utf-8",
             success: function (data) {
-                console.log(data);
                 chartDataPie = data;
             },
             error: function (data) {
-                console.log(data);
                 alert("Erro carregando dados! Por favor tente novamente.")
             }
         }).done(function () {
@@ -411,11 +409,9 @@
             type: "POST",
             contentType: "application/json; chartset=utf-8",
             success: function (data) {
-                console.log(data);
                 chartDataLine = data;
             },
             error: function (data) {
-                console.log(data);
                 alert("Erro carregando dados! Por favor tente novamente.")
             }
         }).done(function () {

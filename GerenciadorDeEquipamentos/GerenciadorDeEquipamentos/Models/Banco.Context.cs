@@ -35,6 +35,7 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<Especificacoes> Especificacoes { get; set; }
         public virtual DbSet<Licencas> Licencas { get; set; }
         public virtual DbSet<Log> Log { get; set; }
+        public virtual DbSet<Manutencao> Manutencao { get; set; }
         public virtual DbSet<OrdemServico> OrdemServico { get; set; }
         public virtual DbSet<Pessoas> Pessoas { get; set; }
         public virtual DbSet<Prioridade> Prioridade { get; set; }
@@ -46,16 +47,15 @@ namespace GerenciadorDeEquipamentos.Models
         public virtual DbSet<TipoEquipamento> TipoEquipamento { get; set; }
         public virtual DbSet<TipoSolicitacao> TipoSolicitacao { get; set; }
         public virtual DbSet<Transferencia> Transferencia { get; set; }
-        public virtual DbSet<vw_equipe_ordemServico> vw_equipe_ordemServico { get; set; }
-        public virtual DbSet<vw_tarefas_status_dados> vw_tarefas_status_dados { get; set; }
+        public virtual DbSet<vw_colaborador_tarefas> vw_colaborador_tarefas { get; set; }
+        public virtual DbSet<vw_dados_index_os> vw_dados_index_os { get; set; }
         public virtual DbSet<vw_equipamentos_manutencao_por_mes> vw_equipamentos_manutencao_por_mes { get; set; }
+        public virtual DbSet<vw_equipe_ordemServico> vw_equipe_ordemServico { get; set; }
         public virtual DbSet<vw_os_encerrados_por_mes> vw_os_encerrados_por_mes { get; set; }
+        public virtual DbSet<vw_os_status_dados> vw_os_status_dados { get; set; }
         public virtual DbSet<vw_quantidade_equipamentos_por_departamento> vw_quantidade_equipamentos_por_departamento { get; set; }
         public virtual DbSet<vw_quantidade_equipamentos_por_tipo> vw_quantidade_equipamentos_por_tipo { get; set; }
         public virtual DbSet<vw_tarefas_encerradas_por_mes> vw_tarefas_encerradas_por_mes { get; set; }
-        public virtual DbSet<vw_os_status_dados> vw_os_status_dados { get; set; }
-        public virtual DbSet<vw_dados_index_os> vw_dados_index_os { get; set; }
-        public virtual DbSet<vw_colaborador_tarefas> vw_colaborador_tarefas { get; set; }
-        public virtual DbSet<Manutencao> Manutencao { get; set; }
+        public virtual DbSet<vw_tarefas_status_dados> vw_tarefas_status_dados { get; set; }
     }
 }

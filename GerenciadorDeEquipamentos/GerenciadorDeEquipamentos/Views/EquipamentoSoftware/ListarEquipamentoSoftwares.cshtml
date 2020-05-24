@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GerenciadorDeEquipamentos.Models.SoftwareEquipemento>
+
+@{
+    ViewBag.Title = "ListarEquipamentoSoftwares";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-primary ">
+                        <h4 class="card-title">Lista de Softwares do Equipamento</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="datatables" class="table table-hover">
+                                <thead class="">
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayName("Nome")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Data Vinculação")
+                                        </th>
+                                        <th>
+                                            @Html.DisplayName("Vinculou")
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Softwares.Nome)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Data)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Pessoas.NomeCompleto)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
