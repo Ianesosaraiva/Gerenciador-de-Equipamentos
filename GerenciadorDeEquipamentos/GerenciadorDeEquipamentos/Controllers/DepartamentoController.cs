@@ -31,7 +31,7 @@ namespace GerenciadorDeEquipamentos.Controllers
         {
             bd.Departamentos.Add(departamento);
             bd.SaveChanges();
-            return RedirectToAction("ListarDepartamento");
+            return RedirectToAction("ListarDepartamentos");
         }
 
         //===============================================================================================
