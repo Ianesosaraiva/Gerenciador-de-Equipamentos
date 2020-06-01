@@ -11,7 +11,8 @@ namespace GerenciadorDeEquipamentos.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OrdemServico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,16 @@ namespace GerenciadorDeEquipamentos.Models
         }
     
         public int OrdemServicoId { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string Titulo { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string ClienteNome { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string ClienteEmail { get; set; }
         public Nullable<int> TipoSolicitacaoId { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório!")]
         public string Descricao { get; set; }
+        [Required (ErrorMessage = "Campo obrigatório!")]
         public int PrioridadeId { get; set; }
         public Nullable<int> EquipeId { get; set; }
         public System.DateTime DataAbertura { get; set; }

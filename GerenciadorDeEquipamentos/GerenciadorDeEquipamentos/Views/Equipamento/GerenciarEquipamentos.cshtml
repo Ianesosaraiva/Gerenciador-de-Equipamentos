@@ -104,52 +104,53 @@
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header card-header-icon card-header-primary">
-                        <div class="card-icon">
-                            <i class="material-icons">timeline</i>
+        @if (HttpContext.Current.User.IsInRole("Administrador"))
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-primary">
+                            <div class="card-icon">
+                                <i class="material-icons">timeline</i>
+                            </div>
+                            <h4 class="card-title">
+                                Gráfico Equipamentos
+                                @*Equipamentos e OS *@
+                                <small> - Por Depatamento</small>
+                            </h4>
                         </div>
-                        <h4 class="card-title">
-                            Gráfico Equipamentos
-                            @*Equipamentos e OS *@
-                            <small> - Por Depatamento</small>
-                        </h4>
+                        <div class="card-body">
+                            <div id="colouredRoundedLineChart" class="ct-chart">
+                                <div id="roundedLineChart" class="ct-chart">
+                                    <div id="chartPie2" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
+                                         width="100%" height="360px" style="width: 100%; height: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div id="colouredRoundedLineChart" class="ct-chart">
-                            <div id="roundedLineChart" class="ct-chart">
-                                <div id="chartPie2" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
-                                     width="100%" height="360px" style="width: 100%; height: 100%;"></div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header card-header-icon card-header-primary">
+                            <div class="card-icon">
+                                <i class="material-icons">timeline</i>
+                            </div>
+                            <h4 class="card-title">
+                                Gráfico Quantidade Equipamentos
+                                @*Equipamentos e OS *@
+                                <small> - Por Tipo</small>
+                            </h4>
+                        </div>
+                        <div class="card-body">
+                            <div id="colouredRoundedLineChart" class="ct-chart">
+                                <div id="chartP" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
+                                     width="100%" height="100%" style="width: 100%; height: 100%;"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header card-header-icon card-header-primary">
-                        <div class="card-icon">
-                            <i class="material-icons">timeline</i>
-                        </div>
-                        <h4 class="card-title">
-                            Gráfico Quantidade Equipamentos
-                            @*Equipamentos e OS *@
-                            <small> - Por Tipo</small>
-                        </h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="colouredRoundedLineChart" class="ct-chart">
-                            <div id="chartP" class="ct-chart-line" xmlns:ct="http://gionkunz.github.com/chartist-js/ct"
-                                 width="100%" height="100%" style="width: 100%; height: 100%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        }
         <div class="row">
             <div class="col-md">
                 <div class="card">
@@ -161,7 +162,7 @@
                                     <i class="material-icons">devices</i>
                                 </div>
                                 <p class="card-category">Website Visits</p>
-                                <h3 class="card-title mt-4">Tipo</h3>
+                                <h3 class="card-title mt-5">Tipo</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -182,7 +183,7 @@
                                     <i class="material-icons">memory</i>
                                 </div>
                                 <p class="card-category">Website Visits</p>
-                                <h3 class="card-title mt-4">Atributos</h3>
+                                <h3 class="card-title mt-5">Atributos</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

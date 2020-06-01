@@ -53,6 +53,7 @@
                                 <div class="col-sm">
                                     <label class="bmd-label-static">Descrição</label>
                                     <textarea class="form-control" name="descricao" rows="2"></textarea>
+                                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -69,3 +70,8 @@
     </div>
 </div>
 
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -4,7 +4,8 @@
 @{
     ViewBag.Title = "Relatorio de Equipamentos";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<Equipamentos> relatorioEquipamentos = ViewBag.relatorioEquipamentos;
+    List<Equipamentos> relatorioEquipamentos = new List<Equipamentos>();
+        //ViewBag.relatorioEquipamentos;
 }
 
 <div class="content">
@@ -22,33 +23,17 @@
                     <div class="card-body">
                         @using (Html.BeginForm("_RelatorioEquipamentos", "Relatorio", FormMethod.Post, new { id = "form" }))
                         {
-                           
-                            <div class="container ">
-                                <div class="form-group col-md-3">
-                                    @Html.DropDownList("TipoEquipamentoId", ViewBag.tipoEquipamento
-                                    as IEnumerable<SelectListItem>, "Selecione", new
-                                    {
-                                        @class = "selectpicker form-control",
-                                        @data_actions_box = "true",
-                                        @data_live_search = "true",
-                                        @multiple = "",
-                                        @required = "required",
-                                        @data_selected_text_format = "count > 1",
-                                        @data_size = "5"
-                                    })
 
-                                </div>
+                            <div class="container ">
                                 <div class="row">
-                                    @*<div class="col-sm">
+                                    <div class="col-sm">
                                         <label class="bmd-label-static">Tipo de Equipamentos</label>
                                         @Html.DropDownList("TipoEquipamentoId", ViewBag.tipoEquipamento as IEnumerable<SelectListItem>, "Selecione", new
                                    {
-                                            @class = "selectpicker",
-                                            @multiple = "",
-                                            @data_live_search = "true"
+                                            @class = "custom-select form-control",
                                    })
                                         @Html.ValidationMessageFor(model => model.TipoEquipamentoId, "", new { @class = "text-danger" })
-                                    </div>*@
+                                    </div>
                                     <div class="col-sm">
                                         <label class="bmd-label-static">Departamento</label>
                                         @Html.DropDownList("DepartamentoId", ViewBag.departamento as IEnumerable<SelectListItem>, "Selecione", htmlAttributes: new { @class = "custom-select form-control" })
@@ -83,11 +68,11 @@
                             <div class="clearfix"></div>
                         }
                     </div>
-                    @*<div class="card-body" id="partial" hidden="true">
-                            @{
-                                @Html.Partial("_RelatorioEquipamentos", new { equipamento = relatorioEquipamentos });
-                            }
-                        </div>*@
+                    <div class="card-body" id="partial" hidden="true">
+                        @{
+                            @Html.Partial("_RelatorioEquipamentos");
+                        }
+                    </div>
                 </div>
             </div>
 

@@ -44,6 +44,12 @@ namespace GerenciadorDeEquipamentos.Controllers
             return View();
         }
 
+        public ActionResult _RelatorioEquipamentos(List<Equipamentos> equipamento)
+        {
+            equipamento = new List<Equipamentos>();
+            return View(equipamento);
+        }
+
         [HttpPost]
         public ActionResult _RelatorioEquipamentos(RelatorioEquipamentos relatorio)
         {
@@ -55,10 +61,6 @@ namespace GerenciadorDeEquipamentos.Controllers
             return RedirectToAction("RelatorioEquipamentos");
         }
 
-        public ActionResult _RelatorioEquipamentos(List<Equipamentos> equipamento)
-        {
-            return View(equipamento);
-        }
 
         [Authorize(Roles = "Administrador, Funcionário")]
         public ActionResult RelatorioOrdemServico()
